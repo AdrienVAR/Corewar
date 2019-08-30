@@ -4,7 +4,10 @@ FLAGS = -g -Wall -Wextra -Werror
 SRC_DIR = src/
 LIB_DIR = ../includes/libft/
 
-SRC_FILES = main.c 
+SRC_FILES = main.c				\
+			clean_exit.c		\
+			check_extention.c	\
+			parsing.c			\
 
 INC_FILES = $(shell find ../includes -regex ".\{1,200\}\.h" | xargs)
 

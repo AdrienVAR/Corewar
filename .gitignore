@@ -1,0 +1,6 @@
+*.a
+*.o
+corewar
+asm
+.vscode
+.DS_Store

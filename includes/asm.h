@@ -1,21 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   asm.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gdrai <gdrai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/29 14:41:23 by advardon          #+#    #+#             */
-/*   Updated: 2019/08/30 15:04:08 by gdrai            ###   ########.fr       */
+/*   Created: 2019/08/30 13:04:14 by gdrai             #+#    #+#             */
+/*   Updated: 2019/08/30 14:59:30 by gdrai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/asm.h"
+#ifndef ASM_H
+# define ASM_H
 
-int		main(int argc, char **argv)
-{
-	if (argc != 2 || !check_extention(argv[1]))
-		clean_exit(NULL, "Usage: ./asm <sourcefile.s>\n");
-	parsing(argv[1]);
-	return (0);
-}
+# include "./libft/libft.h"
+# include <stdio.h>
+# include <fcntl.h>
+
+# include "op.h"
+
+void	clean_exit(char *buffer, char *error_message);
+int		check_extention(char *file);
+void	parsing(char *file);
+
+#endif

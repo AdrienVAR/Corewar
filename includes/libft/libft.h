@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: advardon <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: gdrai <gdrai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/23 17:21:46 by advardon          #+#    #+#             */
-/*   Updated: 2018/12/05 16:12:49 by advardon         ###   ########.fr       */
+/*   Updated: 2019/08/30 15:12:20 by gdrai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,5 +96,6 @@ char				*ft_strtolower(char *str);
 void				ft_swap(int *a, int *b);
 void				ft_print_words_tables(char **tab);
 int					get_next_line(const int fd, char **line);
+char				*ft_strjoin_free(char *s1, char *s2);
 
 #endif

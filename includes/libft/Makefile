@@ -44,6 +44,7 @@ SOURCES =	ft_memset.c \
 			ft_strnequ.c \
 			ft_strsub.c \
 			ft_strjoin.c \
+			ft_strjoin_free.c \
 			ft_strtrim.c \
 			ft_strsplit.c \
 			ft_putendl.c \
