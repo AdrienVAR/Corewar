@@ -6,7 +6,7 @@
 #    By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/19 09:36:56 by cgiron            #+#    #+#              #
-#    Updated: 2019/08/31 10:08:52 by cgiron           ###   ########.fr        #
+#    Updated: 2019/08/31 11:30:58 by cgiron           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ vpath %.h $(SHARE_INC_DIR)
 vpath %.o $(SHARE_OBJ_DIR)
 
 SHARE_FLAGS				:= -Wall -Wextra -Werror
-OPTI_FLAGS				:= -O3 -ffreestanding -fno-builtin -flto
-OPTI_FLAGS				+= -g
+##OPTI_FLAGS				:= -O3 -ffreestanding -fno-builtin -flto
+OPTI_FLAGS				:= -g
 SHARE_FLAGS				+= -I $(SHARE_INC_DIR)
 SHARE_DEBUG				:= -g3
