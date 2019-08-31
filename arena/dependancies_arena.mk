@@ -6,7 +6,7 @@
 #    By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/31 09:59:29 by cgiron            #+#    #+#              #
-#    Updated: 2019/08/31 10:05:23 by cgiron           ###   ########.fr        #
+#    Updated: 2019/08/31 14:20:09 by cgiron           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,12 +25,16 @@ L_ARENA_DIR	:= arena
 NAME_ARENA	:= corewar
 
 SRC_ARENA = \
-			main.c
+			main.c\
+			init.c\
+			file_loading.c\
+			exit.c\
+
 INC_ARENA					:= arena.h
 
 DEPENDANCIES_ARENA_O		:= Makefile ./dependancies_$(L_ARENA_DIR).mk\
 								 ./dependancies_$(L_ARENA_DIR)_object.mk\
-								 ../shared_val.mk
+								 ../shared_val.mk ./$(SHARE_INC_DIR)/op.h
 
 DEPENDANCIES_ARENA_O		+= includes/*.h
 
