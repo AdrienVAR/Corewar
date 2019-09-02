@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/31 09:59:55 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/02 10:31:24 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/02 12:09:56 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ typedef struct	s_player
 	int		code_size;
 	char	name[PROG_NAME_LENGTH + 1];
 	char	comment[COMMENT_LENGTH + 1];
+	char	exec[CHAMP_MAX_SIZE + 1];
 }				t_player;
 
 /*
@@ -89,10 +90,13 @@ typedef struct	s_master
 void			init(t_master **mstr);
 void			file_loading(t_master *mstr, int argc, char **argv);
 void			deassembler(t_master *mstr);
+
 /*
 ** **	BINARY_READ
 */
 int				binary_read_integer(int fd, t_master *mstr);
+void			binary_read_string(int fd, char *str, int sz, t_master *mstr);
+void			binary_read_null(int fd, t_master *mstr);
 
 void			exit_program(t_master *mstr);
 
