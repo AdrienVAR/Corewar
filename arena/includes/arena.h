@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/31 09:59:55 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/02 16:20:53 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/02 17:44:24 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ typedef struct	s_master
 	int				nb_of_players;
 	char			arena[MEM_SIZE];
 	t_player		*players[MAX_PLAYERS];
-	void			*process;
+	t_process		*process;
 }				t_master;
 
 /*
