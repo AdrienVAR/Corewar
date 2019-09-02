@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/31 09:59:55 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/02 12:09:56 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/02 14:26:44 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@
 
 typedef struct	s_process
 {
-	unsigned char		registry[REG_NUMBER][REG_SIZE];
-	unsigned char		pc[REG_SIZE];
+	char				registry[REG_NUMBER][REG_SIZE];
+	char				pc[REG_SIZE];
 	int					carry;
 	int					alive;
 	struct s_process	*next;
@@ -56,14 +56,14 @@ typedef struct	s_process
 
 typedef struct	s_player
 {
-	int		magic;
-	int		nb;
-	int		fd;
-	char	*binary;
-	int		code_size;
-	char	name[PROG_NAME_LENGTH + 1];
-	char	comment[COMMENT_LENGTH + 1];
-	char	exec[CHAMP_MAX_SIZE + 1];
+	int				magic;
+	int				nb;
+	int				fd;
+	char			*binary;
+	int				code_size;
+	char			name[PROG_NAME_LENGTH + 1];
+	char			comment[COMMENT_LENGTH + 1];
+	char			exec[CHAMP_MAX_SIZE + 1];
 }				t_player;
 
 /*
@@ -76,7 +76,7 @@ typedef struct	s_master
 {
 	int				magic_number;
 	int				nb_of_players;
-	unsigned char	arena[MEM_SIZE];
+	char			arena[MEM_SIZE];
 	t_player		*players[MAX_PLAYERS];
 	void			*process;
 }				t_master;
@@ -97,7 +97,7 @@ void			deassembler(t_master *mstr);
 int				binary_read_integer(int fd, t_master *mstr);
 void			binary_read_string(int fd, char *str, int sz, t_master *mstr);
 void			binary_read_null(int fd, t_master *mstr);
-
+void			arena_populate(t_master *mstr);
 void			exit_program(t_master *mstr);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 10:17:22 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/02 11:54:55 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/02 14:26:11 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 int		binary_read_integer(int fd, t_master *mstr)
 {
-	unsigned char	nb_str[4];
+	char			nb_str[4];
 	int				read_ret;
 	int				nb;
 	int				i;
@@ -28,7 +28,7 @@ int		binary_read_integer(int fd, t_master *mstr)
 		exit_program(mstr);
 	i = -1;
 	while (++i < 4)
-		nb += (nb << 8) + nb_str[i];
+		nb = (nb << 8) + (unsigned char)nb_str[i];
 	return (nb);
 }
 
