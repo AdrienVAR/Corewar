@@ -20,7 +20,7 @@ endif
 
 CHECK_ASM_DEP := 1
 
-L_ASM_DIR	:= asm
+L_ASM_DIR	:= dir_asm
 
 NAME_ASM	:= asm
 

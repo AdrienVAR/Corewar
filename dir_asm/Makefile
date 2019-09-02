@@ -6,11 +6,11 @@
 #    By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/17 11:56:45 by cgiron            #+#    #+#              #
-#    Updated: 2019/09/02 11:08:36 by cgiron           ###   ########.fr        #
+#    Updated: 2019/09/02 13:42:35 by gdrai            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-include ./dependancies_asm.mk
+include ./dependancies_dir_asm.mk
 include ../libft/dependancies_libft.mk
 include ../shared_val.mk
 
