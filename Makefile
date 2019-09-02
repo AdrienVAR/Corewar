@@ -1,39 +1,69 @@
-NAME = corewar
-CC = gcc
-FLAGS = -g -Wall -Wextra -Werror
-SRC_DIR = src/
-LIB_DIR = includes/libft/
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2019/06/17 12:16:41 by cgiron            #+#    #+#              #
+#    Updated: 2019/09/02 11:27:22 by cgiron           ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
-SRC_FILES = main.c			\
-			garbage_collector.c	
+include ./libft/dependancies_libft.mk
+include ./arena/dependancies_arena.mk
+include ./asm/dependancies_asm.mk
+include ./shared_val.mk
 
-INC_FILES = $(shell find includes -regex ".\{1,200\}\.h" | xargs) \
-			$(shell find includes/libft -regex ".\{1,200\}\.h" | xargs)
+ifeq ($(CHECK_SHARED_VAL),)
+	$(error SHARE_VAL not included)
+endif
+ifeq ($(CHECK_LIBFT_DEP),)
+	$(error LIBFT_DEPENDANCIES not included)
+endif
+ifeq ($(CHECK_ARENA_DEP),)
+	$(error ARENA_DEPENDANCIES not included)
+endif
+ifeq ($(CHECK_ASM_DEP),)
+	$(error ASM_DEPENDANCIES not included)
+endif
 
-SRC = $(addprefix $(SRC_DIR), $(SRC_FILES))
+NAME := $(NAME_ARENA) $(NAME_ASM)
 
-OBJ = $(addprefix $(SRC_DIR), $(SRC_FILES:.c=.o))
+L_NAME = "NAME_ARENA=../$(NAME_ARENA)"
+V_NAME = "NAME_ASM=../$(NAME_ASM)"
 
-.PHONY: clean fclean re
+.PHONY: all clean fclean re debug
 
-all: $(NAME)
+all : $(NAME)
 
-$(NAME): $(OBJ)
-	make -C includes/libft/
-	$(CC) $(FLAGS) -Lincludes/libft -lft -o $@ $^
-	make -C asm/
+STD_DEPENDANCY := $(DEPENDANCIES_LIBFT_EXPORT)
 
-%.o: %.c $(INC_FILES)
-	$(CC) $(FLAGS) -I includes/libft -o $@ -c $<
+$(NAME_ARENA) : $(DEPENDANCIES_ARENA_EXPORT) $(STD_DEPENDANCY)
+	$(MAKE) -C $(L_LIBFT_DIR) --no-print-directory
+	$(MAKE) -C $(L_ARENA_DIR) $(L_NAME) --no-print-directory
+
+$(NAME_ASM) : $(DEPENDANCIES_ASM_EXPORT) $(STD_DEPENDANCY)
+	$(MAKE) -C $(L_LIBFT_DIR) --no-print-directory
+	$(MAKE)  -C $(L_ASM_DIR) $(V_NAME) --no-print-directory
 
 clean:
-	make -C includes/libft clean
-	make -C asm/ clean
-	rm -f $(OBJ)
+	$(MAKE) clean -C $(L_LIBFT_DIR) --no-print-directory
+	$(MAKE) clean -C $(L_ARENA_DIR) --no-print-directory
+	$(MAKE) clean -C $(L_ASM_DIR) --no-print-directory
 
-fclean: clean
-	make -C includes/libft fclean
-	make -C asm/ fclean
+fclean:
+	$(MAKE) fclean -C $(L_LIBFT_DIR) --no-print-directory
+	$(MAKE) fclean -C $(L_ARENA_DIR) --no-print-directory
+	$(MAKE) fclean -C $(L_ASM_DIR) --no-print-directory
 	rm -f $(NAME)
+
+simulink:
+	$(MAKE) simulink -C $(L_ARENA_DIR) --no-print-directory
+	$(MAKE) simulink -C $(L_ASM_DIR) --no-print-director/
+
+debug:
+	$(MAKE) debug -C $(L_ARENA_DIR) $(L_NAME) --no-print-directory
+	$(MAKE) debug -C $(L_ASM_DIR) $(V_NAME) --no-print-directory
 
 re: fclean all
