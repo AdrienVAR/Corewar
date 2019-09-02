@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/31 09:59:55 by cgiron            #+#    #+#             */
-/*   Updated: 2019/08/31 16:39:40 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/02 10:31:24 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 /*
 ** **	ARENA
 */
-# define ARENA_SIZE (MEM_SIZE + 32)/32
+
 # define USAGE_STR "./corewar [-dump nbr_cycles] [[-n number] champion1.cor]\n"
 
 /*
@@ -56,6 +56,7 @@ typedef struct	s_process
 
 typedef struct	s_player
 {
+	int		magic;
 	int		nb;
 	int		fd;
 	char	*binary;
@@ -72,11 +73,11 @@ typedef struct	s_player
 
 typedef struct	s_master
 {
-	int			magic_number;
-	int			nb_of_players;
-	int			arena[ARENA_SIZE];
-	t_player	*players[MAX_PLAYERS];
-	void		*process;
+	int				magic_number;
+	int				nb_of_players;
+	unsigned char	arena[MEM_SIZE];
+	t_player		*players[MAX_PLAYERS];
+	void			*process;
 }				t_master;
 
 /*
@@ -87,6 +88,12 @@ typedef struct	s_master
 
 void			init(t_master **mstr);
 void			file_loading(t_master *mstr, int argc, char **argv);
+void			deassembler(t_master *mstr);
+/*
+** **	BINARY_READ
+*/
+int				binary_read_integer(int fd, t_master *mstr);
+
 void			exit_program(t_master *mstr);
 
 #endif
