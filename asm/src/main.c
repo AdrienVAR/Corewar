@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gdrai <gdrai@student.42.fr>                +#+  +:+       +#+        */
+/*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 14:41:23 by advardon          #+#    #+#             */
-/*   Updated: 2019/08/30 15:04:08 by gdrai            ###   ########.fr       */
+/*   Updated: 2019/09/02 11:16:55 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/asm.h"
+#include "asm.h"
 
 int		main(int argc, char **argv)
 {

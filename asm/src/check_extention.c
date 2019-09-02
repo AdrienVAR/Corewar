@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   check_extention.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gdrai <gdrai@student.42.fr>                +#+  +:+       +#+        */
+/*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/30 14:25:25 by gdrai             #+#    #+#             */
-/*   Updated: 2019/08/30 14:26:16 by gdrai            ###   ########.fr       */
+/*   Updated: 2019/09/02 11:16:43 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/asm.h"
+#include "asm.h"
 
 /*
 ** Check if file is a .s

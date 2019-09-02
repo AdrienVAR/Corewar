@@ -1,34 +1,74 @@
-NAME = asm
-CC = gcc
-FLAGS = -g -Wall -Wextra -Werror
-SRC_DIR = src/
-LIB_DIR = ../includes/libft/
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2019/06/17 11:56:45 by cgiron            #+#    #+#              #
+#    Updated: 2019/09/02 11:08:36 by cgiron           ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
-SRC_FILES = main.c				\
-			clean_exit.c		\
-			check_extention.c	\
-			parsing.c			\
+include ./dependancies_asm.mk
+include ../libft/dependancies_libft.mk
+include ../shared_val.mk
 
-INC_FILES = $(shell find ../includes -regex ".\{1,200\}\.h" | xargs)
+ifeq ($(CHECK_ASM_DEP),)
+$(error ASM_DEPENDANCIES not included)
+endif
+ifeq ($(CHECK_SHARED_VAL),)
+$(error SHARE_VAL not included)
+endif
+ifeq ($(CHECK_LIBFT_DEP),)
+$(error LIBFT_DEPENDANCIES not included)
+endif
 
-SRC = $(addprefix $(SRC_DIR), $(SRC_FILES))
+DEPENDANCY_OBJ_INC_FILE := ./dependancies_$(L_ASM_DIR)_object.mk
+L_FT    := ../libft
+EXFLAGS := -L $(L_FT) -lft $(SHARE_FLAGS)
+SIMULINK := $(SHARE_INC_DIR)/$(NAME_LIBFT)
 
-OBJ = $(addprefix $(SRC_DIR), $(SRC_FILES:.c=.o))
+NAME 	:= $(NAME_ASM)
+SRC_DIR := $(SHARE_SRC_DIR)
+INC_DIR := $(SHARE_INC_DIR)
+OBJ_DIR := $(SHARE_OBJ_DIR)
+SRC 	:= $(SRC_ASM)
+OBJ		:= $(patsubst %.c,%.o,$(SRC))
 
-.PHONY: clean fclean re
+CC      := gcc
+CFLAGS  := $(SHARE_FLAGS)
+
+.PHONY: all clean fclean re debug simulink
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
-	$(CC) $(FLAGS) -L ../includes/libft -lft -o $@ $^
+simulink:
+	rm -rf	$(INC_DIR)/$(L_LIBFT_DIR)
+	ln -s	../$(L_FT)/$(INC_DIR) $(INC_DIR)/$(L_LIBFT_DIR)
 
-%.o: %.c $(INC_FILES)
-	$(CC) $(FLAGS) -I ../includes/libft -o $@ -c $<
+$(OBJ_DIR):
+	mkdir -p $(OBJ_DIR)
+
+%.o:%.c $(DEPENDANCIES_ASM_O)
+	@mkdir -p $(OBJ_DIR)
+	$(CC) $(OPTI_FLAGS) $(CFLAGS) -c $< -o $(OBJ_DIR)/$@
+
+-include $(DEPENDANCY_OBJ_INC_FILE)
+
+$(NAME): $(OBJ) $(DEPENDANCIES_ASM)
+	$(MAKE) -C $(L_FT) "OPTI_FLAGS=$(OPTI_FLAGS)" --no-print-directory
+	$(CC) $(OPTI_FLAGS) $(CFLAGS) $(EXFLAGS)  $(addprefix $(OBJ_DIR)/,$(OBJ)) -o $(NAME)
 
 clean:
-	rm -f $(OBJ)
+	$(MAKE) clean -C $(L_FT) --no-print-directory
+	rm -rf $(OBJ_DIR)
 
 fclean: clean
+	$(MAKE) fclean -C $(L_FT) --no-print-directory
 	rm -f $(NAME)
+
+debug: OPTI_FLAGS := $(SHARE_DEBUG)
+debug: re clean
 
 re: fclean all

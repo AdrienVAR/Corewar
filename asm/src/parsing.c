@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gdrai <gdrai@student.42.fr>                +#+  +:+       +#+        */
+/*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/30 14:55:51 by gdrai             #+#    #+#             */
-/*   Updated: 2019/08/30 15:23:25 by gdrai            ###   ########.fr       */
+/*   Updated: 2019/09/02 11:16:59 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/asm.h"
+#include "asm.h"
 
 /*
 ** get_file_content : Get file content into the buffer
