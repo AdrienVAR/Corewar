@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/31 09:59:05 by cgiron            #+#    #+#             */
-/*   Updated: 2019/08/31 16:09:27 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/02 09:39:11 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,6 @@ int				main(int argc, char **argv)
 	mstr = 0;
 	init(&mstr);
 	file_loading(mstr, argc, argv);
+	deassembler(mstr);
 	return (0);
 }
