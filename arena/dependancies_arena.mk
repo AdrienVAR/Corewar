@@ -6,7 +6,7 @@
 #    By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/31 09:59:29 by cgiron            #+#    #+#              #
-#    Updated: 2019/09/02 15:33:52 by cgiron           ###   ########.fr        #
+#    Updated: 2019/09/02 16:20:56 by cgiron           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ SRC_ARENA = \
 			file_loading.c\
 			binary_read.c\
 			deassembler.c\
+			file_closing.c\
 			arena_populate.c\
 			memory_dump.c\
 			exit.c\
