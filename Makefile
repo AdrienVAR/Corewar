@@ -6,13 +6,13 @@
 #    By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/17 12:16:41 by cgiron            #+#    #+#              #
-#    Updated: 2019/09/02 13:40:25 by cgiron           ###   ########.fr        #
+#    Updated: 2019/09/02 13:44:59 by cgiron           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 include ./libft/dependancies_libft.mk
 include ./arena/dependancies_arena.mk
-include ./dir_asm/dependancies_asm.mk
+include ./dir_asm/dependancies_dir_asm.mk
 include ./shared_val.mk
 
 ifeq ($(CHECK_SHARED_VAL),)
