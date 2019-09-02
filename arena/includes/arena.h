@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/31 09:59:55 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/02 15:51:00 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/02 16:20:53 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 */
 
 # define USAGE_STR "./corewar [-dump nbr_cycles] [[-n number] champion1.cor]\n"
-# define DUMP_SIZE 64
+# define DUMP_SIZE 64 // change back to 32
 
 /*
 ** **	OPTION
@@ -91,6 +91,7 @@ typedef struct	s_master
 void			init(t_master **mstr);
 void			file_loading(t_master *mstr, int argc, char **argv);
 void			deassembler(t_master *mstr);
+void			file_closing(t_master *mstr);
 
 /*
 ** **	BINARY_READ
