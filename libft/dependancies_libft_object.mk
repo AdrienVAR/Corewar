@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    dependancies_object.mk                             :+:      :+:    :+:    #
+#    dependancies_libft_object.mk                       :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+         #
+#    By: gdrai <gdrai@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/19 10:11:30 by cgiron            #+#    #+#              #
-#    Updated: 2019/06/19 11:26:13 by cgiron           ###   ########.fr        #
+#    Updated: 2019/09/02 11:45:19 by gdrai            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,3 +49,4 @@ ft_strtrim.o: libft.h
 ft_tab_strrev.o: libft.h
 ft_tab_strsort.o: libft.h
 get_next_line.o: libft.h get_next_line.h
+ft_strjoin_free.o: libft.h

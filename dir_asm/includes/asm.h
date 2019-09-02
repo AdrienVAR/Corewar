@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   asm.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gdrai <gdrai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/30 13:04:14 by gdrai             #+#    #+#             */
-/*   Updated: 2019/09/02 11:17:20 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/02 11:45:51 by gdrai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,10 @@
 # define ASM_H
 
 # include "./libft/libft.h"
+# include "./libft/get_next_line.h"
 #  include <stdio.h>
 # include <fcntl.h>
+# include <stdlib.h>
 
 # include "op.h"
 

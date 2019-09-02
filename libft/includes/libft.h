@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgiron <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: gdrai <gdrai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/14 18:19:46 by cgiron            #+#    #+#             */
-/*   Updated: 2019/06/19 10:20:32 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/02 11:44:42 by gdrai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,5 +104,6 @@ t_list			*ft_lstaddend(t_list *lst, void const *content,
 int				ft_tab_len(char **tab);
 int				ft_atoi_base(char *str, char *base);
 void			ft_swap(int *a, int *b);
+char			*ft_strjoin_free(char *s1, char *s2);
 
 #endif

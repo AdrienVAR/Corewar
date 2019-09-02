@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    dependancies_libft.mk                              :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+         #
+#    By: gdrai <gdrai@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/19 10:08:33 by cgiron            #+#    #+#              #
-#    Updated: 2019/08/07 09:40:05 by cgiron           ###   ########.fr        #
+#    Updated: 2019/09/02 11:44:15 by gdrai            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -103,6 +103,7 @@ SRC_LIBFT = ft_abs.c\
 	ft_tolower.c\
 	ft_toupper.c\
 	get_next_line.c\
+	ft_strjoin_free.c
 
 INC_LIBFT					:= libft.h get_next_line.h
 
