@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/31 09:59:55 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/02 14:26:44 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/02 15:51:00 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 */
 
 # define USAGE_STR "./corewar [-dump nbr_cycles] [[-n number] champion1.cor]\n"
+# define DUMP_SIZE 64
 
 /*
 ** **	OPTION
@@ -98,6 +99,7 @@ int				binary_read_integer(int fd, t_master *mstr);
 void			binary_read_string(int fd, char *str, int sz, t_master *mstr);
 void			binary_read_null(int fd, t_master *mstr);
 void			arena_populate(t_master *mstr);
+void			memory_dump(t_master *mstr);
 void			exit_program(t_master *mstr);
 
 #endif

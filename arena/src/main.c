@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/31 09:59:05 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/02 09:39:11 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/02 15:26:08 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,7 @@ int				main(int argc, char **argv)
 	init(&mstr);
 	file_loading(mstr, argc, argv);
 	deassembler(mstr);
+	arena_populate(mstr);
+	memory_dump(mstr);
 	return (0);
 }
