@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/31 16:38:37 by cgiron            #+#    #+#             */
-/*   Updated: 2019/08/31 16:38:42 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/02 09:41:46 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ void		file_loading(t_master *mstr, int argc, char **argv)
 		if (fd == -1)
 			ft_error_on_opening(argv, mstr);
 		ft_init_player(mstr, *argv, fd, i);
-		i++;
+		++i;
 	}
+	mstr->nb_of_players = i;
 }
