@@ -1,30 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   file_closing.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/31 09:59:05 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/02 16:22:27 by cgiron           ###   ########.fr       */
+/*   Created: 2019/09/02 16:08:23 by cgiron            #+#    #+#             */
+/*   Updated: 2019/09/02 16:21:24 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
 #include "arena.h"
+#include <unistd.h>
 
-int				main(int argc, char **argv)
+void		file_closing(t_master *mstr)
 {
-	t_master	*mstr;
+	t_player	*player;
+	int			i;
 
-	if (!(--argc))
-		ft_putstr(USAGE_STR);
-	mstr = 0;
-	init(&mstr);
-	file_loading(mstr, argc, argv);
-	deassembler(mstr);
-	file_closing(mstr);
-	arena_populate(mstr);
-	memory_dump(mstr);
-	return (0);
+	i = -1;
+	while (++i < mstr->nb_of_players)
+	{
+		player = mstr->players[i];
+		if (player->fd)
+			close(player->fd);
+		player->fd = 0;
+	}
 }
