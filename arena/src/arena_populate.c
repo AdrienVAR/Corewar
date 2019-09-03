@@ -6,12 +6,18 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 13:28:23 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/03 09:30:46 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/03 16:06:10 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "arena.h"
 #include "libft/libft.h"
+
+/*
+**		****************************************************
+** **	Load players into the arena, therefore populating it ** **
+**		****************************************************
+*/
 
 void		arena_populate(t_master *mstr)
 {
