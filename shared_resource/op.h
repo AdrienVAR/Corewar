@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2019/09/03 10:46:05 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/03 17:36:33 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ typedef char	t_arg_type;
 
 # define PROG_NAME_LENGTH		(128)
 # define COMMENT_LENGTH			(2048)
+# define AVAILABLE_OPERATIONS	17
 # define COREWAR_EXEC_MAGIC		0xea83f3
 
 typedef struct		s_header
@@ -107,7 +108,7 @@ typedef struct		s_op
 	char	name[16];
 	int		nb_params;
 	char	params_type[4];
-	int		id;
+	char	id;
 	int		duration;
 	char	description[64];
 	int		no_type_needed;
