@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/31 12:11:04 by cgiron            #+#    #+#             */
-/*   Updated: 2019/08/31 16:38:56 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/03 11:53:37 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,6 @@ void		init(t_master **mstr)
 			(t_player *)ft_memalloc(sizeof(t_player) * MAX_PLAYERS)))
 			exit_program(mstr_val);
 	}
+	mstr_val->foamy_bat_cycle = CYCLE_TO_DIE;
 	*mstr = mstr_val;
 }
