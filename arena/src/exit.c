@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/31 12:14:37 by cgiron            #+#    #+#             */
-/*   Updated: 2019/08/31 15:01:40 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/02 17:45:20 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void		free_everything(t_master *mstr)
 
 void		exit_program(t_master *mstr)
 {
+
 	ft_putstr("ERROR\n");
 	free_everything(mstr);
 	exit(1);

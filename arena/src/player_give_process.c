@@ -1,32 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   arena_populate.c                                   :+:      :+:    :+:   */
+/*   player_give_process.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/02 13:28:23 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/03 09:30:46 by cgiron           ###   ########.fr       */
+/*   Created: 2019/09/03 09:21:52 by cgiron            #+#    #+#             */
+/*   Updated: 2019/09/03 10:57:39 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "arena.h"
 #include "libft/libft.h"
 
-void		arena_populate(t_master *mstr)
+/*
+**		****************************************************
+** **	Gives life to the player assigning a process to them ** **
+**		****************************************************
+*/
+
+void		player_give_process(t_master *mstr)
 {
-	char			*arena;
-	t_player		*player;
-	int				step;
-	int				i;
+	t_process	*process;
+	t_player	*player;
+	int			i;
 
 	i = -1;
-	arena = &(mstr->arena[0]);
-	step = MEM_SIZE / mstr->nb_of_players;
 	while (++i < mstr->nb_of_players)
 	{
 		player = mstr->players[i];
-		ft_memcpy(arena + i * step, player->exec, player->code_size);
-		player->cursor_initial_pos = i * step;
+		if (!(process = (t_process *)ft_memalloc(sizeof(t_process))))
+			exit_program(mstr);
+		process->next = mstr->process;
+		process->pc = player->cursor_initial_pos;
+		mstr->process = process;
 	}
 }
