@@ -6,7 +6,7 @@
 #    By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/31 09:59:29 by cgiron            #+#    #+#              #
-#    Updated: 2019/09/03 10:47:00 by cgiron           ###   ########.fr        #
+#    Updated: 2019/09/03 15:39:43 by cgiron           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,8 @@ SRC_ARENA = \
 			arena_populate.c\
 			player_give_process.c\
 			memory_dump.c\
+			operation_get_info.c\
+			war.c\
 			op.c\
 			exit.c\
 
