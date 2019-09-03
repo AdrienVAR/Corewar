@@ -6,13 +6,19 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/31 12:14:37 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/02 17:45:20 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/03 16:06:44 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "arena.h"
 #include "libft/libft.h"
 #include <stdlib.h>
+
+/*
+**		***************************
+** **	Provide clean exit on ERROR ** **
+**		***************************
+*/
 
 void		free_everything(t_master *mstr)
 {
