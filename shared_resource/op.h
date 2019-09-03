@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2019/08/31 11:04:55 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/03 10:46:05 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,5 +101,17 @@ typedef struct		s_header
 	unsigned int		prog_size;
 	char				comment[COMMENT_LENGTH + 1];
 }					t_header;
+
+typedef struct		s_op
+{
+	char	name[16];
+	int		nb_params;
+	char	params_type[4];
+	int		id;
+	int		duration;
+	char	description[64];
+	int		no_type_needed;
+	int		idx_mod_needed;
+}					t_op;
 
 #endif
