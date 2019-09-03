@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/31 09:59:05 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/03 10:57:53 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/03 16:11:15 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int				main(int argc, char **argv)
 	file_closing(mstr);
 	arena_populate(mstr);
 	player_give_process(mstr);
+	war(mstr);
 	memory_dump(mstr);
 	return (0);
 }
