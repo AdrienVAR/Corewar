@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2019/09/03 17:36:33 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/04 10:23:58 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,10 @@
 */
 
 typedef char	t_arg_type;
+
+/*
+** 	Types are define on 4 bits (1-0)label(1-0)ind(1-0)dir(1-0)reg
+*/
 
 # define T_REG					1
 # define T_DIR					2
