@@ -6,7 +6,7 @@
 /*   By: advardon <advardon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/30 13:04:14 by gdrai             #+#    #+#             */
-/*   Updated: 2019/09/04 16:04:40 by advardon         ###   ########.fr       */
+/*   Updated: 2019/09/04 16:08:26 by advardon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,6 @@ int		check_extention(char *file);
 void	parsing(char *file, t_env *env);
 void    checker_name(char *line);
 t_asm_line	*ft_lstadd_end(t_asm_line *lst);
+char    **split_line(char *line, int option);
 
 #endif

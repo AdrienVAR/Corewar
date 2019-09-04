@@ -1,3 +1,1 @@
-.name "gagab"
-.comment ""
-live  %22
+arriere:	ld	%-5, r5

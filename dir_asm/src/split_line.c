@@ -3,18 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   split_line.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gdrai <gdrai@student.42.fr>                +#+  +:+       +#+        */
+/*   By: advardon <advardon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 13:17:20 by gdrai             #+#    #+#             */
-/*   Updated: 2019/09/04 15:57:06 by gdrai            ###   ########.fr       */
+/*   Updated: 2019/09/04 16:08:36 by advardon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "<stdio.h>
-#include <stdlib.h>
-#define COMMENT_CHAR '#'
-#define SEPARATOR_CHAR ','
-#define LABEL_CHAR	':'"
+#include "asm.h"
+
 
 /*
 ** split_line 
@@ -177,6 +174,7 @@ char    **split_line(char *line, int option)
     return(tab);
 }
 
+/*
 int     main(int argc, char **argv)
 {
     char **tab;
@@ -189,4 +187,4 @@ int     main(int argc, char **argv)
 		while (tab[i])
 			printf("%s\n", tab[i++]);
 	}
-}
+}*/

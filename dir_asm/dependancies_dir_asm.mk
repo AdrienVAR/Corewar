@@ -29,6 +29,7 @@ SRC_ASM = \
 		clean_exit.c\
 		main.c\
 		checker_champ.c\
+		split_line.c\
 		parsing.c
 
 INC_ASM					:= asm.h
