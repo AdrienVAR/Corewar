@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/31 09:59:55 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/04 10:25:01 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/04 19:06:44 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,20 @@ extern t_op g_op_tab[17];
 **		*********************************
 */
 
+typedef	struct	s_command
+{
+	t_op		op;
+	char		param[MAX_ARGS_NUMBER][MAX_ARGS_NUMBER];
+	int			types[MAX_ARGS_NUMBER];
+	int			types_size[MAX_ARGS_NUMBER];
+}				t_command;
+
+
 typedef	struct	s_vm_pcs_track
 {
-	int		last_live;
-	int		wait;
+	int			last_live;
+	int			wait;
+	t_command	command;
 }				t_vm_pcs_track;
 
 
@@ -54,7 +64,6 @@ typedef struct	s_process
 	char				registry[REG_NUMBER][REG_SIZE];
 	int					pc;
 	int					carry;
-	int					time_since_live;
 	t_vm_pcs_track		vm;
 	struct s_process	*next;
 }				t_process;
@@ -118,9 +127,26 @@ typedef union			u_int_char_cast
 	unsigned char		casted[4];
 }						t_int_char_cast;
 
+typedef union			u_int_dir_cast
+{
+	int					nb : T_DIR * 8;
+	unsigned char		casted[T_IND];
+}						t_int_dir_cast;
+
+typedef union			u_int_reg_cast
+{
+	int					nb : T_REG * 8;
+	unsigned char		casted[T_REG];
+}						t_int_reg_cast;
+
+typedef unsigned char	uchar;
+
+char	arena_val(char *arena, int ind);
+
 /*
 ** **	BINARY_READ
 */
+
 int				binary_read_integer(int fd, t_master *mstr);
 void			binary_read_string(int fd, char *str, int sz, t_master *mstr);
 void			binary_read_null(int fd, t_master *mstr);
