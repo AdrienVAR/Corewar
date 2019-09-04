@@ -6,7 +6,7 @@
 /*   By: advardon <advardon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/30 14:55:51 by gdrai             #+#    #+#             */
-/*   Updated: 2019/09/04 16:15:47 by advardon         ###   ########.fr       */
+/*   Updated: 2019/09/04 18:56:33 by advardon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,26 @@ check_comment()
 		i++;
 }*/
 
+
+char	*check_label(char *str)
+{
+	int i;
+
+	i = 0;
+	while(str[i] && str[i] != ':' )
+	{
+		i++;
+		if (str[i] == ':')
+			return(str);
+	}
+	return (NULL);
+}
+
+char	*check_name_op(char *str)
+{
+	return(str);
+}
+
 void	parsing(char *file, t_env *env)
 {
 	int		fd;
@@ -56,19 +76,24 @@ void	parsing(char *file, t_env *env)
 	t_asm_line	*instruction;
 
 	(void) env;
+	tab = NULL;
 	if (!(fd = open(file, O_RDONLY | O_NOFOLLOW)))
 		clean_exit(NULL, "Opening file has failed\n");
-
+	line = 0;
 	get_next_line(fd, &line);
-	tab = split_line(line, 0);
-
+	if(!(tab = split_line(line, 0)))
+		return ;
 	head = NULL;
 	(void) file;
 	//get_file_content(file);
 	instruction = ft_lstadd_end(head);
 	instruction->line_splitted = tab;
-	//instruction->label = check_label();
-	ft_putstr(instruction->line_splitted[1]);
+	instruction->label = check_label(tab[0]);
+	if (instruction->label)
+		instruction->name_operations = check_name_op(tab[1]);
+	else
+		instruction->name_operations = check_name_op(tab[0]);
+	//ft_putstr(instruction->label);
 }
 
 /*void	parsing(char *file)
@@ -108,4 +133,7 @@ t_asm_line	*ft_lstadd_end(t_asm_line *lst)
 /* type = 0
 type = T_IND
 type = type << 2
-type &= T_REG */
+type &= T_REG 
+operation = g_op_tab[4];
+operation.nb_pa
+*/
