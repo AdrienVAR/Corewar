@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
+/*   By: advardon <advardon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/30 14:55:51 by gdrai             #+#    #+#             */
-/*   Updated: 2019/09/02 11:16:59 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/04 09:12:39 by advardon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,13 @@ char	*get_file_content(char *file)
 		clean_exit(NULL, "Opening file has failed\n");
 	if (!(buffer = ft_strdup("\0")))
 		clean_exit(NULL, "Memory allocation has failed\n");
+	if (get_next_line(fd, &line) < 0)
+	{
+		checker_name(line);
+		if (!(buffer = ft_strjoin_free(buffer, line)))
+			clean_exit(buffer, "Memory allocation has failed\n");
+		ft_strdel(&line);
+	}
 	while (get_next_line(fd, &line) == 1)
 	{
 		if (!(buffer = ft_strjoin_free(buffer, line)))
