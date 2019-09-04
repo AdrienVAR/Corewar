@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   asm.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: advardon <advardon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gdrai <gdrai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/30 13:04:14 by gdrai             #+#    #+#             */
-/*   Updated: 2019/09/04 09:13:06 by advardon         ###   ########.fr       */
+/*   Updated: 2019/09/04 11:34:16 by gdrai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,15 @@ typedef struct	s_asm_line
 	struct s_asm_line        *next;
 }				t_asm_line;
 
+typedef struct 			s_env
+{
+	char				*name;
+	char				*comment;
+}						t_env;
 
 void	clean_exit(char *buffer, char *error_message);
 int		check_extention(char *file);
-void	parsing(char *file);
+void	parsing(char *file, t_env *env);
 void    checker_name(char *line);
 
 #endif
