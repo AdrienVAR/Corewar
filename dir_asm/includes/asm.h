@@ -6,7 +6,7 @@
 /*   By: advardon <advardon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/30 13:04:14 by gdrai             #+#    #+#             */
-/*   Updated: 2019/09/04 09:13:06 by advardon         ###   ########.fr       */
+/*   Updated: 2019/09/04 14:27:01 by advardon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 
 typedef struct	s_asm_line
 {
+	char				**line_splitted;
 	char				*line; // line from GNL
     int                 line_pos_bytes; // position line en debut de ligne
     int                 line_len_bytes; // lenght of the line
@@ -38,5 +39,6 @@ void	clean_exit(char *buffer, char *error_message);
 int		check_extention(char *file);
 void	parsing(char *file);
 void    checker_name(char *line);
+t_asm_line	*ft_lstadd_end(t_asm_line *lst);
 
 #endif
