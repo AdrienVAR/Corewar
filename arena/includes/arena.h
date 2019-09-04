@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/31 09:59:55 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/03 17:27:50 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/04 10:25:01 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ void			file_closing(t_master *mstr);
 typedef union			u_int_char_cast
 {
 	int					nb : 32;
-	char				casted[4];
+	unsigned char		casted[4];
 }						t_int_char_cast;
 
 /*
