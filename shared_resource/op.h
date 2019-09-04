@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2019/09/04 10:23:58 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/04 14:58:00 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,11 +111,11 @@ typedef struct		s_op
 {
 	char	name[16];
 	int		nb_params;
-	char	params_type[4];
+	char	params_type[MAX_ARGS_NUMBER];
 	char	id;
 	int		duration;
 	char	description[64];
-	int		no_type_needed;
+	int		type_needed;
 	int		idx_mod_needed;
 }					t_op;
 
