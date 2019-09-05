@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/31 09:59:55 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/04 19:06:44 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/05 11:51:32 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,21 @@
 
 # include "op.h"
 
-extern t_op g_op_tab[17];
+extern t_op	g_op_tab[AVAILABLE_OPERATIONS];
+extern t_type	g_type[4];
 
 /*
 **		*******
 ** **	DEFINES	** **
 **		*******
 */
+
+/*
+** **	BOOLEAN
+*/
+
+# define YES 1
+# define NO 2
 
 /*
 ** **	ARENA
@@ -45,9 +53,8 @@ extern t_op g_op_tab[17];
 typedef	struct	s_command
 {
 	t_op		op;
-	char		param[MAX_ARGS_NUMBER][MAX_ARGS_NUMBER];
-	int			types[MAX_ARGS_NUMBER];
-	int			types_size[MAX_ARGS_NUMBER];
+	char		param[MAX_ARGS_NUMBER][MAX_SIZE];
+	t_type		types[MAX_ARGS_NUMBER];
 }				t_command;
 
 
@@ -121,27 +128,34 @@ void			file_closing(t_master *mstr);
 **		************************
 */
 
-typedef union			u_int_char_cast
+typedef union			u_int_cast
 {
 	int					nb : 32;
 	unsigned char		casted[4];
-}						t_int_char_cast;
+}						t_int_cast;
 
-typedef union			u_int_dir_cast
+typedef union			u_dir_cast
 {
 	int					nb : T_DIR * 8;
-	unsigned char		casted[T_IND];
-}						t_int_dir_cast;
+	unsigned char		casted[T_DIR];
+}						t_dir_cast;
 
-typedef union			u_int_reg_cast
+typedef union			u_ind_cast
+{
+	int					nb : T_DIR * 8;
+	unsigned char		casted[T_DIR];
+}						t_ind_cast;
+
+typedef union			u_reg_cast
 {
 	int					nb : T_REG * 8;
 	unsigned char		casted[T_REG];
-}						t_int_reg_cast;
+}						t_reg_cast;
 
-typedef unsigned char	uchar;
+typedef unsigned char	t_uchar;
 
-char	arena_val(char *arena, int ind);
+char			arena_val(char *arena, int ind);
+t_type			type_get_val(int type_code);
 
 /*
 ** **	BINARY_READ
@@ -156,5 +170,8 @@ void			player_give_process(t_master *mstr);
 void			war(t_master *mstr);
 t_op			operation_get_info(char op_code);
 void			exit_program(t_master *mstr);
+
+int				ex_command_valid_types(t_command command);
+void			ex_command_ld(t_process process, char *arena);
 
 #endif
