@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/03 14:07:46 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/04 19:05:22 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/05 11:53:45 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,40 +30,21 @@ void			run_command(t_process *cur_process, char *arena)
 	ft_putstr("RUUUUUN COMMAND RUUUUUUUN !!!\n");
 }
 
-void			command_get_types_size(t_process *cur_process)
+void			command_get_types(t_process *cur_process, t_uchar type_code)
 {
 	int i;
-	int type;
-	int type_size;
-
-	i = -1;
-	while (++i < MAX_ARGS_NUMBER)
-	{
-		type_size = 0;
-		type = 0;
-		type = cur_process->vm.command.types[i];
-		type_size = type == DIR_CODE ? DIR_SIZE : type_size;
-		type_size = type == REG_CODE ? REG_SIZE : type_size;
-		type_size = type == IND_CODE ? IND_SIZE : type_size;
-		cur_process->vm.command.types_size[i] = type_size;
-	}
-}
-
-void			command_get_types(t_process *cur_process, uchar type_code)
-{
-	int i;
-	char type;
+	t_uchar type;
 
 	i = MAX_ARGS_NUMBER;
 	while (--i >= 0)
 	{
 		type = type_code & 3;
 		type_code >>= 2;
-		cur_process->vm.command.types[i] = (int)type;
+		cur_process->vm.command.types[i] = type_get_val((int)type);
 	}
 }
 
-void			command_get_info(t_process *cur_process, uchar op_code)
+void			command_get_info(t_process *cur_process, t_uchar op_code)
 {
 	t_op operation;
 	t_vm_pcs_track vm;
@@ -89,7 +70,7 @@ void			command_get_param(t_process *cur_process, char *arena)
 	while (++i < command.op.nb_params)
 	{
 		j = -1;
-		while (++j < command.types_size[i])
+		while (++j < command.types[i].size)
 			(command.param)[j][i] = arena_val(arena, pc++);
 	}
 	cur_process->vm.command = command;
@@ -111,7 +92,6 @@ void			run_cycle(t_master *mstr)
 		{
 			command_get_info(cur_process, arena_val(arena, cur_process->pc));
 			command_get_types(cur_process, arena_val(arena, cur_process->pc + 1));
-			command_get_types_size(cur_process);
 			command_get_param(cur_process, arena);
 		}
 		cur_process->vm.wait--;
