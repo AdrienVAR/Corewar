@@ -6,7 +6,7 @@
 /*   By: advardon <advardon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 11:44:25 by advardon          #+#    #+#             */
-/*   Updated: 2019/09/05 16:10:05 by advardon         ###   ########.fr       */
+/*   Updated: 2019/09/05 17:58:32 by advardon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,10 @@ void	check_nb_arguments(char **tab, int nb_arg)
 	return ;
 }
 
+/*
+** Check if there is a value, that contains only digits, and record it.
+*/
+
 void	param_digit_value(t_asm_line *instruction, int param, char *str)
 {
 	int i;
@@ -84,6 +88,49 @@ void	param_digit_value(t_asm_line *instruction, int param, char *str)
 	}
 	instruction->param_value[param] = ft_atoi(str);
 }
+
+/*
+** Check if the type used for each parameter is a valid type. Use of a binary mask
+** to verify if fits with types form g_op_table
+*/
+
+void	check_valid_type(t_asm_line *instruction, int param)
+{
+	if (!(instruction->operation.params_type[param] & instruction->params_type[param].type))
+		clean_exit(NULL, "Invalid argument type for this action\n");
+}
+
+/*
+t_type        type_get_val(int type_code)
+{
+    int i;
+    i = -1;
+    while (++i < 3)
+    {
+        if (g_type[i].type_code == type_code)
+            break ;
+    }
+    return (g_type[i]);
+}
+
+int            command_valid_types(t_command command)
+{
+    int        i;
+    t_op    op;
+    op = command.op;
+    i = -1;
+    while (++i < op.nb_params)
+    {
+        if (!(command.types[i].type & op.params_type[i]))
+            return (NO);
+    }
+    while (i < MAX_ARGS_NUMBER)
+    {
+        if (command.types[i++].type_code)
+            return (NO);
+    }
+    return (YES);
+}*/
 
 void	check_action_type(t_asm_line *instruction)
 {
@@ -103,42 +150,49 @@ void	check_action_type(t_asm_line *instruction)
 			&& (instruction->line_splitted[i][1] == ':'))
 			{
 				instruction->params_type[param] = g_type[3];
+				check_valid_type(instruction, param);
 			}
 			instruction->params_type[param] = g_type[1];
 			param_digit_value(instruction, param, instruction->line_splitted[i] + 1);
+			check_valid_type(instruction, param);
 		}
 		else if (instruction->line_splitted[i][0] == ':')
 		{
 				instruction->params_type[param] = g_type[3];
+				check_valid_type(instruction, param);
 		}
 		else if (instruction->line_splitted[i][0] == 'r')
 		{
 			instruction->params_type[param] = g_type[0];
 			param_digit_value(instruction, param, instruction->line_splitted[i] + 1);
+			check_valid_type(instruction, param);
 		}
 		else
 		{
 			instruction->params_type[param] = g_type[2];
 			param_digit_value(instruction, param, instruction->line_splitted[i] + 1);
+			check_valid_type(instruction, param);
 		}
 		i++;
 		param++;
 	}
 }
 
+/*
+** Writing the code of each action type and moving it two bytes left
+** for each parameter.
+*/
+
 void	def_type_code(t_asm_line *instruction)
 {
 	int i;
-	int byte_mov;
 
 	i = 0;
-	byte_mov = 2;
 	while(i < MAX_ARGS_NUMBER)
 	{
-		instruction->type_code = instruction->type_code << byte_mov;
+		instruction->type_code = instruction->type_code << 2;
 		instruction->type_code += instruction->params_type[i].type_code;
 		i++;
-		//byte_mov = byte_mov + 2;
 	}
 }
 
@@ -210,9 +264,3 @@ t_asm_line	*ft_lstadd_end(t_asm_line *lst)
 	lnext->next = lstnew;
 	return (lst);
 }
-
-/* char type = 0
-type = IND_CODE
-type = type << 2
-type &= REG_CODE 
-*/
