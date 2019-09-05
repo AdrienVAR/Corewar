@@ -6,7 +6,7 @@
 #    By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/31 09:59:29 by cgiron            #+#    #+#              #
-#    Updated: 2019/09/04 15:28:23 by cgiron           ###   ########.fr        #
+#    Updated: 2019/09/05 11:52:39 by cgiron           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,7 @@ SRC_ARENA = \
 			deassembler.c\
 			file_closing.c\
 			arena_populate.c\
+			type_get_val.c\
 			arena_val.c\
 			player_give_process.c\
 			memory_dump.c\
