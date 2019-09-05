@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/31 09:59:55 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/05 11:51:32 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/05 15:59:45 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define ARENA_H
 
 # include "op.h"
+# include <stdio.h> //to remove
 
 extern t_op	g_op_tab[AVAILABLE_OPERATIONS];
 extern t_type	g_type[4];
@@ -136,20 +137,20 @@ typedef union			u_int_cast
 
 typedef union			u_dir_cast
 {
-	int					nb : T_DIR * 8;
-	unsigned char		casted[T_DIR];
+	int					nb : DIR_SIZE * 8;
+	unsigned char		casted[DIR_SIZE];
 }						t_dir_cast;
 
 typedef union			u_ind_cast
 {
-	int					nb : T_DIR * 8;
-	unsigned char		casted[T_DIR];
+	int					nb : IND_SIZE * 8;
+	unsigned char		casted[IND_SIZE];
 }						t_ind_cast;
 
 typedef union			u_reg_cast
 {
-	int					nb : T_REG * 8;
-	unsigned char		casted[T_REG];
+	int					nb : REG_SIZE * 8;
+	unsigned char		casted[REG_SIZE];
 }						t_reg_cast;
 
 typedef unsigned char	t_uchar;
@@ -171,7 +172,10 @@ void			war(t_master *mstr);
 t_op			operation_get_info(char op_code);
 void			exit_program(t_master *mstr);
 
-int				ex_command_valid_types(t_command command);
-void			ex_command_ld(t_process process, char *arena);
+int				command_valid_types(t_command command);
+int				command_valid_register(t_command command, int param_ind);
+void			ex_command_ld(t_process *process, char *arena);
+
+void			cursor_next_op(t_process *process);
 
 #endif
