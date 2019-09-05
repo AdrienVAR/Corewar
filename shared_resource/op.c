@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:43:01 by zaz               #+#    #+#             */
-/*   Updated: 2019/09/03 17:36:41 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/05 11:26:09 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,12 @@ t_op	g_op_tab[AVAILABLE_OPERATIONS] =
 	{"lfork", 1, {T_DIR}, 15, 1000, "long fork", 0, 1},
 	{"aff", 1, {T_REG}, 16, 2, "aff", 1, 0},
 	{"", 0, {0}, 0, 0, "", 0, 0}
+};
+
+t_type	g_type[4] =
+{
+	{T_REG, REG_CODE, REG_SIZE},
+	{T_DIR, DIR_CODE, DIR_SIZE},
+	{T_IND, IND_CODE, IND_SIZE},
+	{T_LAB, 0, 0},
 };

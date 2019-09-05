@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2019/09/05 10:43:36 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/05 11:26:43 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,5 +119,12 @@ typedef struct		s_op
 	int		type_needed;
 	int		idx_mod_needed;
 }					t_op;
+
+typedef struct		s_type
+{
+	int		type;
+	int		type_code;
+	int		size;
+}					t_type;
 
 #endif
