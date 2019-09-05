@@ -30,6 +30,7 @@ SRC_ASM = \
 		main.c\
 		checker_champ.c\
 		split_line.c\
+		op.c\
 		parsing.c
 
 INC_ASM					:= asm.h

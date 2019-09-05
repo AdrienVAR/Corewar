@@ -6,7 +6,7 @@
 /*   By: advardon <advardon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 13:17:20 by gdrai             #+#    #+#             */
-/*   Updated: 2019/09/04 16:08:36 by advardon         ###   ########.fr       */
+/*   Updated: 2019/09/04 17:47:50 by advardon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,6 +152,8 @@ char    **split_line(char *line, int option)
     char    **tab;
     int     count;
 
+	if (line == NULL)
+		return(NULL);
     if (option == 0)
     {
         count = check_quotemark(line);
