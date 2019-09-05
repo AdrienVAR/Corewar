@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/03 14:07:46 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/05 11:53:45 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/05 17:31:38 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,15 @@
 
 void			run_command(t_process *cur_process, char *arena)
 {
-	static void		(*command_functions[AVAILABLE_OPERATIONS])()=
-	{};
+//	static void		(*command_functions[AVAILABLE_OPERATIONS])()=
+//	{};
 
-	command_functions[0] = 0;
-	cur_process = 0;
-	arena = 0;
-	ft_putstr("RUUUUUN COMMAND RUUUUUUUN !!!\n");
+	if (cur_process->vm.command.op.id == 2)
+	{
+		ex_command_ld(cur_process, arena);
+		cursor_next_op(cur_process);
+	}
+//	ft_putstr("RUUUUUN COMMAND RUUUUUUUN !!!\n");
 }
 
 void			command_get_types(t_process *cur_process, t_uchar type_code)
@@ -44,16 +46,19 @@ void			command_get_types(t_process *cur_process, t_uchar type_code)
 	}
 }
 
-void			command_get_info(t_process *cur_process, t_uchar op_code)
+int			command_get_info(t_process *cur_process, t_uchar op_code)
 {
 	t_op operation;
 	t_vm_pcs_track vm;
 
 	operation = operation_get_info(op_code);
+	if (!operation.id)
+		return (NO);
 	vm = cur_process->vm;
 	vm.command.op = operation;
 	vm.wait = operation.duration;
 	cur_process->vm = vm;
+	return (YES);
 }
 
 
@@ -71,11 +76,10 @@ void			command_get_param(t_process *cur_process, char *arena)
 	{
 		j = -1;
 		while (++j < command.types[i].size)
-			(command.param)[j][i] = arena_val(arena, pc++);
+			command.param[i][j] = arena_val(arena, pc++);
 	}
 	cur_process->vm.command = command;
 }
-
 
 void			run_cycle(t_master *mstr)
 {
@@ -90,9 +94,16 @@ void			run_cycle(t_master *mstr)
 			run_command(cur_process, arena);
 		else if (!cur_process->vm.wait)
 		{
-			command_get_info(cur_process, arena_val(arena, cur_process->pc));
-			command_get_types(cur_process, arena_val(arena, cur_process->pc + 1));
-			command_get_param(cur_process, arena);
+			if (command_get_info(cur_process, arena_val(arena, cur_process->pc)) == YES)
+			{
+				command_get_types(cur_process, arena_val(arena, cur_process->pc + 1));
+				command_get_param(cur_process, arena);
+			}
+			else
+			{
+				cur_process->vm.wait++;
+				cur_process->pc++;
+			}
 		}
 		cur_process->vm.wait--;
 		cur_process = cur_process->next;
@@ -102,7 +113,7 @@ void			run_cycle(t_master *mstr)
 void			war(t_master *mstr)
 {
 
-	while (mstr->cur_cycle < 15)
+	while (mstr->cur_cycle < 5000)
 	{
 		++mstr->cur_cycle;
 		run_cycle(mstr);
