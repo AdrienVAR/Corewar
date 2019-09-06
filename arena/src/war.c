@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/03 14:07:46 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/05 17:31:38 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/06 16:18:40 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,64 +21,16 @@
 
 void			run_command(t_process *cur_process, char *arena)
 {
-//	static void		(*command_functions[AVAILABLE_OPERATIONS])()=
-//	{};
+	int				op_id;
+	static void		(*ex_command[AVAILABLE_OPERATIONS])() = {0,
+		&ex_command_live, &ex_command_ld};
 
-	if (cur_process->vm.command.op.id == 2)
+	op_id = cur_process->vm.command.op.id;
+	if (op_id && op_id <= 2)
 	{
-		ex_command_ld(cur_process, arena);
-		cursor_next_op(cur_process);
+		ex_command[op_id](cur_process, arena);
 	}
-//	ft_putstr("RUUUUUN COMMAND RUUUUUUUN !!!\n");
-}
-
-void			command_get_types(t_process *cur_process, t_uchar type_code)
-{
-	int i;
-	t_uchar type;
-
-	i = MAX_ARGS_NUMBER;
-	while (--i >= 0)
-	{
-		type = type_code & 3;
-		type_code >>= 2;
-		cur_process->vm.command.types[i] = type_get_val((int)type);
-	}
-}
-
-int			command_get_info(t_process *cur_process, t_uchar op_code)
-{
-	t_op operation;
-	t_vm_pcs_track vm;
-
-	operation = operation_get_info(op_code);
-	if (!operation.id)
-		return (NO);
-	vm = cur_process->vm;
-	vm.command.op = operation;
-	vm.wait = operation.duration;
-	cur_process->vm = vm;
-	return (YES);
-}
-
-
-void			command_get_param(t_process *cur_process, char *arena)
-{
-	t_command		command;
-	int				pc;
-	int				i;
-	int				j;
-
-	i = -1;
-	pc = (cur_process->pc + 2) % MEM_SIZE;
-	command = cur_process->vm.command;
-	while (++i < command.op.nb_params)
-	{
-		j = -1;
-		while (++j < command.types[i].size)
-			command.param[i][j] = arena_val(arena, pc++);
-	}
-	cur_process->vm.command = command;
+	cursor_next_op(cur_process);
 }
 
 void			run_cycle(t_master *mstr)
@@ -105,7 +57,12 @@ void			run_cycle(t_master *mstr)
 				cur_process->pc++;
 			}
 		}
+		if (cur_process->vm.alive >= 1
+				&& cur_process->vm.alive <= mstr->nb_of_players)
+			mstr->last_player_live = cur_process->vm.alive;
+		cur_process->vm.alive = 0;
 		cur_process->vm.wait--;
+		cur_process->vm.last_live++;
 		cur_process = cur_process->next;
 	}
 }

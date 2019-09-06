@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/31 09:59:55 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/06 11:47:22 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/06 16:15:28 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ typedef	struct	s_command
 typedef	struct	s_vm_pcs_track
 {
 	int			last_live;
+	int			alive;
 	int			wait;
 	t_command	command;
 }				t_vm_pcs_track;
@@ -141,6 +142,7 @@ typedef struct	s_master
 {
 	int				magic_number;
 	int				nb_of_players;
+	int				last_player_live;
 	char			arena[MEM_SIZE];
 	t_player		*players[MAX_PLAYERS];
 	t_process		*process;
@@ -162,7 +164,7 @@ void			file_closing(t_master *mstr);
 
 
 char			arena_val(char *arena, int ind);
-t_type			type_get_val(int type_code);
+t_type			type_val(int type_code);
 
 /*
 ** **	BINARY_READ
@@ -178,9 +180,13 @@ void			war(t_master *mstr);
 t_op			operation_get_info(char op_code);
 void			exit_program(t_master *mstr);
 
+int				command_get_info(t_process *cur_process, t_uchar op_code);
+void			command_get_types(t_process *cur_process, t_uchar type_code);
+void			command_get_param(t_process *cur_process, char *arena);
 int				command_valid_types(t_command command);
 int				command_extract_register(t_command *command);
 void			command_extract_indirect(t_command *command);
+void			ex_command_live(t_process *process, char *arena);
 void			ex_command_ld(t_process *process, char *arena);
 
 void			cursor_next_op(t_process *process);

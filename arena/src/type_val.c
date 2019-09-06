@@ -1,32 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cursor_next_op.c                                   :+:      :+:    :+:   */
+/*   type_val.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/05 15:41:18 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/06 16:48:05 by cgiron           ###   ########.fr       */
+/*   Created: 2019/09/05 11:38:16 by cgiron            #+#    #+#             */
+/*   Updated: 2019/09/06 14:41:57 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "arena.h"
 
-void		cursor_next_op(t_process *process)
+t_type		type_val(int type_code)
 {
-	int 		i;
-	int			pc;
-	t_command	command;
+	int i;
 
-	command = process->vm.command;
-	pc = process->pc;
-	if (!command.op.type_needed)
-		pc += 1 + DIR_SIZE;
-	else
+	i = -1;
+	while (++i < 3)
 	{
-		i = -1;
-		while (++i < command.op.nb_params)
-			pc += command.types[i].size;
+		if (g_type[i].type_code == type_code)
+			break ;
 	}
-	process->pc = pc % MEM_SIZE;
+	return (g_type[i]);
 }
