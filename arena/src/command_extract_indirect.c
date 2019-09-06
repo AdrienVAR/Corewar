@@ -1,30 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   command_valid_register.c                           :+:      :+:    :+:   */
+/*   command_extract_indirect.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 09:52:51 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/05 16:02:42 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/06 12:01:50 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "arena.h"
 
-int			command_valid_register(t_command command, int param_ind)
+void		command_extract_indirect(t_command *command)
 {
 	int				i;
-	t_reg_cast		reg;
-	t_uchar			test;
+	int				p_ind;
 
 	i = 0;
-	while (++i <= REG_SIZE)
+	p_ind = -1;
+	while (++p_ind < MAX_ARGS_NUMBER)
 	{
-		test = (t_uchar)command.param[param_ind][i - 1];
-		reg.casted[REG_SIZE - i] = (t_uchar)command.param[param_ind][i - 1];
+		if (command->types[p_ind].type != T_IND)
+			continue;
+		while (++i <= IND_SIZE)
+		{
+			command->ind_val[p_ind].casted[IND_SIZE - i] =
+				(t_uchar)command->param[p_ind][i - 1];
+		}
 	}
-	if (reg.nb >= 1 && reg.nb <= REG_NUMBER)
-		return (reg.nb);
-	return (NO);
 }
