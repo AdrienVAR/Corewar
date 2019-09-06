@@ -6,7 +6,7 @@
 #    By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/31 09:59:29 by cgiron            #+#    #+#              #
-#    Updated: 2019/09/06 11:48:04 by cgiron           ###   ########.fr        #
+#    Updated: 2019/09/06 15:57:34 by cgiron           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,15 +32,17 @@ SRC_ARENA = \
 			deassembler.c\
 			file_closing.c\
 			arena_populate.c\
-			type_get_val.c\
+			type_val.c\
 			arena_val.c\
 			player_give_process.c\
 			memory_dump.c\
 			operation_get_info.c\
 			command_extract_register.c\
 			command_extract_indirect.c\
+			command_get.c\
 			command_valid_types.c\
 			ex_command_ld.c\
+			ex_command_live.c\
 			cursor_next_op.c\
 			war.c\
 			op.c\
