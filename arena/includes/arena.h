@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/31 09:59:55 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/05 15:59:45 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/06 11:47:22 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,40 @@ extern t_type	g_type[4];
 # define OPT_DUMP "-dump"
 
 /*
+**		************************
+** **	UNION FOR BINARY CASTING ** **
+**		************************
+*/
+
+typedef union			u_int_cast
+{
+	int					nb : 32;
+	unsigned char		casted[4];
+}						t_int_cast;
+
+typedef union			u_dir_cast
+{
+	int					nb : DIR_SIZE * 8;
+	unsigned char		casted[DIR_SIZE];
+}						t_dir_cast;
+
+typedef union			u_ind_cast
+{
+	int					nb : IND_SIZE * 8;
+	unsigned char		casted[IND_SIZE];
+}						t_ind_cast;
+
+typedef union			u_reg_cast
+{
+	int					nb : REG_SIZE * 8;
+	unsigned char		casted[REG_SIZE];
+}						t_reg_cast;
+
+typedef unsigned char	t_uchar;
+
+
+
+/*
 **		*********************************
 ** **	Process List we can cycle through ** **
 **		*********************************
@@ -55,6 +89,8 @@ typedef	struct	s_command
 {
 	t_op		op;
 	char		param[MAX_ARGS_NUMBER][MAX_SIZE];
+	t_reg_cast	reg_val[MAX_ARGS_NUMBER];
+	t_ind_cast	ind_val[MAX_ARGS_NUMBER];
 	t_type		types[MAX_ARGS_NUMBER];
 }				t_command;
 
@@ -69,7 +105,7 @@ typedef	struct	s_vm_pcs_track
 
 typedef struct	s_process
 {
-	char				registry[REG_NUMBER][REG_SIZE];
+	char				registry[REG_NUMBER][DIR_SIZE];
 	int					pc;
 	int					carry;
 	t_vm_pcs_track		vm;
@@ -123,37 +159,7 @@ void			file_loading(t_master *mstr, int argc, char **argv);
 void			deassembler(t_master *mstr);
 void			file_closing(t_master *mstr);
 
-/*
-**		************************
-** **	UNION FOR BINARY CASTING ** **
-**		************************
-*/
 
-typedef union			u_int_cast
-{
-	int					nb : 32;
-	unsigned char		casted[4];
-}						t_int_cast;
-
-typedef union			u_dir_cast
-{
-	int					nb : DIR_SIZE * 8;
-	unsigned char		casted[DIR_SIZE];
-}						t_dir_cast;
-
-typedef union			u_ind_cast
-{
-	int					nb : IND_SIZE * 8;
-	unsigned char		casted[IND_SIZE];
-}						t_ind_cast;
-
-typedef union			u_reg_cast
-{
-	int					nb : REG_SIZE * 8;
-	unsigned char		casted[REG_SIZE];
-}						t_reg_cast;
-
-typedef unsigned char	t_uchar;
 
 char			arena_val(char *arena, int ind);
 t_type			type_get_val(int type_code);
@@ -173,7 +179,8 @@ t_op			operation_get_info(char op_code);
 void			exit_program(t_master *mstr);
 
 int				command_valid_types(t_command command);
-int				command_valid_register(t_command command, int param_ind);
+int				command_extract_register(t_command *command);
+void			command_extract_indirect(t_command *command);
 void			ex_command_ld(t_process *process, char *arena);
 
 void			cursor_next_op(t_process *process);
