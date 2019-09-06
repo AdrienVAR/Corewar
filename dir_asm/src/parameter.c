@@ -6,7 +6,7 @@
 /*   By: advardon <advardon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 10:38:31 by advardon          #+#    #+#             */
-/*   Updated: 2019/09/06 13:14:28 by advardon         ###   ########.fr       */
+/*   Updated: 2019/09/06 14:40:02 by advardon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 /*
 ** Check if there is a value, that contains only digits, and record it.
+** Check if it is a REG that parameter value is >0 and <= REG_NUMBER.
 */
 
 void	param_digit_value(t_asm_line *instruction, int param, char *str)
@@ -25,16 +26,19 @@ void	param_digit_value(t_asm_line *instruction, int param, char *str)
 		clean_exit(NULL, "Missing value on parameter\n");
 	while(str[i])
 	{
-		if (!(ft_isdigit(str[i])) && (str[i] != '-' && str[i] != '+' && str[i] != ',')) //todel
-			clean_exit(NULL, "arguments is not a number\n");
+		if (!(ft_isdigit(str[i])) && (str[i] != '-' && str[i] != '+' && str[i] != ',')) //todel ','
+			clean_exit(NULL, "parameter is not a number\n");
 		i++;
 	}
 	instruction->param_value[param] = ft_atoi(str);
+    if (instruction->params_type[param].type == g_type[0].type)
+        if (instruction->param_value[param] < 1 || instruction->param_value[param] > REG_NUMBER)
+            clean_exit(NULL, "invalid register number\n");
 }
 
 /*
-** Check if the type used for each parameter is a valid type. Use of a binary mask
-** to verify if fits with types form g_op_table
+** Check if the type used for each parameter is a valid type. Use of a binary
+** mask to verify if it fits with types from g_op_table
 */
 
 void	check_valid_type(t_asm_line *instruction, int param)
@@ -53,7 +57,7 @@ void	def_type_code(t_asm_line *instruction)
 	int i;
 
 	i = 0;
-	while(i < MAX_ARGS_NUMBER)
+	while (i < MAX_ARGS_NUMBER)
 	{
 		instruction->type_code = instruction->type_code << 2;
 		instruction->type_code += instruction->params_type[i].type_code;
