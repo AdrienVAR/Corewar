@@ -31,7 +31,8 @@ SRC_ASM = \
 		checker_champ.c\
 		split_line.c\
 		op.c\
-		parsing.c
+		parsing.c\
+		parameter.c
 
 INC_ASM					:= asm.h
 

@@ -6,7 +6,7 @@
 /*   By: advardon <advardon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 10:38:31 by advardon          #+#    #+#             */
-/*   Updated: 2019/09/06 11:38:30 by advardon         ###   ########.fr       */
+/*   Updated: 2019/09/06 13:14:28 by advardon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,19 @@ void	def_type_code(t_asm_line *instruction)
 	}
 }
 
+/*
+** If no codetype is needed, add 1 bytes for action, else add 2 bytes
+** for action + typecode.
+*/
+
+void    lenline_opcode_typecode(t_asm_line *instruction)
+{
+    if (!instruction->operation.type_needed)
+        instruction->line_len_bytes++;
+    else
+        instruction->line_len_bytes += 2;
+}
+
 void	check_action_type(t_asm_line *instruction)
 {
 	int i;
@@ -108,4 +121,5 @@ void	check_action_type(t_asm_line *instruction)
 		i++;
 		param++;
 	}
+    lenline_opcode_typecode(instruction);
 }

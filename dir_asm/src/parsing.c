@@ -6,7 +6,7 @@
 /*   By: advardon <advardon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 11:44:25 by advardon          #+#    #+#             */
-/*   Updated: 2019/09/06 10:58:50 by advardon         ###   ########.fr       */
+/*   Updated: 2019/09/06 13:21:03 by advardon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ char	*check_name_op(char *str, t_asm_line *instruction)
 {
 	int i;
 
-	i = 0;
-	while (i++ < AVAILABLE_OPERATIONS)
+	i = -1;
+	while (++i < AVAILABLE_OPERATIONS)
 	{
 		if (ft_strcmp(str, g_op_tab[i].name) == 0)
 		{
