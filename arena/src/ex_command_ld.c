@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 18:47:19 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/06 12:24:05 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/06 14:42:25 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void			ex_command_ld(t_process *process, char *arena)
 {
 	t_command	command;
 	int			i;
-	int 		reg;
+	int			reg;
 	int			jump;
 
 	command = process->vm.command;
