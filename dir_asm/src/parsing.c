@@ -6,7 +6,7 @@
 /*   By: advardon <advardon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 11:44:25 by advardon          #+#    #+#             */
-/*   Updated: 2019/09/06 13:21:03 by advardon         ###   ########.fr       */
+/*   Updated: 2019/09/06 16:17:44 by advardon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,52 +72,20 @@ void	parsing(char *file, t_env *env)
 {
 	int		fd;
 	char	*line;
-	t_asm_line	*head;
-	t_asm_line	*instruction;
 
-	(void) env;
-	head = NULL;
+
 	line = 0;
 	(void) file;
+
+
 	if (!(fd = open(file, O_RDONLY | O_NOFOLLOW)))
 		clean_exit(NULL, "Opening file has failed\n");
-	instruction = ft_lstadd_end(head);
-	get_next_line(fd, &line);
-	if (!(instruction->line_splitted = split_line(line, 0)))
-		return ;
-	instruction->label = check_label(instruction->line_splitted[0]);
-	if (instruction->label)
+
+	//check header
+
+	while (get_next_line(fd, &line) > 0) //creer nlle struct asm_line
 	{
-		instruction->name_operations = check_name_op(instruction->line_splitted[1], instruction);
-		check_nb_arguments(instruction->line_splitted + 2, instruction->operation.nb_params);
+		create_asm_line(env, line);
 	}
-	else
-	{
-		instruction->name_operations = check_name_op(instruction->line_splitted[0], instruction);
-		check_nb_arguments(instruction->line_splitted + 1, instruction->operation.nb_params);
-	}
-	check_action_type(instruction);
-	def_type_code(instruction);
-	ft_putstr(instruction->name_operations);
-}
 
-/*
-** Create a new struct and add it at end of the list.
-*/
-
-t_asm_line	*ft_lstadd_end(t_asm_line *lst)
-{
-	t_asm_line	*lstnew;
-	t_asm_line	*lnext;
-
-	if (!(lstnew = (t_asm_line *)ft_memalloc(sizeof(t_asm_line))))
-		return (NULL);
-	if (!lst)
-		return (lstnew);
-	lstnew->next = NULL;
-	lnext = lst;
-	while (lnext->next)
-		lnext = lnext->next;
-	lnext->next = lstnew;
-	return (lst);
 }

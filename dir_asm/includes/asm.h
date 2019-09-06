@@ -6,7 +6,7 @@
 /*   By: advardon <advardon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/30 13:04:14 by gdrai             #+#    #+#             */
-/*   Updated: 2019/09/06 11:03:29 by advardon         ###   ########.fr       */
+/*   Updated: 2019/09/06 16:35:09 by advardon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,15 +44,21 @@ typedef struct 			s_env
 {
 	char				*name;
 	char				*comment;
+	int					position_binary;
+	t_asm_line			*head;
 }						t_env;
 
 void		clean_exit(char *buffer, char *error_message);
 int			check_extention(char *file);
 void		parsing(char *file, t_env *env);
 void		checker_name(char *line);
-t_asm_line	*ft_lstadd_end(t_asm_line *lst);
+t_asm_line	*ft_lstadd_end(t_asm_line **lst_head);
 char		**split_line(char *line, int option);
 void		def_type_code(t_asm_line *instruction);
 void		check_action_type(t_asm_line *instruction);
+void		create_asm_line(t_env *env, char *line);
+void		check_nb_arguments(char **tab, int nb_arg);
+char		*check_name_op(char *str, t_asm_line *instruction);
+char		*check_label(char *str);
 
 #endif

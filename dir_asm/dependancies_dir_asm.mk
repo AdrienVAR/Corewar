@@ -32,7 +32,8 @@ SRC_ASM = \
 		split_line.c\
 		op.c\
 		parsing.c\
-		parameter.c
+		parameter.c\
+		asm_line.c
 
 INC_ASM					:= asm.h
 
