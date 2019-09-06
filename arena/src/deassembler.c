@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 09:02:21 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/05 15:12:05 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/06 12:38:50 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void			deassembler(t_master *mstr)
 	while (++i < mstr->nb_of_players)
 	{
 		player = mstr->players[i];
+		player->nb = i + 1;
 		player->magic = binary_read_integer(player->fd, mstr);
 		binary_read_string(
 			player->fd, &(player->name[0]), PROG_NAME_LENGTH, mstr);
