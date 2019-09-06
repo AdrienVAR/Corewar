@@ -6,7 +6,7 @@
 #    By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/31 09:59:29 by cgiron            #+#    #+#              #
-#    Updated: 2019/09/05 16:00:47 by cgiron           ###   ########.fr        #
+#    Updated: 2019/09/06 11:48:04 by cgiron           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,8 @@ SRC_ARENA = \
 			player_give_process.c\
 			memory_dump.c\
 			operation_get_info.c\
-			command_valid_register.c\
+			command_extract_register.c\
+			command_extract_indirect.c\
 			command_valid_types.c\
 			ex_command_ld.c\
 			cursor_next_op.c\
