@@ -6,7 +6,7 @@
 /*   By: advardon <advardon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/07 13:01:50 by advardon          #+#    #+#             */
-/*   Updated: 2019/09/07 15:40:37 by advardon         ###   ########.fr       */
+/*   Updated: 2019/09/07 15:44:49 by advardon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,11 @@ int check_len_tab(char **tab)
         return (0);
     return (1);
 }
+
+/*
+** Check if line is not empty, then check if name or comment
+** is in this line.
+*/
 
 void	create_header(t_env *env, int fd, char *line)
 {
