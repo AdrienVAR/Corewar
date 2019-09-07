@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cursor_next_op.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cesargironvm <cesargironvm@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 15:41:18 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/06 16:48:05 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/07 18:31:29 by cesargironv      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void		cursor_next_op(t_process *process)
 		pc += 1 + DIR_SIZE;
 	else
 	{
+		pc += 2;
 		i = -1;
 		while (++i < command.op.nb_params)
 			pc += command.types[i].size;
