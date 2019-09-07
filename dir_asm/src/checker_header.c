@@ -6,7 +6,7 @@
 /*   By: advardon <advardon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/07 13:01:50 by advardon          #+#    #+#             */
-/*   Updated: 2019/09/07 15:18:03 by advardon         ###   ########.fr       */
+/*   Updated: 2019/09/07 15:40:37 by advardon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ void    checker_name(char **tab, t_env *env) //check if tab == 2
     else
         return;
     //check_double_quotes(tab[i]); to use after modif split_line
+    if (ft_strlen(tab[i]) > PROG_NAME_LENGTH)
+        clean_exit(NULL, "Champion name too long (Max length 128)\n");
     env->name = tab[i];
 }
 
@@ -62,6 +64,8 @@ void    checker_comment(char **tab, t_env *env)
     else
         return;
     //check_double_quotes(tab[i]); to use after modif split_line
+    if (ft_strlen(tab[i]) > COMMENT_LENGTH)
+        clean_exit(NULL, "Champion comment is too long(Max length 2048)\n");
     env->comment = tab[i];
 }
 
