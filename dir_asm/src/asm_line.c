@@ -6,15 +6,13 @@
 /*   By: advardon <advardon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 15:50:17 by advardon          #+#    #+#             */
-/*   Updated: 2019/09/07 11:11:15 by advardon         ###   ########.fr       */
+/*   Updated: 2019/09/07 14:20:48 by advardon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-/*
-** Create a new struct and add it at end of the list.
-*/
+
 
 void    ft_put_t_asm_lines(t_env *env)
 {
@@ -60,6 +58,10 @@ void    ft_put_t_asm_lines(t_env *env)
     }
 }
 
+/*
+** Create a new struct and add it at end of the list.
+*/
+
 t_asm_line	*ft_lstadd_end(t_asm_line **lst)
 {
 	t_asm_line	*lstnew;
@@ -92,6 +94,8 @@ void    create_asm_line(t_env *env, char *line)
     instruction = ft_lstadd_end(&env->head);
 	if (!(instruction->line_splitted = split_line(line, 1)))
 		return ;
+    if (instruction->line_splitted[0] == NULL) //check empty lines
+        return;
 	instruction->label = check_label(instruction->line_splitted[0]);
 	if (instruction->label)
 	{
@@ -105,7 +109,7 @@ void    create_asm_line(t_env *env, char *line)
 	}
 	check_action_type(instruction);
 	def_type_code(instruction);
-    //enregistrer valeur len_line dans env
-    //ft_putstr(instruction->name_operations);
+    env->position_binary += instruction->line_len_bytes;
+    ft_putstr(instruction->name_operations);
     //ft_put_t_asm_lines(env);
 }

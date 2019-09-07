@@ -6,7 +6,7 @@
 /*   By: advardon <advardon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 11:44:25 by advardon          #+#    #+#             */
-/*   Updated: 2019/09/06 16:17:44 by advardon         ###   ########.fr       */
+/*   Updated: 2019/09/07 13:23:38 by advardon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,19 +73,15 @@ void	parsing(char *file, t_env *env)
 	int		fd;
 	char	*line;
 
-
 	line = 0;
-	(void) file;
-
 
 	if (!(fd = open(file, O_RDONLY | O_NOFOLLOW)))
 		clean_exit(NULL, "Opening file has failed\n");
-
-	//check header
+	while (!env->name || !env->comment) //creer nlle struct asm_line
+		create_header(env, fd, line);
 
 	while (get_next_line(fd, &line) > 0) //creer nlle struct asm_line
 	{
 		create_asm_line(env, line);
 	}
-
 }

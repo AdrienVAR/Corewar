@@ -28,7 +28,7 @@ SRC_ASM = \
 		check_extention.c\
 		clean_exit.c\
 		main.c\
-		checker_champ.c\
+		checker_header.c\
 		split_line.c\
 		op.c\
 		parsing.c\
