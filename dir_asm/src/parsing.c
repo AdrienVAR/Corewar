@@ -6,7 +6,7 @@
 /*   By: advardon <advardon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 11:44:25 by advardon          #+#    #+#             */
-/*   Updated: 2019/09/07 13:23:38 by advardon         ###   ########.fr       */
+/*   Updated: 2019/09/07 15:54:51 by advardon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,4 +84,5 @@ void	parsing(char *file, t_env *env)
 	{
 		create_asm_line(env, line);
 	}
+	free_env(env);
 }
