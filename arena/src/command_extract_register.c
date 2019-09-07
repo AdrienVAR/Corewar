@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command_extract_register.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cesargironvm <cesargironvm@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 09:52:51 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/06 11:33:23 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/07 18:16:17 by cesargironv      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@ int			command_extract_register(t_command *command)
 	int				p_ind;
 	int				reg;
 
-	i = 0;
 	p_ind = -1;
 	while (++p_ind < MAX_ARGS_NUMBER)
 	{
 		if (command->types[p_ind].type != T_REG)
 			continue;
+		i = 0;
 		while (++i <= REG_SIZE)
 		{
 			command->reg_val[p_ind].casted[REG_SIZE - i] =
