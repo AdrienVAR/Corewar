@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   arena.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cesargironvm <cesargironvm@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/31 09:59:55 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/06 16:15:28 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/07 17:19:29 by cesargironv      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,6 +188,7 @@ int				command_extract_register(t_command *command);
 void			command_extract_indirect(t_command *command);
 void			ex_command_live(t_process *process, char *arena);
 void			ex_command_ld(t_process *process, char *arena);
+void			ex_command_st(t_process *process, char *arena);
 
 void			cursor_next_op(t_process *process);
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   war.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cesargironvm <cesargironvm@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/03 14:07:46 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/06 16:18:40 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/07 18:33:07 by cesargironv      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@ void			run_command(t_process *cur_process, char *arena)
 {
 	int				op_id;
 	static void		(*ex_command[AVAILABLE_OPERATIONS])() = {0,
-		&ex_command_live, &ex_command_ld};
+		&ex_command_live, &ex_command_ld, &ex_command_st};
 
 	op_id = cur_process->vm.command.op.id;
-	if (op_id && op_id <= 2)
+	if (op_id && op_id <= 3)
 	{
 		ex_command[op_id](cur_process, arena);
 	}
@@ -70,7 +70,7 @@ void			run_cycle(t_master *mstr)
 void			war(t_master *mstr)
 {
 
-	while (mstr->cur_cycle < 5000)
+	while (mstr->cur_cycle < 50000)
 	{
 		++mstr->cur_cycle;
 		run_cycle(mstr);

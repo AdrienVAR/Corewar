@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    dependancies_arena.mk                              :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+         #
+#    By: cesargironvm <cesargironvm@student.42.f    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/31 09:59:29 by cgiron            #+#    #+#              #
-#    Updated: 2019/09/06 15:57:34 by cgiron           ###   ########.fr        #
+#    Updated: 2019/09/07 17:17:32 by cesargironv      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,6 +41,7 @@ SRC_ARENA = \
 			command_extract_indirect.c\
 			command_get.c\
 			command_valid_types.c\
+			ex_command_st.c\
 			ex_command_ld.c\
 			ex_command_live.c\
 			cursor_next_op.c\
