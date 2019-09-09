@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   war.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cesargironvm <cesargironvm@student.42.f    +#+  +:+       +#+        */
+/*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/03 14:07:46 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/07 18:33:07 by cesargironv      ###   ########.fr       */
+/*   Updated: 2019/09/09 16:18:16 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,12 @@ void			run_command(t_process *cur_process, char *arena)
 {
 	int				op_id;
 	static void		(*ex_command[AVAILABLE_OPERATIONS])() = {0,
-		&ex_command_live, &ex_command_ld, &ex_command_st};
+		&ex_command_live, &ex_command_ld, &ex_command_st, &ex_command_add
+		, &ex_command_sub, &ex_command_and, &ex_command_or, &ex_command_xor};
 
 	op_id = cur_process->vm.command.op.id;
-	if (op_id && op_id <= 3)
-	{
+	if (op_id && op_id <= 8)
 		ex_command[op_id](cur_process, arena);
-	}
 	cursor_next_op(cur_process);
 }
 
