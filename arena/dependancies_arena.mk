@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    dependancies_arena.mk                              :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cesargironvm <cesargironvm@student.42.f    +#+  +:+       +#+         #
+#    By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/31 09:59:29 by cgiron            #+#    #+#              #
-#    Updated: 2019/09/07 17:17:32 by cesargironv      ###   ########.fr        #
+#    Updated: 2019/09/09 15:44:39 by cgiron           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ NAME_ARENA	:= corewar
 
 SRC_ARENA = \
 			main.c\
+			memrevcpy.c\
 			init.c\
 			file_loading.c\
 			binary_read.c\
@@ -38,12 +39,19 @@ SRC_ARENA = \
 			memory_dump.c\
 			operation_get_info.c\
 			command_extract_register.c\
+			command_extract_register_value.c\
+			command_extract_direct_value.c\
 			command_extract_indirect.c\
 			command_get.c\
 			command_valid_types.c\
 			ex_command_st.c\
 			ex_command_ld.c\
 			ex_command_live.c\
+			ex_command_add.c\
+			ex_command_sub.c\
+			ex_command_and.c\
+			ex_command_or.c\
+			ex_command_xor.c\
 			cursor_next_op.c\
 			war.c\
 			op.c\
