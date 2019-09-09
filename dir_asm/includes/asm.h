@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   asm.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: advardon <advardon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gdrai <gdrai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/30 13:04:14 by gdrai             #+#    #+#             */
-/*   Updated: 2019/09/09 11:05:12 by advardon         ###   ########.fr       */
+/*   Updated: 2019/09/09 18:29:15 by gdrai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,6 @@ extern t_type	g_type[4];
 
 typedef struct	s_asm_line
 {
-	char				**line_splitted;
-	char				*line; // line from GNL
     int                 line_pos_bytes; // position line en debut de ligne
     int                 line_len_bytes; // lenght of the line
 	char                *label;
@@ -42,26 +40,40 @@ typedef struct	s_asm_line
 
 typedef struct 			s_env
 {
+	char				**line_splitted;
 	char				*name;
 	char				*comment;
+	char				*line; // line being readed by GNL 
 	int					position_binary;
 	t_asm_line			*head;
 }						t_env;
 
-void		clean_exit(char *buffer, char *error_message);
-void		free_env(t_env *env);
+void    lenline_opcode_typecode(t_asm_line *instruction);
+
 int			check_extention(char *file);
 void		parsing(char *file, t_env *env);
-int			create_header(t_env *env, int fd, char *line);
-int			checker_name(char **tab, t_env *env);
-int			checker_comment(char **tab, t_env *env);
-t_asm_line	*ft_lstadd_end(t_asm_line **lst_head);
-char		**split_line(char *line, int option);
+void		check_header(t_env *env, int fd);
+char		**split_line(t_env *env, char *line, int option);
 void		def_type_code(t_asm_line *instruction);
-void		check_action_type(t_asm_line *instruction);
-void		create_asm_line(t_env *env, char *line);
-void		check_nb_arguments(char **tab, int nb_arg);
-char		*check_name_op(char *str, t_asm_line *instruction);
-char		*check_label(char *str);
+/*
+** check_name_op.c
+*/
+void		check_name_op(t_env *env, t_asm_line *instruction);
+
+/*
+** check_asm.c
+*/
+void		check_asm(t_env *env, int fd);
+
+/*
+** check_label.c
+*/
+void		check_label(t_env *env, t_asm_line *instruction);
+
+/*
+** clean_exit.c
+*/
+void		clean_exit(t_env *env, char *error_message);
+void		clean_line_readed(t_env *env);
 
 #endif

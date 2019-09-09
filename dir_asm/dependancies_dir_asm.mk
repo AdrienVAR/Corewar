@@ -26,14 +26,16 @@ NAME_ASM	:= asm
 
 SRC_ASM = \
 		check_extention.c\
+		check_label.c\
 		clean_exit.c\
 		main.c\
-		checker_header.c\
+		check_header.c\
+		check_asm.c\
+		check_op.c\
 		split_line.c\
 		op.c\
 		parsing.c\
 		parameter.c\
-		asm_line.c
 
 INC_ASM					:= asm.h
 

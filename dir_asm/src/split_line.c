@@ -6,13 +6,13 @@
 /*   By: gdrai <gdrai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 13:17:20 by gdrai             #+#    #+#             */
-/*   Updated: 2019/09/06 15:19:24 by gdrai            ###   ########.fr       */
+/*   Updated: 2019/09/09 13:52:26 by gdrai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-char	**op_case(char *line, int count)
+char	**op_case(t_env *env, char *line, int count)
 {
 	char **tab;
 	size_t	i;
@@ -21,7 +21,7 @@ char	**op_case(char *line, int count)
 	int		first_word;
 	
 	if (!(tab = (char **)malloc(sizeof(char *) * (count + 1))))
-        clean_exit(NULL, "Memory allocation failed\n");
+        clean_exit(env, "Memory allocation failed\n");
 	tab[count] = NULL;
 	i = 0;
 	k = 0;
@@ -41,7 +41,7 @@ char	**op_case(char *line, int count)
 				}
 			}
 			if (!(tab[k] = ft_memalloc(j - i + 1)))
-        		clean_exit(NULL, "Memory allocation failed\n");
+        		clean_exit(env, "Memory allocation failed\n");
 			tab[k] = ft_memcpy(tab[k], line + i, j - i);
 			k++;
 			first_word = 0;
@@ -53,7 +53,7 @@ char	**op_case(char *line, int count)
 	return(tab);
 }
 
-char	**header_case(char *line, int count)
+char	**header_case(t_env *env, char *line, int count)
 {
 	char	**tab;
 	size_t	i;
@@ -61,7 +61,7 @@ char	**header_case(char *line, int count)
 	int		k;
 
 	if (!(tab = (char **)malloc(sizeof(char *) * (count + 1))))
-        clean_exit(NULL, "Memory allocation failed\n");
+        clean_exit(env, "Memory allocation failed\n");
 	tab[count] = NULL;
 	i = 0;
 	k = 0;
@@ -72,9 +72,10 @@ char	**header_case(char *line, int count)
 			j = i + 1;
 			while (line[j] != '"')
 				j++;
+			j++;
 			if (!(tab[k] = ft_memalloc(j - i)))
-        		clean_exit(NULL, "Memory allocation failed\n");
-			tab[k] = ft_memcpy(tab[k], line + i + 1, j - i - 1);
+        		clean_exit(env, "Memory allocation failed\n");
+			tab[k] = ft_memcpy(tab[k], line + i, j - i);
 			k++;
 			i = j + 1;
 		}
@@ -84,7 +85,7 @@ char	**header_case(char *line, int count)
 			while (line[j] != ' ' && line[j] != '\t' && line[j] != '"')
 				j++;
 			if (!(tab[k] = ft_memalloc(j - i + 1)))
-        		clean_exit(NULL, "Memory allocation failed\n");
+        		clean_exit(env, "Memory allocation failed\n");
 			tab[k] = ft_memcpy(tab[k], line + i, j - i);
 			k++;
 			i = j;
@@ -95,7 +96,7 @@ char	**header_case(char *line, int count)
 	return (tab);
 }
 
-int		check_count_header(char *line)
+int		check_count_header(t_env *env, char *line)
 {
 	int i;
 	int count;
@@ -110,6 +111,8 @@ int		check_count_header(char *line)
 	{
 		if (line[i] == '"')
 		{
+			if (line[i + 1] == '"')
+				count++;
 			white_space = 1;
 			quote++;
 		}
@@ -123,7 +126,7 @@ int		check_count_header(char *line)
 		i++;
 	}
 	if (quote != 0 && quote != 2)
-		clean_exit(NULL, "Wrong number of quotes in file\n");
+		clean_exit(env, "Wrong number of quotes in header\n");
 	return (count);
 }
 
@@ -159,7 +162,7 @@ int    check_count_op(char *line)
     return (count);
 }
 
-char	**split_line(char *line, int option)
+char	**split_line(t_env *env, char *line, int option)
 {
 	int count;
 
@@ -167,15 +170,15 @@ char	**split_line(char *line, int option)
 		return (NULL);
 	if (option == 0)
 	{
-		count = check_count_header(line);
+		count = check_count_header(env, line);
 		if (count == 0)
 			return (NULL);
-		return (header_case(line, count));
+		return (header_case(env, line, count));
 	}
 	else if (option == 1)
 	{
 		count = check_count_op(line);
-		return (op_case(line, count));
+		return (op_case(env, line, count));
 	}
 	else
 		return (NULL);

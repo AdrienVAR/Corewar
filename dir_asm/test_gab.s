@@ -1,1 +1,3 @@
-arriere:	ld	%-5, r5
+.name "gdgd"
+.comment "w"
+arriere:ld	%-5, r5
