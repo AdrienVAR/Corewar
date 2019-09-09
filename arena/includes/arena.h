@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   arena.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cesargironvm <cesargironvm@student.42.f    +#+  +:+       +#+        */
+/*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/31 09:59:55 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/07 17:19:29 by cesargironv      ###   ########.fr       */
+/*   Updated: 2019/09/09 15:45:53 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -185,11 +185,19 @@ void			command_get_types(t_process *cur_process, t_uchar type_code);
 void			command_get_param(t_process *cur_process, char *arena);
 int				command_valid_types(t_command command);
 int				command_extract_register(t_command *command);
+t_dir_cast		command_extract_register_value(t_process *process, int reg_n);
+t_dir_cast		command_extract_direct_value(char *arena, int dec, int pos);
 void			command_extract_indirect(t_command *command);
 void			ex_command_live(t_process *process, char *arena);
 void			ex_command_ld(t_process *process, char *arena);
 void			ex_command_st(t_process *process, char *arena);
+void			ex_command_add(t_process *process);
+void			ex_command_sub(t_process *process);
+void			ex_command_and(t_process *process, char *arena);
+void			ex_command_or(t_process *process, char *arena);
+void			ex_command_xor(t_process *process, char *arena);
 
+void			*memrevcpy(void *dst, const void *src, int n);
 void			cursor_next_op(t_process *process);
 
 #endif
