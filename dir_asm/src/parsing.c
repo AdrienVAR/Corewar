@@ -6,7 +6,7 @@
 /*   By: advardon <advardon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 11:44:25 by advardon          #+#    #+#             */
-/*   Updated: 2019/09/07 15:54:51 by advardon         ###   ########.fr       */
+/*   Updated: 2019/09/09 11:43:04 by advardon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 ** If true, return the name of the label.
 */
 
-char	*check_label(char *str)
+char	*check_label(char *str) //ajoter control orthographe
 {
 	int i;
 
@@ -72,17 +72,25 @@ void	parsing(char *file, t_env *env)
 {
 	int		fd;
 	char	*line;
+	int		i;
 
 	line = 0;
-
+	i = 0;
 	if (!(fd = open(file, O_RDONLY | O_NOFOLLOW)))
 		clean_exit(NULL, "Opening file has failed\n");
-	while (!env->name || !env->comment) //creer nlle struct asm_line
-		create_header(env, fd, line);
-
+	while (i < 2)
+	{
+		if (i == -1)
+			clean_exit(NULL, "Champion doesn't have name or comment\n");
+		i += create_header(env, fd, line);
+	} //creer nlle struct asm_line
 	while (get_next_line(fd, &line) > 0) //creer nlle struct asm_line
 	{
 		create_asm_line(env, line);
 	}
+
+	// PARSING DONE HERE, WRITING BINARY STARTS HERE
+
+
 	free_env(env);
 }

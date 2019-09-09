@@ -6,7 +6,7 @@
 /*   By: advardon <advardon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 15:50:17 by advardon          #+#    #+#             */
-/*   Updated: 2019/09/07 14:20:48 by advardon         ###   ########.fr       */
+/*   Updated: 2019/09/09 11:33:07 by advardon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ void    create_asm_line(t_env *env, char *line)
     instruction = ft_lstadd_end(&env->head);
 	if (!(instruction->line_splitted = split_line(line, 1)))
 		return ;
-    if (instruction->line_splitted[0] == NULL) //check empty lines
+    if (instruction->line_splitted[0] == NULL) //check empty lines DO BEFORE CREATE MAILLON
         return;
 	instruction->label = check_label(instruction->line_splitted[0]);
 	if (instruction->label)

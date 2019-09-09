@@ -6,7 +6,7 @@
 /*   By: advardon <advardon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/07 13:01:50 by advardon          #+#    #+#             */
-/*   Updated: 2019/09/07 15:44:49 by advardon         ###   ########.fr       */
+/*   Updated: 2019/09/09 11:09:53 by advardon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void    check_double_quotes(char *str)
 ** If format is ok, save champion's name in env.
 */
 
-void    checker_name(char **tab, t_env *env) //check if tab == 2
+int    checker_name(char **tab, t_env *env) //check if tab == 2
 {
     int i;
 
@@ -43,18 +43,19 @@ void    checker_name(char **tab, t_env *env) //check if tab == 2
     if (ft_strncmp(tab[i], ".name", 5) == 0)
         i++;
     else
-        return;
+        return (0);
     //check_double_quotes(tab[i]); to use after modif split_line
     if (ft_strlen(tab[i]) > PROG_NAME_LENGTH)
         clean_exit(NULL, "Champion name too long (Max length 128)\n");
     env->name = tab[i];
+    return (1);
 }
 
 /*
 ** If format is ok, save champion's comment in env.
 */
 
-void    checker_comment(char **tab, t_env *env)
+int    checker_comment(char **tab, t_env *env)
 {
     int i;
 
@@ -62,11 +63,12 @@ void    checker_comment(char **tab, t_env *env)
     if (ft_strncmp(tab[i], ".comment", 8) == 0)
         i++;
     else
-        return;
+        return (0);
     //check_double_quotes(tab[i]); to use after modif split_line
     if (ft_strlen(tab[i]) > COMMENT_LENGTH)
         clean_exit(NULL, "Champion comment is too long(Max length 2048)\n");
     env->comment = tab[i];
+    return (1);
 }
 
 /*
@@ -80,7 +82,7 @@ int check_len_tab(char **tab)
     i = 0;
     while(tab[i])
         i++;
-    if (i < 2)
+    if (i != 2)
         return (0);
     return (1);
 }
@@ -90,7 +92,7 @@ int check_len_tab(char **tab)
 ** is in this line.
 */
 
-void	create_header(t_env *env, int fd, char *line)
+int 	create_header(t_env *env, int fd, char *line)
 {
 	char **tab;
 
@@ -98,12 +100,13 @@ void	create_header(t_env *env, int fd, char *line)
 	{
 		tab = split_line(line, 0);
         if (tab == NULL) //check empty lines
-            return ;
-        if(!(check_len_tab(tab)))
-            return ;
-		checker_name(tab, env);
-		checker_comment(tab, env);
+            return (0);
+        if(!check_len_tab(tab))
+            clean_exit(NULL, "Missing comment or name\n");
+		if(!checker_name(tab, env) && !checker_comment(tab, env))
+        clean_exit(NULL, "Invalid comment or name\n");
+        return (1);
 	}
 	else
-		clean_exit(NULL, "Champion doesn't have name or comment\n");
+		return (-1);
 }
