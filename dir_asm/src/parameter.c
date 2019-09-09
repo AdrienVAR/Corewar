@@ -6,7 +6,7 @@
 /*   By: advardon <advardon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 10:38:31 by advardon          #+#    #+#             */
-/*   Updated: 2019/09/06 14:40:02 by advardon         ###   ########.fr       */
+/*   Updated: 2019/09/09 11:48:55 by advardon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ void	check_action_type(t_asm_line *instruction)
 			param_digit_value(instruction, param, instruction->line_splitted[i] + 1);
 			check_valid_type(instruction, param);
 		}
-		else
+		else //checker d'autres cas avec un else if
 		{
 			instruction->params_type[param] = g_type[2];
             instruction->line_len_bytes += IND_SIZE;
@@ -126,4 +126,5 @@ void	check_action_type(t_asm_line *instruction)
 		param++;
 	}
     lenline_opcode_typecode(instruction);
+	//instruction->line_pos_bytes = TO DO
 }

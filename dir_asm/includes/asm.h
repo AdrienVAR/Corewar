@@ -6,7 +6,7 @@
 /*   By: advardon <advardon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/30 13:04:14 by gdrai             #+#    #+#             */
-/*   Updated: 2019/09/07 15:56:17 by advardon         ###   ########.fr       */
+/*   Updated: 2019/09/09 11:05:12 by advardon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,9 @@ void		clean_exit(char *buffer, char *error_message);
 void		free_env(t_env *env);
 int			check_extention(char *file);
 void		parsing(char *file, t_env *env);
-void		create_header(t_env *env, int fd, char *line);
-void		checker_name(char **tab, t_env *env);
-void		checker_comment(char **tab, t_env *env);
+int			create_header(t_env *env, int fd, char *line);
+int			checker_name(char **tab, t_env *env);
+int			checker_comment(char **tab, t_env *env);
 t_asm_line	*ft_lstadd_end(t_asm_line **lst_head);
 char		**split_line(char *line, int option);
 void		def_type_code(t_asm_line *instruction);
