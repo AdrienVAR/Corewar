@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 18:47:19 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/06 14:42:25 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/09 12:10:25 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void			ex_command_ld(t_process *process, char *arena)
 		|| command_extract_register(&command) == NO)
 		return ;
 	command_extract_indirect(&command);
-	reg = command.reg_val[1].nb;
+	reg = command.reg_val[1].nb - 1;
 	if (command.types[0].type == T_IND)
 		jump = command.ind_val[0].nb;
 	jump %= IDX_MOD;
