@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 18:47:19 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/09 11:52:50 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/09 17:34:54 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,7 @@ static void		command_reg_sub(t_process *process, t_command command)
 	i = -1;
 	while (++i < DIR_SIZE)
 		process->registry[reg_dst][DIR_SIZE - 1 - i] = reg[2].casted[i];
-	if (!(reg[2].nb))
-		process->carry = 1;
+	process->carry = !(reg[2].nb) ? YES : NO;
 }
 
 void			ex_command_sub(t_process *process)

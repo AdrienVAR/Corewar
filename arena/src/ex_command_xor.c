@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 15:18:04 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/09 15:47:00 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/09 17:34:27 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,7 @@ static void		command_comp_xor(t_process *process, t_command command, char *arena
 	reg_dst = command.reg_val[2].nb - 1;
 	comp[2].nb = comp[0].nb ^ comp[1].nb;
 	memrevcpy(process->registry[reg_dst], comp[2].casted, DIR_SIZE);
-	if (!(comp[2].nb))
-		process->carry = 1;
+	process->carry = !(comp[2].nb) ? YES : NO;
 }
 
 void			ex_command_xor(t_process *process, char *arena)

@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 18:47:19 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/09 12:10:25 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/09 17:32:32 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,6 @@ void			ex_command_ld(t_process *process, char *arena)
 	i = -1;
 	while (++i < DIR_SIZE)
 		process->registry[reg][i] = arena_val(arena, process->pc + i + jump);
+	process->carry =
+		!(command_extract_register_value(process, reg + 1).nb) ? YES : NO;
 }
