@@ -32,10 +32,12 @@ SRC_ASM = \
 		check_header.c\
 		check_asm.c\
 		check_op.c\
-		split_line.c\
+		split_header_line.c\
+		split_op_line.c\
 		op.c\
 		parsing.c\
 		parameter.c\
+		fill_label.c\
 
 INC_ASM					:= asm.h
 

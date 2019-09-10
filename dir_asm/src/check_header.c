@@ -6,7 +6,7 @@
 /*   By: gdrai <gdrai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 15:14:17 by gdrai             #+#    #+#             */
-/*   Updated: 2019/09/09 16:58:18 by gdrai            ###   ########.fr       */
+/*   Updated: 2019/09/10 13:17:55 by gdrai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	check_header(t_env *env, int fd)
     {
         if (get_next_line(fd, &env->line) > 0)
 	    {
-		    env->line_splitted = split_line(env, env->line, 0);
+		    env->line_splitted = split_header_line(env, env->line);
             if (env->line_splitted != NULL)
             {
 				check_len_tab(env);

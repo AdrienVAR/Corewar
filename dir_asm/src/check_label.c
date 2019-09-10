@@ -6,7 +6,7 @@
 /*   By: gdrai <gdrai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 13:33:24 by gdrai             #+#    #+#             */
-/*   Updated: 2019/09/09 17:22:05 by gdrai            ###   ########.fr       */
+/*   Updated: 2019/09/10 14:33:10 by gdrai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,5 @@ void	check_label(t_env *env, t_asm_line *instruction)
 			clean_exit(env, "Wrong syntax for Label\n");
 		i++;
 	}
-	instruction->label = env->line_splitted[0];
+	instruction->label = ft_strndup(env->line_splitted[0], ft_strlen(env->line_splitted[0]) - 1);
 }

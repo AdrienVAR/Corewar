@@ -6,7 +6,7 @@
 /*   By: gdrai <gdrai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 11:44:25 by advardon          #+#    #+#             */
-/*   Updated: 2019/09/09 16:34:07 by gdrai            ###   ########.fr       */
+/*   Updated: 2019/09/10 14:17:10 by gdrai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,4 +22,5 @@ void	parsing(char *file, t_env *env)
 	check_asm(env, fd);
 	if (close(fd) == -1)
 		clean_exit(env, "Closing file has failed\n");
+	fill_label(env);
 }
