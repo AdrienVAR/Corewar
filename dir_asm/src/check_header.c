@@ -6,7 +6,7 @@
 /*   By: gdrai <gdrai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 15:14:17 by gdrai             #+#    #+#             */
-/*   Updated: 2019/09/10 13:17:55 by gdrai            ###   ########.fr       */
+/*   Updated: 2019/09/10 16:42:56 by gdrai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int    checker_name(t_env *env)
     check_double_quotes(env);
     if (ft_strlen(env->line_splitted[1] - 2) > PROG_NAME_LENGTH)
         clean_exit(env, "Champion name too long (Max length 128)\n");
-    env->name = ft_strdup(env->line_splitted[1]);
+    env->name = ft_strndup(env->line_splitted[1] + 1, ft_strlen(env->line_splitted[1]) - 2);
     return (1);
 }
 
@@ -50,7 +50,7 @@ int    checker_comment(t_env *env)
     check_double_quotes(env);
     if (ft_strlen(env->line_splitted[1] - 2) > COMMENT_LENGTH)
         clean_exit(env, "Champion comment is too long(Max length 2048)\n");
-    env->comment = ft_strdup(env->line_splitted[1]);
+    env->comment = ft_strndup(env->line_splitted[1] + 1, ft_strlen(env->line_splitted[1]) - 2);
     return (1);
 }
 

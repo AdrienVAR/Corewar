@@ -6,7 +6,7 @@
 /*   By: gdrai <gdrai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/30 13:04:14 by gdrai             #+#    #+#             */
-/*   Updated: 2019/09/10 15:42:06 by gdrai            ###   ########.fr       */
+/*   Updated: 2019/09/10 16:47:12 by gdrai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,5 +118,15 @@ void		fill_label(t_env *env);
 ** writing.c
 */
 void		writing(char *file, t_env *env);
+
+/*
+** writing_header.c
+*/
+void    	writing_header(t_env *env, int fd);
+
+/*
+** writing_op.c
+*/
+void    	writing_op(t_env *env, int fd);
 
 #endif
