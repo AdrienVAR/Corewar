@@ -12,11 +12,9 @@
 
 #include "asm.h"
 
-
 /*
 ** Create a new struct and add it at end of the list.
 */
-
 t_asm_line	*ft_lstadd_end(t_asm_line **lst, t_env *env)
 {
 	t_asm_line	*lstnew;
@@ -43,21 +41,20 @@ t_asm_line	*ft_lstadd_end(t_asm_line **lst, t_env *env)
 
 void    create_asm_line(t_env *env)
 {
-    t_asm_line	*instruction;
+    t_asm_line	*op;
     
-    instruction = ft_lstadd_end(&env->head, env);
-    check_label(env, instruction);
-    check_name_op(env, instruction);
-	lenline_opcode_typecode(instruction);
-    def_type_code(instruction);
-    env->position_binary += instruction->line_len_bytes;
+    op = ft_lstadd_end(&env->head, env);
+    check_label(env, op);
+    check_op(env, op);
+	check_typecode(op);
+    env->position_binary += op->line_len_bytes;
 }
 
-void	check_asm(t_env *env, int fd)
+void	check_asm(t_env *env)
 {
-	while (get_next_line(fd, &env->line) > 0)
+	while (get_next_line(env->fd, &env->line) > 0)
 	{
-		env->line_splitted = split_op_line(env, env->line);
+		env->line_splitted = split_op_line(env);
 		if (env->line_splitted != NULL)
 			create_asm_line(env);
 		clean_line_readed(env);

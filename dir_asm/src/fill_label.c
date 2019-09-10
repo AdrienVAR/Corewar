@@ -42,7 +42,8 @@ void	fill_label(t_env *env)
 		while (++i < 4)
 		{
 			if (current->param_label[i])
-				current->param_value[i] = find_label(env, current->param_label[i], current->line_pos_bytes);
+				current->param_value[i] = find_label(env,
+					current->param_label[i], current->line_pos_bytes);
 		}
 		current = current->next;
 	}

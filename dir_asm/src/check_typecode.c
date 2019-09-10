@@ -17,28 +17,28 @@
 ** for each parameter.
 */
 
-void	def_type_code(t_asm_line *instruction)
+void	def_type_code(t_asm_line *op)
 {
 	int i;
 
 	i = 0;
 	while (i < MAX_ARGS_NUMBER)
 	{
-		instruction->type_code = instruction->type_code << 2;
-		instruction->type_code += instruction->params_type[i].type_code;
+		op->type_code = op->type_code << 2;
+		op->type_code += op->params_type[i].type_code;
 		i++;
 	}
 }
 
 /*
-** If no codetype is needed, add 1 bytes for action, else add 2 bytes
+** If no codetype is needed, add 1 bytes for action,  else add 2 bytes
 ** for action + typecode.
 */
-
-void    lenline_opcode_typecode(t_asm_line *instruction)
+void    check_typecode(t_asm_line *op)
 {
-    if (!instruction->operation.type_needed)
-        instruction->line_len_bytes++;
+    if (!op->operation.type_needed)
+        op->line_len_bytes++;
     else
-        instruction->line_len_bytes += 2;
+        op->line_len_bytes += 2;
+	def_type_code(op);
 }

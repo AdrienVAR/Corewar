@@ -12,40 +12,40 @@
 
 #include "asm.h"
 
-char	**header_case(t_env *env, char *line, int count)
+char	**header_case(t_env *env, int count)
 {
 	char	**tab;
 	size_t	i;
 	size_t	j;
 	int		k;
 
-	if (!(tab = (char **)malloc(sizeof(char *) * (count + 1))))
+	if (!(tab = (char **)ft_memalloc(sizeof(char *) * (count + 1))))
         clean_exit(env, "Memory allocation failed\n");
 	tab[count] = NULL;
 	i = 0;
 	k = 0;
 	while (k < count)
 	{
-		if (line[i] == '"')
+		if (env->line[i] == '"')
 		{
 			j = i + 1;
-			while (line[j] != '"')
+			while (env->line[j] != '"')
 				j++;
 			j++;
 			if (!(tab[k] = ft_memalloc(j - i)))
         		clean_exit(env, "Memory allocation failed\n");
-			tab[k] = ft_memcpy(tab[k], line + i, j - i);
+			tab[k] = ft_memcpy(tab[k], env->line + i, j - i);
 			k++;
 			i = j + 1;
 		}
-		else if (line[i] != ' ' && line[i] != '\t')
+		else if (env->line[i] != ' ' && env->line[i] != '\t')
 		{
 			j = i;
-			while (line[j] != ' ' && line[j] != '\t' && line[j] != '"')
+			while (env->line[j] != ' ' && env->line[j] != '\t' && env->line[j] != '"')
 				j++;
 			if (!(tab[k] = ft_memalloc(j - i + 1)))
         		clean_exit(env, "Memory allocation failed\n");
-			tab[k] = ft_memcpy(tab[k], line + i, j - i);
+			tab[k] = ft_memcpy(tab[k], env->line + i, j - i);
 			k++;
 			i = j;
 		}
@@ -55,7 +55,7 @@ char	**header_case(t_env *env, char *line, int count)
 	return (tab);
 }
 
-int		check_count_header(t_env *env, char *line)
+int		check_count_header(t_env *env)
 {
 	int i;
 	int count;
@@ -66,21 +66,21 @@ int		check_count_header(t_env *env, char *line)
 	count = 0;
 	quote = 0;
 	white_space = 1;
-	while (line[i] != '\0' && (line[i] != COMMENT_CHAR || quote % 2))
+	while (env->line[i] != '\0' && (env->line[i] != COMMENT_CHAR || quote % 2))
 	{
-		if (line[i] == '"')
+		if (env->line[i] == '"')
 		{
-			if (line[i + 1] == '"')
+			if (env->line[i + 1] == '"')
 				count++;
 			white_space = 1;
 			quote++;
 		}
-		else if (line[i] != ' ' && line[i] != '\t' && white_space)
+		else if (env->line[i] != ' ' && env->line[i] != '\t' && white_space)
 		{
 			count++;
 			white_space = 0;
 		}
-		else if ((line[i] == ' ' || line[i] == '\t') && !(quote % 2))
+		else if ((env->line[i] == ' ' || env->line[i] == '\t') && !(quote % 2))
 			white_space = 1;
 		i++;
 	}
@@ -89,16 +89,17 @@ int		check_count_header(t_env *env, char *line)
 	return (count);
 }
 
-char	**split_header_line(t_env *env, char *line)
+char	**split_header_line(t_env *env)
 {
 	int count;
 
-	if (line == NULL)
+	if (env->line == NULL)
 		return (NULL);
-
-		count = check_count_header(env, line);
-		if (count == 0)
-			return (NULL);
-		return (header_case(env, line, count));
-	
+	count = check_count_header(env);
+	if (count == 0)
+		return (NULL);
+	if (count != 2)
+		clean_exit(env,
+			"Incorrect number of parameters for name or comment\n");
+	return (header_case(env, count));
 }

@@ -45,6 +45,7 @@ typedef struct 			s_env
 	char				*comment;
 	char				*line; // line being readed by GNL 
 	int					position_binary;
+	int					fd;
 	t_asm_line			*head;
 }						t_env;
 
@@ -72,21 +73,30 @@ typedef union			u_reg_cast
 	unsigned char		casted[REG_SIZE];
 }						t_reg_cast;
 
-void    lenline_opcode_typecode(t_asm_line *instruction);
-
-int			check_extention(char *file);
-void		parsing(char *file, t_env *env);
-void		check_header(t_env *env, int fd);
-void		def_type_code(t_asm_line *instruction);
 /*
-** check_name_op.c
+** check_extension.c
 */
-void		check_name_op(t_env *env, t_asm_line *instruction);
+int			check_extention(char *file);
+
+/*
+** parsing.c
+*/
+void		parsing(char *file, t_env *env);
+
+/*
+** check_op.c
+*/
+void		check_op(t_env *env, t_asm_line *op);
+
+/*
+** check_header.c
+*/
+void		check_header(t_env *env);
 
 /*
 ** check_asm.c
 */
-void		check_asm(t_env *env, int fd);
+void		check_asm(t_env *env);
 
 /*
 ** check_label.c
@@ -102,12 +112,12 @@ void		clean_line_readed(t_env *env);
 /*
 ** split_op_line.c
 */
-char		**split_op_line(t_env *env, char *line);
+char		**split_op_line(t_env *env);
 
 /*
 ** split_header_line.c
 */
-char		**split_header_line(t_env *env, char *line);
+char		**split_header_line(t_env *env);
 
 /*
 ** fill_label.c
@@ -128,5 +138,20 @@ void    	writing_header(t_env *env, int fd);
 ** writing_op.c
 */
 void    	writing_op(t_env *env, int fd);
+
+/*
+** check_digits.c
+*/
+void		check_digits(t_env *env, t_asm_line *op, int param, char *str);
+
+/*
+** check_valid_type.c
+*/
+void		check_valid_type(t_asm_line *op, int param, t_env *env);
+
+/*
+** check_typecode.c
+*/
+void    	check_typecode(t_asm_line *op);
 
 #endif

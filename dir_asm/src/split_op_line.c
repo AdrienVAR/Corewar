@@ -13,7 +13,7 @@
 
 #include "asm.h"
 
-char	**op_case(t_env *env, char *line, int count)
+char	**op_case(t_env *env, int count)
 {
 	char **tab;
 	size_t	i;
@@ -29,13 +29,13 @@ char	**op_case(t_env *env, char *line, int count)
 	first_word = 1;
 	while (k < count)
 	{
-		if (line[i] != ' ' && line[i] != '\t' && line[i] != SEPARATOR_CHAR)
+		if (env->line[i] != ' ' && env->line[i] != '\t' && env->line[i] != SEPARATOR_CHAR)
 		{
 			j = i;
-			while (line[j] != ' ' && line[j] != '\t' && line[j] != SEPARATOR_CHAR && line[j] != '\0' && line[j] != COMMENT_CHAR)
+			while (env->line[j] != ' ' && env->line[j] != '\t' && env->line[j] != SEPARATOR_CHAR && env->line[j] != '\0' && env->line[j] != COMMENT_CHAR)
 			{
 				j++;
-				if (line[j] == LABEL_CHAR && first_word)
+				if (env->line[j] == LABEL_CHAR && first_word)
 				{
 					j++;
 					break ;
@@ -43,7 +43,7 @@ char	**op_case(t_env *env, char *line, int count)
 			}
 			if (!(tab[k] = ft_memalloc(j - i + 1)))
         		clean_exit(env, "Memory allocation failed\n");
-			tab[k] = ft_memcpy(tab[k], line + i, j - i);
+			tab[k] = ft_memcpy(tab[k], env->line + i, j - i);
 			k++;
 			first_word = 0;
 			i = j;
@@ -86,16 +86,14 @@ int    check_count_op(char *line)
     return (count);
 }
 
-char	**split_op_line(t_env *env, char *line)
+char	**split_op_line(t_env *env)
 {
 	int count;
 
-	if (line == NULL)
+	if (env->line == NULL)
 		return (NULL);
-
-		count = check_count_op(line);
-		if (count == 0)
-			return (NULL);
-		return (op_case(env, line, count));
-	
+	count = check_count_op(env->line);
+	if (count == 0)
+		return (NULL);
+	return (op_case(env, count));
 }

@@ -12,97 +12,69 @@
 
 #include "asm.h"
 
-/*
-** Check if the type used for each parameter is a valid type. Use of a binary
-** mask to verify if it fits with types from g_op_table
-*/
-void	check_valid_type(t_asm_line *instruction, int param, t_env *env)
+void	label_case(t_env *env, t_asm_line *op, int param, int k)
 {
-	if (!(instruction->operation.params_type[param] &
-		instruction->params_type[param].type))
-		clean_exit(env, "Invalid argument type for this action\n");
-}
-
-void	check_digits(t_env *env, t_asm_line *instruction, int param, char *str)
-{
-	int i;
-
-	i = 0;
-	if ((instruction->params_type[param].type == g_type[0].type)
-		|| (instruction->params_type[param].type == g_type[1].type))
-		str++;
-	if (!str[i])
-		clean_exit(env, "Missing value on parameter\n");
-	while (str[i])
+	if (env->line_splitted[k][0] == DIRECT_CHAR)
 	{
-		if (!ft_isdigit(str[i]) && str[i] != '-' && str[i] != '+')
-			clean_exit(env, "parameter is not a number\n");
-		i++;
+		op->params_type[param] = g_type[1];
+		op->line_len_bytes += op->operation.dir_size;
+		op->param_label[param] = ft_strndup(env->line_splitted[k] + 2,
+			ft_strlen(env->line_splitted[k]) + 2);
 	}
-	instruction->param_value[param] = ft_atoi(str);
-	if (instruction->params_type[param].type == g_type[0].type)
-        if (instruction->param_value[param] < 1
-			|| instruction->param_value[param] > REG_NUMBER)
-            clean_exit(env, "invalid register number\n");
+	else
+	{
+		op->params_type[param] = g_type[2];
+		op->line_len_bytes += IND_SIZE;
+		op->param_label[param] = ft_strndup(env->line_splitted[k] + 1,
+			ft_strlen(env->line_splitted[k]) + 1);
+	}
 }
 
-void	check_arguments(t_env *env, t_asm_line *instruction)
+void	non_label_case(t_env *env, t_asm_line *op, int param, int k)
+{
+	if (env->line_splitted[k][0] == DIRECT_CHAR)
+	{
+		op->params_type[param] = g_type[1];
+     	op->line_len_bytes += op->operation.dir_size;
+	}
+	else if (env->line_splitted[k][0] == 'r')
+	{
+		op->params_type[param] = g_type[0];
+		op->line_len_bytes += REG_SIZE;
+	}
+	else
+	{
+		op->params_type[param] = g_type[2];
+		op->line_len_bytes += IND_SIZE;
+	}
+	check_digits(env, op, param, env->line_splitted[k]);
+}
+
+/*
+** check number or arguments
+** check if arguments are valid
+*/
+void	check_arguments(t_env *env, t_asm_line *op)
 {
     int i;
     int k;
 	int param;
 
     i = 0;
-    k = (instruction->label != NULL) ? 2 : 1;
+    k = (op->label != NULL) ? 2 : 1;
 	while (env->line_splitted[i])
 		i++;
-	if (i - k != instruction->operation.nb_params)
+	if (i - k != op->operation.nb_params)
 		clean_exit(env, "wrong nb of arguments\n");
 	param = 0;
 	while (k < i)
 	{
-		// LABEL check label and proteger MALLOC !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 		if (env->line_splitted[k][0] == LABEL_CHAR || (env->line_splitted[k][0]
 			== DIRECT_CHAR && env->line_splitted[k][1] == LABEL_CHAR))
-		{
-			// LABEL DIRECT 
-			if (env->line_splitted[k][0] == DIRECT_CHAR)
-			{
-				instruction->params_type[param] = g_type[1];
-				instruction->line_len_bytes += instruction->operation.dir_size;
-				instruction->param_label[param] = ft_strndup(env->line_splitted[k] + 2, ft_strlen(env->line_splitted[k]) + 2);
-			}
-			// LABEL INDIRECT
-			else
-			{
-				instruction->params_type[param] = g_type[2];
-				instruction->line_len_bytes += IND_SIZE;
-				instruction->param_label[param] = ft_strndup(env->line_splitted[k] + 1, ft_strlen(env->line_splitted[k]) + 1);
-			}
-		}
+			label_case(env, op, param, k);
 		else 
-		{
-			// DIRECT
-			if (env->line_splitted[k][0] == DIRECT_CHAR)
-			{
-				instruction->params_type[param] = g_type[1];
-            	instruction->line_len_bytes += instruction->operation.dir_size;
-			}
-			// REGISTRE
-			else if (env->line_splitted[k][0] == 'r')
-			{
-				instruction->params_type[param] = g_type[0];
-				instruction->line_len_bytes += REG_SIZE;
-			}
-			// INDIRECT
-			else
-			{
-				instruction->params_type[param] = g_type[2];
-				instruction->line_len_bytes += IND_SIZE;
-			}
-			check_digits(env, instruction, param, env->line_splitted[k]);
-		}
-		check_valid_type(instruction, param, env);
+			non_label_case(env, op, param, k);
+		check_valid_type(op, param, env);
 		param++;
 		k++;
 	}
@@ -111,20 +83,20 @@ void	check_arguments(t_env *env, t_asm_line *instruction)
 /*
 ** Check if the action name exists in of op.c
 */
-void	check_name_op(t_env *env, t_asm_line *instruction)
+void	check_op(t_env *env, t_asm_line *op)
 {
 	int i;
     int k;
 
 	i = -1;
-    k = (instruction->label != NULL) ? 1 : 0;
+    k = (op->label != NULL) ? 1 : 0;
 	while (++i < AVAILABLE_OPERATIONS)
 	{
 		if (ft_strcmp(env->line_splitted[k], g_op_tab[i].name) == 0)
 		{
-			instruction->operation = g_op_tab[i];
-			instruction->line_pos_bytes = env->position_binary;
-			check_arguments(env, instruction);
+			op->operation = g_op_tab[i];
+			op->line_pos_bytes = env->position_binary;
+			check_arguments(env, op);
             return;
 		}
 	}

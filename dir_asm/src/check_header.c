@@ -54,33 +54,18 @@ int    checker_comment(t_env *env)
     return (1);
 }
 
-/*
-** Check if the line has 2 arguments
-*/
-void	check_len_tab(t_env *env)
-{
-    int i;
-
-    i = 0;
-    while(env->line_splitted[i])
-        i++;
-    if (i != 2)
-        clean_exit(env, "Incorrect number of parameters for name or comment\n");
-}
-
-void	check_header(t_env *env, int fd)
+void	check_header(t_env *env)
 {
     int     i;
 
     i = 0;
     while (i < 2)
     {
-        if (get_next_line(fd, &env->line) > 0)
+        if (get_next_line(env->fd, &env->line) > 0)
 	    {
-		    env->line_splitted = split_header_line(env, env->line);
+		    env->line_splitted = split_header_line(env);
             if (env->line_splitted != NULL)
             {
-				check_len_tab(env);
 				if(!checker_name(env) && !checker_comment(env))
          			clean_exit(env, "Invalid comment or name\n");
 				else

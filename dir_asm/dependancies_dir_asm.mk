@@ -27,6 +27,8 @@ NAME_ASM	:= asm
 SRC_ASM = \
 		check_extention.c\
 		check_label.c\
+		check_digits.c\
+		check_valid_type.c\
 		clean_exit.c\
 		writing.c\
 		writing_header.c\
@@ -39,7 +41,7 @@ SRC_ASM = \
 		split_op_line.c\
 		op.c\
 		parsing.c\
-		parameter.c\
+		check_typecode.c\
 		fill_label.c\
 
 INC_ASM					:= asm.h
