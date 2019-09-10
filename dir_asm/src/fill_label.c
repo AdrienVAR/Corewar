@@ -12,7 +12,7 @@
 
 #include "asm.h"
 
-int		find_label(t_env *env, char *label, int pos)
+t_asm_line		*find_label(t_env *env, char *label)
 {
 	t_asm_line *current;
 
@@ -22,18 +22,25 @@ int		find_label(t_env *env, char *label, int pos)
 		if (current->label)
 		{
 			if (ft_strcmp(current->label, label) == 0)
-				return (current->line_pos_bytes - pos);
+			{
+				while (current && current->line_len_bytes == 0)
+					current = current->next;
+				if (!current)
+					clean_exit(env, "label doesn't match\n");
+				return (current);
+			}
 		}
 		current = current->next;
 	}
 	clean_exit(env, "label not existing\n");
-	return (0);
+	return (NULL);
 }
 
-void	fill_label(t_env *env)
+void			fill_label(t_env *env)
 {
-	int i;
-	t_asm_line *current;
+	int			i;
+	t_asm_line	*current;
+	t_asm_line	*target;
 
 	current = env->head;
 	while (current)
@@ -42,8 +49,10 @@ void	fill_label(t_env *env)
 		while (++i < 4)
 		{
 			if (current->param_label[i])
-				current->param_value[i] = find_label(env,
-					current->param_label[i], current->line_pos_bytes);
+			{
+				target = find_label(env, current->param_label[i]);
+				current->param_value[i] = target->line_pos_bytes - current->line_pos_bytes;
+			}
 		}
 		current = current->next;
 	}

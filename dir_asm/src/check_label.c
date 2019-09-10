@@ -20,18 +20,12 @@
 ** Check if all chars are valid (in LABEL_CHARS)
 ** if false -> exit
 */
-
-void	check_label(t_env *env, t_asm_line *instruction)
+void	check_syntax_label(t_env *env)
 {
 	int i;
 	int j;
 	int k;
 
-	i = 0;
-	while (env->line_splitted[0][i])
-        i++;
-    if (env->line_splitted[0][i - 1] != LABEL_CHAR)
-		return;
 	i = 0;
 	while (env->line_splitted[0][i] != LABEL_CHAR)
 	{
@@ -47,5 +41,25 @@ void	check_label(t_env *env, t_asm_line *instruction)
 			clean_exit(env, "Wrong syntax for Label\n");
 		i++;
 	}
-	instruction->label = ft_strndup(env->line_splitted[0], ft_strlen(env->line_splitted[0]) - 1);
+}
+
+int		check_label(t_env *env, t_asm_line *op)
+{
+	int i;
+
+	i = 0;
+	while (env->line_splitted[0][i])
+        i++;
+    if (env->line_splitted[0][i - 1] != LABEL_CHAR)
+		return (1);
+	check_syntax_label(env);
+	op->label = ft_strndup(env->line_splitted[0],
+		ft_strlen(env->line_splitted[0]) - 1);
+	if (env->line_splitted[1] == NULL)
+	{
+		op->line_len_bytes = 0;
+		return (0);
+	}
+	else
+		return (1);
 }

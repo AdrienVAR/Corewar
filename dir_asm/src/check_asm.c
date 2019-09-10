@@ -44,7 +44,8 @@ void    create_asm_line(t_env *env)
     t_asm_line	*op;
     
     op = ft_lstadd_end(&env->head, env);
-    check_label(env, op);
+    if (check_label(env, op) == 0)
+		return;
     check_op(env, op);
 	check_typecode(op);
     env->position_binary += op->line_len_bytes;

@@ -103,7 +103,7 @@ b1:	add	r2,r4,r2
 	ld	%0,r10
 	zjmp	%:b0
 
-
+fin:
 top:	live	%42
 	ld	%9,r3
 	sti	r3,%:p32deb,%-6
@@ -227,7 +227,8 @@ tirdow:	ld	%425,r2
 	ld	%0,r3
 	ld	%4,r4
 
-tird:	live	%42
+tird:	
+live	%42
 	sti	r10,%:fin,r2
 	sti	r10,%:fin,r3
 	add	r4,r5,r4
@@ -237,5 +238,3 @@ tird:	live	%42
 	ld	%0,r11
 	zjmp	%:tird
 	zjmp	%:p1
-
-fin:	live	%633

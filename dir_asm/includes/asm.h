@@ -101,7 +101,9 @@ void		check_asm(t_env *env);
 /*
 ** check_label.c
 */
-void		check_label(t_env *env, t_asm_line *instruction);
+int			check_label(t_env *env, t_asm_line *op);
+void		check_syntax_label(t_env *env);
+
 
 /*
 ** clean_exit.c
