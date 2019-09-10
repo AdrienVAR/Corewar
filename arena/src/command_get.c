@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 14:31:12 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/06 14:38:45 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/10 14:58:03 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void		command_get_param(t_process *cur_process, char *arena)
 	int				pc;
 	int				i;
 	int				j;
+	int				size;
 
 	i = -1;
 	pc = (cur_process->pc + 2) % MEM_SIZE;
@@ -51,7 +52,10 @@ void		command_get_param(t_process *cur_process, char *arena)
 	while (++i < command.op.nb_params)
 	{
 		j = -1;
-		while (++j < command.types[i].size)
+		size = command.types[i].size;
+		size = command.types[i].type == T_DIR?
+			command.op.dir_size : size;
+		while (++j < size)
 			command.param[i][j] = arena_val(arena, pc++);
 	}
 	cur_process->vm.command = command;
