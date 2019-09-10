@@ -6,7 +6,7 @@
 #    By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/31 09:59:29 by cgiron            #+#    #+#              #
-#    Updated: 2019/09/09 15:44:39 by cgiron           ###   ########.fr        #
+#    Updated: 2019/09/10 09:32:13 by cgiron           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,6 +52,7 @@ SRC_ARENA = \
 			ex_command_and.c\
 			ex_command_or.c\
 			ex_command_xor.c\
+			ex_command_zjmp.c\
 			cursor_next_op.c\
 			war.c\
 			op.c\
