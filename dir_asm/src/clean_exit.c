@@ -6,7 +6,7 @@
 /*   By: gdrai <gdrai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/30 14:05:00 by gdrai             #+#    #+#             */
-/*   Updated: 2019/09/09 17:06:49 by gdrai            ###   ########.fr       */
+/*   Updated: 2019/09/10 14:34:21 by gdrai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,19 @@ void	free_env(t_env *env)
 	ft_memdel((void**)&env);
 }
 
+void	clean_param_label(t_asm_line *instruction)
+{
+	int i;
+
+	i = 0;
+	while (i < 4)
+	{
+		if (instruction->param_label[i])
+			ft_memdel((void**)&(instruction->param_label[i]));
+		i++;
+	}
+}
+
 void	clean_exit(t_env *env, char *error_message)
 {
 	t_asm_line *tmp;
@@ -42,6 +55,9 @@ void	clean_exit(t_env *env, char *error_message)
 	while (env->head)
 	{
 		tmp = env->head->next;
+		if (env->head->label)
+			ft_memdel((void**)&(env->head->label));
+		clean_param_label(env->head);
 		ft_bzero(env->head, sizeof(t_asm_line));
 		ft_memdel((void**)&env->head);
 		env->head = tmp;

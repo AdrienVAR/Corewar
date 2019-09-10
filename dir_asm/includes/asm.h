@@ -6,7 +6,7 @@
 /*   By: gdrai <gdrai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/30 13:04:14 by gdrai             #+#    #+#             */
-/*   Updated: 2019/09/09 18:29:15 by gdrai            ###   ########.fr       */
+/*   Updated: 2019/09/10 14:03:09 by gdrai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ typedef struct	s_asm_line
     int                 line_pos_bytes; // position line en debut de ligne
     int                 line_len_bytes; // lenght of the line
 	char                *label;
-	char				*name_operations;
 	t_op                operation; // line op.c
 	t_type              params_type[4];
+	char				*param_label[4];
 	char				type_code; // donne les types DIR/IND/REG des parametres
 	int					param_value[4]; // pas mettre value si on a un type label
 	struct s_asm_line        *next;
@@ -53,7 +53,6 @@ void    lenline_opcode_typecode(t_asm_line *instruction);
 int			check_extention(char *file);
 void		parsing(char *file, t_env *env);
 void		check_header(t_env *env, int fd);
-char		**split_line(t_env *env, char *line, int option);
 void		def_type_code(t_asm_line *instruction);
 /*
 ** check_name_op.c
@@ -75,5 +74,20 @@ void		check_label(t_env *env, t_asm_line *instruction);
 */
 void		clean_exit(t_env *env, char *error_message);
 void		clean_line_readed(t_env *env);
+
+/*
+** split_op_line.c
+*/
+char		**split_op_line(t_env *env, char *line);
+
+/*
+** split_header_line.c
+*/
+char		**split_header_line(t_env *env, char *line);
+
+/*
+** fill_label.c
+*/
+void		fill_label(t_env *env);
 
 #endif

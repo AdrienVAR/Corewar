@@ -6,7 +6,7 @@
 /*   By: gdrai <gdrai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 16:12:40 by gdrai             #+#    #+#             */
-/*   Updated: 2019/09/09 18:28:01 by gdrai            ###   ########.fr       */
+/*   Updated: 2019/09/10 14:03:22 by gdrai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,11 @@ void	check_digits(t_env *env, t_asm_line *instruction, int param, char *str)
 	}
 	instruction->param_value[param] = ft_atoi(str);
 	if (instruction->params_type[param].type == g_type[0].type)
-        if (instruction->param_value[param] < 1 || instruction->param_value[param] > REG_NUMBER)
+        if (instruction->param_value[param] < 1
+			|| instruction->param_value[param] > REG_NUMBER)
             clean_exit(env, "invalid register number\n");
 }
 
-/*
-** Check if the nb of arguments for this action corresponds to op.c
-*/
 void	check_arguments(t_env *env, t_asm_line *instruction)
 {
     int i;
@@ -63,29 +61,47 @@ void	check_arguments(t_env *env, t_asm_line *instruction)
 	param = 0;
 	while (k < i)
 	{
-		if (env->line_splitted[k][0] == DIRECT_CHAR)
+		// LABEL check label and proteger MALLOC !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+		if (env->line_splitted[k][0] == LABEL_CHAR || (env->line_splitted[k][0]
+			== DIRECT_CHAR && env->line_splitted[k][1] == LABEL_CHAR))
 		{
-			if (env->line_splitted[k][1] && (env->line_splitted[k][1] == LABEL_CHAR))
-				instruction->params_type[param] = g_type[3];
+			// LABEL DIRECT 
+			if (env->line_splitted[k][0] == DIRECT_CHAR)
+			{
+				instruction->params_type[param] = g_type[1];
+            	instruction->line_len_bytes += DIR_SIZE;
+				instruction->param_label[param] = ft_strndup(env->line_splitted[k] + 2, ft_strlen(env->line_splitted[k]) + 2);
+			}
+			// LABEL INDIRECT
 			else
+			{
+				instruction->params_type[param] = g_type[2];
+				instruction->line_len_bytes += IND_SIZE;
+				instruction->param_label[param] = ft_strndup(env->line_splitted[k] + 1, ft_strlen(env->line_splitted[k]) + 1);
+			}
+		}
+		else 
+		{
+			// DIRECT
+			if (env->line_splitted[k][0] == DIRECT_CHAR)
 			{
 				instruction->params_type[param] = g_type[1];
             	instruction->line_len_bytes += DIR_SIZE;
 			}
+			// REGISTRE
+			else if (env->line_splitted[k][0] == 'r')
+			{
+				instruction->params_type[param] = g_type[0];
+				instruction->line_len_bytes += REG_SIZE;
+			}
+			// INDIRECT
+			else
+			{
+				instruction->params_type[param] = g_type[2];
+				instruction->line_len_bytes += IND_SIZE;
+			}
+			check_digits(env, instruction, param, env->line_splitted[k]);
 		}
-		else if (env->line_splitted[k][0] == LABEL_CHAR)
-			instruction->params_type[param] = g_type[3];
-		else if (env->line_splitted[k][0] == 'r')
-		{
-			instruction->params_type[param] = g_type[0];
-            instruction->line_len_bytes += REG_SIZE;
-		}
-		else
-		{
-			instruction->params_type[param] = g_type[2];
-            instruction->line_len_bytes += IND_SIZE;
-		}
-		check_digits(env, instruction, param, env->line_splitted[k]);
 		check_valid_type(instruction, param, env);
 		param++;
 		k++;
@@ -106,8 +122,8 @@ void	check_name_op(t_env *env, t_asm_line *instruction)
 	{
 		if (ft_strcmp(env->line_splitted[k], g_op_tab[i].name) == 0)
 		{
-            instruction->name_operations = env->line_splitted[k];
 			instruction->operation = g_op_tab[i];
+			instruction->line_pos_bytes = env->position_binary;
 			check_arguments(env, instruction);
             return;
 		}
