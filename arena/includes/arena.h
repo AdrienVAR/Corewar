@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/31 09:59:55 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/10 09:32:28 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/10 14:08:59 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -197,6 +197,8 @@ void			ex_command_and(t_process *process, char *arena);
 void			ex_command_or(t_process *process, char *arena);
 void			ex_command_xor(t_process *process, char *arena);
 void			ex_command_zjmp(t_process *process, char *arena);
+void			ex_command_ldi(t_process *process, char *arena);
+void			ex_command_sti(t_process *process, char *arena);
 
 void			*memrevcpy(void *dst, const void *src, int n);
 void			cursor_next_op(t_process *process);
