@@ -6,7 +6,7 @@
 /*   By: gdrai <gdrai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 16:12:40 by gdrai             #+#    #+#             */
-/*   Updated: 2019/09/10 14:03:22 by gdrai            ###   ########.fr       */
+/*   Updated: 2019/09/10 15:14:10 by gdrai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	check_arguments(t_env *env, t_asm_line *instruction)
 			if (env->line_splitted[k][0] == DIRECT_CHAR)
 			{
 				instruction->params_type[param] = g_type[1];
-            	instruction->line_len_bytes += DIR_SIZE;
+				instruction->line_len_bytes += instruction->operation.dir_size;
 				instruction->param_label[param] = ft_strndup(env->line_splitted[k] + 2, ft_strlen(env->line_splitted[k]) + 2);
 			}
 			// LABEL INDIRECT
@@ -86,7 +86,7 @@ void	check_arguments(t_env *env, t_asm_line *instruction)
 			if (env->line_splitted[k][0] == DIRECT_CHAR)
 			{
 				instruction->params_type[param] = g_type[1];
-            	instruction->line_len_bytes += DIR_SIZE;
+            	instruction->line_len_bytes += instruction->operation.dir_size;
 			}
 			// REGISTRE
 			else if (env->line_splitted[k][0] == 'r')

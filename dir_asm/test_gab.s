@@ -38,7 +38,7 @@ tirb:	live	%1
 	add	r3,r4,r3
 	sub	r2,r4,r2
 	zjmp	%:tirop
-	ld	%0,r11
+	ld	%0,r11 
 	zjmp	%:tirb
 	zjmp	%:infi
 

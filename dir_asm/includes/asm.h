@@ -6,7 +6,7 @@
 /*   By: gdrai <gdrai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/30 13:04:14 by gdrai             #+#    #+#             */
-/*   Updated: 2019/09/10 14:03:09 by gdrai            ###   ########.fr       */
+/*   Updated: 2019/09/10 15:42:06 by gdrai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,30 @@ typedef struct 			s_env
 	int					position_binary;
 	t_asm_line			*head;
 }						t_env;
+
+typedef union			u_int_cast
+{
+	int					nb : 32;
+	unsigned char		casted[4];
+}						t_int_cast;
+
+typedef union			u_dir_cast
+{
+	int					nb : DIR_SIZE * 8;
+	unsigned char		casted[DIR_SIZE];
+}						t_dir_cast;
+
+typedef union			u_ind_cast
+{
+	int					nb : IND_SIZE * 8;
+	unsigned char		casted[IND_SIZE];
+}						t_ind_cast;
+
+typedef union			u_reg_cast
+{
+	int					nb : REG_SIZE * 8;
+	unsigned char		casted[REG_SIZE];
+}						t_reg_cast;
 
 void    lenline_opcode_typecode(t_asm_line *instruction);
 
@@ -89,5 +113,10 @@ char		**split_header_line(t_env *env, char *line);
 ** fill_label.c
 */
 void		fill_label(t_env *env);
+
+/*
+** writing.c
+*/
+void		writing(char *file, t_env *env);
 
 #endif

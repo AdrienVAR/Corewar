@@ -28,6 +28,7 @@ SRC_ASM = \
 		check_extention.c\
 		check_label.c\
 		clean_exit.c\
+		writing.c\
 		main.c\
 		check_header.c\
 		check_asm.c\
