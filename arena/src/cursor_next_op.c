@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 15:41:18 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/10 09:43:02 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/10 14:59:26 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void		cursor_next_op(t_process *process)
 	int			i;
 	int			pc;
 	t_command	command;
+	int			size;
 
 	command = process->vm.command;
 	pc = process->pc;
@@ -29,7 +30,12 @@ void		cursor_next_op(t_process *process)
 		pc += 2;
 		i = -1;
 		while (++i < command.op.nb_params)
-			pc += command.types[i].size;
+		{
+			size = command.types[i].size;
+			size = command.types[i].type == T_DIR ?
+				command.op.dir_size : size;
+			pc += size;
+		}
 	}
 	process->pc = pc % MEM_SIZE;
 }
