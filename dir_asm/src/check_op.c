@@ -71,6 +71,7 @@ void	check_arguments(t_env *env, t_asm_line *instruction)
 			{
 				instruction->params_type[param] = g_type[1];
             	instruction->line_len_bytes += DIR_SIZE;
+				check_digits(env, instruction, param, env->line_splitted[k]);
 			}
 		}
 		else if (env->line_splitted[k][0] == LABEL_CHAR)
@@ -79,13 +80,14 @@ void	check_arguments(t_env *env, t_asm_line *instruction)
 		{
 			instruction->params_type[param] = g_type[0];
             instruction->line_len_bytes += REG_SIZE;
+			check_digits(env, instruction, param, env->line_splitted[k]);
 		}
 		else
 		{
 			instruction->params_type[param] = g_type[2];
             instruction->line_len_bytes += IND_SIZE;
+			check_digits(env, instruction, param, env->line_splitted[k]);
 		}
-		check_digits(env, instruction, param, env->line_splitted[k]);
 		check_valid_type(instruction, param, env);
 		param++;
 		k++;

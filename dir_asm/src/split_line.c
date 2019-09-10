@@ -178,6 +178,8 @@ char	**split_line(t_env *env, char *line, int option)
 	else if (option == 1)
 	{
 		count = check_count_op(line);
+		if (count == 0)
+			return (NULL);
 		return (op_case(env, line, count));
 	}
 	else

@@ -21,7 +21,7 @@
 ** if false -> exit
 */
 
-void	check_label(t_env *env, t_asm_line *instruction) //ajouter control orthographe
+void	check_label(t_env *env, t_asm_line *instruction)
 {
 	int i;
 	int j;
