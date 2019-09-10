@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   op.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cesargironvm <cesargironvm@student.42.f    +#+  +:+       +#+        */
+/*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2019/09/08 11:48:12 by cesargironv      ###   ########.fr       */
+/*   Updated: 2019/09/10 14:56:35 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ typedef struct		s_op
 	int		duration;
 	char	description[64];
 	int		type_needed;
-	int		ind_size_param;
+	int		dir_size;
 	int		carry;
 }					t_op;
 
