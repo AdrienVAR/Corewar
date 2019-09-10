@@ -16,6 +16,7 @@ void	label_case(t_env *env, t_asm_line *op, int param, int k)
 {
 	if (env->line_splitted[k][0] == DIRECT_CHAR)
 	{
+		check_syntax_label(env, env->line_splitted[k] + 2);
 		op->params_type[param] = g_type[1];
 		op->line_len_bytes += op->operation.dir_size;
 		op->param_label[param] = ft_strndup(env->line_splitted[k] + 2,
@@ -23,6 +24,7 @@ void	label_case(t_env *env, t_asm_line *op, int param, int k)
 	}
 	else
 	{
+		check_syntax_label(env, env->line_splitted[k] + 1);
 		op->params_type[param] = g_type[2];
 		op->line_len_bytes += IND_SIZE;
 		op->param_label[param] = ft_strndup(env->line_splitted[k] + 1,

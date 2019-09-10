@@ -102,7 +102,7 @@ void		check_asm(t_env *env);
 ** check_label.c
 */
 int			check_label(t_env *env, t_asm_line *op);
-void		check_syntax_label(t_env *env);
+void		check_syntax_label(t_env *env, char *label);
 
 
 /*
