@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parameter.c                                        :+:      :+:    :+:   */
+/*   check_typecode.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gdrai <gdrai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 10:38:31 by advardon          #+#    #+#             */
-/*   Updated: 2019/09/09 18:26:22 by gdrai            ###   ########.fr       */
+/*   Updated: 2019/09/11 11:14:52 by gdrai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,12 @@ void	def_type_code(t_asm_line *op)
 ** If no codetype is needed, add 1 bytes for action,  else add 2 bytes
 ** for action + typecode.
 */
-void    check_typecode(t_asm_line *op)
+
+void	check_typecode(t_asm_line *op)
 {
-    if (!op->operation.type_needed)
-        op->line_len_bytes++;
-    else
-        op->line_len_bytes += 2;
+	if (!op->operation.type_needed)
+		op->line_len_bytes++;
+	else
+		op->line_len_bytes += 2;
 	def_type_code(op);
 }

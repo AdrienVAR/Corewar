@@ -6,7 +6,7 @@
 /*   By: gdrai <gdrai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 15:14:17 by gdrai             #+#    #+#             */
-/*   Updated: 2019/09/11 10:53:04 by gdrai            ###   ########.fr       */
+/*   Updated: 2019/09/11 11:38:58 by gdrai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 /*
 ** Name or comment in header must be in double quotes.
 */
+
 void	check_double_quotes(t_env *env)
 {
 	int i;
@@ -29,6 +30,7 @@ void	check_double_quotes(t_env *env)
 /*
 ** If format is ok, save champion's name in env.
 */
+
 int		checker_name(t_env *env)
 {
 	if (ft_strncmp(env->line_splitted[0], ".name", 5) != 0)
@@ -46,6 +48,7 @@ int		checker_name(t_env *env)
 /*
 ** If format is ok, save champion's comment in env.
 */
+
 int		checker_comment(t_env *env)
 {
 	if (ft_strncmp(env->line_splitted[0], ".comment", 8) != 0)
