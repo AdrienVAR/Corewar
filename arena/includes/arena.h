@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/31 09:59:55 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/10 14:08:59 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/11 17:03:38 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ extern t_type	g_type[4];
 */
 
 # define YES 1
-# define NO 2
+# define NO 0
 
 /*
 ** **	ARENA
@@ -100,6 +100,7 @@ typedef	struct	s_vm_pcs_track
 	int			last_live;
 	int			alive;
 	int			wait;
+	int			process_nb;
 	t_command	command;
 }				t_vm_pcs_track;
 
@@ -143,6 +144,7 @@ typedef struct	s_master
 	int				magic_number;
 	int				nb_of_players;
 	int				last_player_live;
+	int				running_processes;
 	char			arena[MEM_SIZE];
 	t_player		*players[MAX_PLAYERS];
 	t_process		*process;
@@ -199,6 +201,7 @@ void			ex_command_xor(t_process *process, char *arena);
 void			ex_command_zjmp(t_process *process, char *arena);
 void			ex_command_ldi(t_process *process, char *arena);
 void			ex_command_sti(t_process *process, char *arena);
+void			ex_command_fork(t_master *mstr, t_process *process, char *arena);
 
 void			*memrevcpy(void *dst, const void *src, int n);
 void			cursor_next_op(t_process *process);
