@@ -1,6 +1,12 @@
 .name "test"
 .comment "nope"
 
-label: ldi 7, %11, r3
-ld %-2, r5
-sti r3, -5, r5
+
+alive: 
+live %42
+zjmp %:end
+and %0, %0, r16
+fork %:alive
+wat: live %42
+fork %:wat
+end:
