@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 15:41:18 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/10 14:59:26 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/11 11:58:54 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ void		cursor_next_op(t_process *process)
 
 	command = process->vm.command;
 	pc = process->pc;
-	if (command.op.id == 9)
+	if (command.op.id == 9 && process->carry)
 		return ;
 	else if (!command.op.type_needed)
-		pc += 1 + DIR_SIZE;
+		pc += 1 + command.op.dir_size;
 	else
 	{
 		pc += 2;
