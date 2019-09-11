@@ -6,18 +6,38 @@
 /*   By: gdrai <gdrai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 16:12:40 by gdrai             #+#    #+#             */
-/*   Updated: 2019/09/11 11:09:37 by gdrai            ###   ########.fr       */
+/*   Updated: 2019/09/11 15:07:59 by gdrai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
+
+long int	ft_atol(const char *str)
+{
+	long int nb;
+	long int sg;
+
+	nb = 0;
+	sg = 1;
+	while (*str == 32 || (*str > 8 && *str < 14))
+		str++;
+	if (*str == '+' || *str == '-')
+		sg = *str++ == '+' ? 1 : -1;
+	while (*str >= '0' && *str <= '9')
+	{
+		nb = nb * 10 + (*str++ - '0');
+		if ((nb > 0x7FFFFFFF && sg > 0) || (nb > 0x80000000 && sg < 0))
+			return (0);
+	}
+	return (nb * sg);
+}
 
 /*
 ** Check if the type used for each parameter is a valid type. Use of a binary
 ** mask to verify if it fits with types from g_op_table
 */
 
-void	check_digits(t_env *env, t_asm_line *op, int param, char *str)
+void		check_digits(t_env *env, t_asm_line *op, int param, char *str)
 {
 	int i;
 
@@ -33,7 +53,7 @@ void	check_digits(t_env *env, t_asm_line *op, int param, char *str)
 			clean_exit(env, "Error: parameter is not a number\n");
 		i++;
 	}
-	op->param_value[param] = ft_atoi(str);
+	op->param_value[param] = ft_atol(str);
 	if (op->params_type[param].type == g_type[0].type)
 		if (op->param_value[param] < 1 || op->param_value[param] > REG_NUMBER)
 			clean_exit(env, "Error: invalid register number\n");
