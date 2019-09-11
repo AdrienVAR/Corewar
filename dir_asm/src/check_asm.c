@@ -6,7 +6,7 @@
 /*   By: gdrai <gdrai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 15:59:32 by gdrai             #+#    #+#             */
-/*   Updated: 2019/09/10 13:18:12 by gdrai            ###   ########.fr       */
+/*   Updated: 2019/09/11 10:50:42 by gdrai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,4 +60,6 @@ void	check_asm(t_env *env)
 			create_asm_line(env);
 		clean_line_readed(env);
 	}
+	if (env->head == NULL)
+		clean_exit(env, "Error: no operations in your code\n");
 }

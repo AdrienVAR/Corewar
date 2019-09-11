@@ -6,7 +6,7 @@
 /*   By: gdrai <gdrai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 15:14:17 by gdrai             #+#    #+#             */
-/*   Updated: 2019/09/11 10:45:28 by gdrai            ###   ########.fr       */
+/*   Updated: 2019/09/11 10:53:04 by gdrai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int		checker_name(t_env *env)
 	if (ft_strncmp(env->line_splitted[0], ".name", 5) != 0)
 		return (0);
 	check_double_quotes(env);
-	if (ft_strlen(env->line_splitted[1] - 2) > PROG_NAME_LENGTH)
+	if (ft_strlen(env->line_splitted[1]) - 2 > PROG_NAME_LENGTH)
 		clean_exit(env, "Champion name too long (Max length 128)\n");
 	if (env->name)
 		clean_exit(env, "too many champion's .name\n");
@@ -51,7 +51,7 @@ int		checker_comment(t_env *env)
 	if (ft_strncmp(env->line_splitted[0], ".comment", 8) != 0)
 		return (0);
 	check_double_quotes(env);
-	if (ft_strlen(env->line_splitted[1] - 2) > COMMENT_LENGTH)
+	if (ft_strlen(env->line_splitted[1]) - 2 > COMMENT_LENGTH)
 		clean_exit(env, "Champion comment is too long(Max length 2048)\n");
 	if (env->comment)
 		clean_exit(env, "too many champion's .comment\n");
