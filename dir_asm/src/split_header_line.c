@@ -6,7 +6,7 @@
 /*   By: gdrai <gdrai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/10 13:16:13 by gdrai             #+#    #+#             */
-/*   Updated: 2019/09/10 13:17:31 by gdrai            ###   ########.fr       */
+/*   Updated: 2019/09/11 11:32:07 by gdrai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	**header_case(t_env *env, int count)
 	int		k;
 
 	if (!(tab = (char **)ft_memalloc(sizeof(char *) * (count + 1))))
-        clean_exit(env, "Memory allocation failed\n");
+		clean_exit(env, "Error: Memory allocation failed\n");
 	tab[count] = NULL;
 	i = 0;
 	k = 0;
@@ -33,7 +33,7 @@ char	**header_case(t_env *env, int count)
 				j++;
 			j++;
 			if (!(tab[k] = ft_memalloc(j - i)))
-        		clean_exit(env, "Memory allocation failed\n");
+				clean_exit(env, "Error: Memory allocation failed\n");
 			tab[k] = ft_memcpy(tab[k], env->line + i, j - i);
 			k++;
 			i = j + 1;
@@ -41,10 +41,11 @@ char	**header_case(t_env *env, int count)
 		else if (env->line[i] != ' ' && env->line[i] != '\t')
 		{
 			j = i;
-			while (env->line[j] != ' ' && env->line[j] != '\t' && env->line[j] != '"')
+			while (env->line[j] != ' ' && env->line[j] != '\t'
+				&& env->line[j] != '"')
 				j++;
 			if (!(tab[k] = ft_memalloc(j - i + 1)))
-        		clean_exit(env, "Memory allocation failed\n");
+				clean_exit(env, "Error: Memory allocation failed\n");
 			tab[k] = ft_memcpy(tab[k], env->line + i, j - i);
 			k++;
 			i = j;
@@ -85,7 +86,7 @@ int		check_count_header(t_env *env)
 		i++;
 	}
 	if (quote != 0 && quote != 2)
-		clean_exit(env, "Wrong number of quotes in header\n");
+		clean_exit(env, "Error: Wrong number of quotes in header\n");
 	return (count);
 }
 
@@ -100,6 +101,6 @@ char	**split_header_line(t_env *env)
 		return (NULL);
 	if (count != 2)
 		clean_exit(env,
-			"Incorrect number of parameters for name or comment\n");
+			"Error: Incorrect number of parameters for name or comment\n");
 	return (header_case(env, count));
 }

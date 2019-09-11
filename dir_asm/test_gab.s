@@ -110,7 +110,7 @@ top:	live	%42
 	ld	%2,r3
 	sti	r3,%:p32deb,%-16
 	ld	%0,r3
-	zjmp	%:topd
+	zjmp	%:top
 
 
 infi:	sti	r1,%:l0,%1
@@ -209,7 +209,7 @@ p64deb:	zjmp	%0
 
 p64:	ld	%10,r8
 	sub	r6,r8,r6
-	and	r6,%214748364,r8
+	and	r6,%21474836,r8
 	zjmp	%:cont
 	ld	%118,r8
 	add	r6,r8,r6

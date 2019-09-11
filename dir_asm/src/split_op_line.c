@@ -6,33 +6,35 @@
 /*   By: gdrai <gdrai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/10 13:18:27 by gdrai             #+#    #+#             */
-/*   Updated: 2019/09/10 13:18:53 by gdrai            ###   ########.fr       */
+/*   Updated: 2019/09/11 11:38:47 by gdrai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "asm.h"
 
 char	**op_case(t_env *env, int count)
 {
-	char **tab;
+	char	**tab;
 	size_t	i;
 	size_t	j;
 	int		k;
 	int		first_word;
-	
+
 	if (!(tab = (char **)malloc(sizeof(char *) * (count + 1))))
-        clean_exit(env, "Memory allocation failed\n");
+		clean_exit(env, "Memory allocation failed\n");
 	tab[count] = NULL;
 	i = 0;
 	k = 0;
 	first_word = 1;
 	while (k < count)
 	{
-		if (env->line[i] != ' ' && env->line[i] != '\t' && env->line[i] != SEPARATOR_CHAR)
+		if (env->line[i] != ' ' && env->line[i] != '\t'
+			&& env->line[i] != SEPARATOR_CHAR)
 		{
 			j = i;
-			while (env->line[j] != ' ' && env->line[j] != '\t' && env->line[j] != SEPARATOR_CHAR && env->line[j] != '\0' && env->line[j] != COMMENT_CHAR)
+			while (env->line[j] != ' ' && env->line[j] != '\t' && env->line[j]
+				!= SEPARATOR_CHAR && env->line[j] != '\0'
+					&& env->line[j] != COMMENT_CHAR)
 			{
 				j++;
 				if (env->line[j] == LABEL_CHAR && first_word)
@@ -42,7 +44,7 @@ char	**op_case(t_env *env, int count)
 				}
 			}
 			if (!(tab[k] = ft_memalloc(j - i + 1)))
-        		clean_exit(env, "Memory allocation failed\n");
+				clean_exit(env, "Memory allocation failed\n");
 			tab[k] = ft_memcpy(tab[k], env->line + i, j - i);
 			k++;
 			first_word = 0;
@@ -51,12 +53,12 @@ char	**op_case(t_env *env, int count)
 		else
 			i++;
 	}
-	return(tab);
+	return (tab);
 }
 
-int    check_count_op(char *line)
+int		check_count_op(char *line)
 {
-    int	i;
+	int	i;
 	int	count;
 	int first_word;
 	int white_space;
@@ -74,7 +76,8 @@ int    check_count_op(char *line)
 				first_word = 0;
 		}
 		else if (line[i] == LABEL_CHAR && first_word && line[i + 1] != ' '
-			&& line[i + 1] != '\t' && line[i + 1] != '\0' && line[i + 1] != COMMENT_CHAR)
+			&& line[i + 1] != '\t' && line[i + 1] != '\0'
+				&& line[i + 1] != COMMENT_CHAR)
 			count++;
 		else if (line[i] != ' ' && line[i] != '\t' && white_space)
 		{
@@ -83,7 +86,7 @@ int    check_count_op(char *line)
 		}
 		i++;
 	}
-    return (count);
+	return (count);
 }
 
 char	**split_op_line(t_env *env)

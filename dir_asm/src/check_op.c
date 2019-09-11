@@ -6,7 +6,7 @@
 /*   By: gdrai <gdrai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 16:12:40 by gdrai             #+#    #+#             */
-/*   Updated: 2019/09/10 15:14:10 by gdrai            ###   ########.fr       */
+/*   Updated: 2019/09/11 11:14:05 by gdrai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	non_label_case(t_env *env, t_asm_line *op, int param, int k)
 	if (env->line_splitted[k][0] == DIRECT_CHAR)
 	{
 		op->params_type[param] = g_type[1];
-     	op->line_len_bytes += op->operation.dir_size;
+		op->line_len_bytes += op->operation.dir_size;
 	}
 	else if (env->line_splitted[k][0] == 'r')
 	{
@@ -56,25 +56,26 @@ void	non_label_case(t_env *env, t_asm_line *op, int param, int k)
 ** check number or arguments
 ** check if arguments are valid
 */
+
 void	check_arguments(t_env *env, t_asm_line *op)
 {
-    int i;
-    int k;
+	int i;
+	int k;
 	int param;
 
-    i = 0;
-    k = (op->label != NULL) ? 2 : 1;
+	i = 0;
+	k = (op->label != NULL) ? 2 : 1;
 	while (env->line_splitted[i])
 		i++;
 	if (i - k != op->operation.nb_params)
-		clean_exit(env, "wrong nb of arguments\n");
+		clean_exit(env, "Error: wrong nb of arguments\n");
 	param = 0;
 	while (k < i)
 	{
 		if (env->line_splitted[k][0] == LABEL_CHAR || (env->line_splitted[k][0]
 			== DIRECT_CHAR && env->line_splitted[k][1] == LABEL_CHAR))
 			label_case(env, op, param, k);
-		else 
+		else
 			non_label_case(env, op, param, k);
 		check_valid_type(op, param, env);
 		param++;
@@ -85,13 +86,14 @@ void	check_arguments(t_env *env, t_asm_line *op)
 /*
 ** Check if the action name exists in of op.c
 */
+
 void	check_op(t_env *env, t_asm_line *op)
 {
 	int i;
-    int k;
+	int k;
 
 	i = -1;
-    k = (op->label != NULL) ? 1 : 0;
+	k = (op->label != NULL) ? 1 : 0;
 	while (++i < AVAILABLE_OPERATIONS)
 	{
 		if (ft_strcmp(env->line_splitted[k], g_op_tab[i].name) == 0)
@@ -99,8 +101,8 @@ void	check_op(t_env *env, t_asm_line *op)
 			op->operation = g_op_tab[i];
 			op->line_pos_bytes = env->position_binary;
 			check_arguments(env, op);
-            return;
+			return ;
 		}
 	}
-	clean_exit(env, "Unknown action\n");
+	clean_exit(env, "Error: Unknown action\n");
 }

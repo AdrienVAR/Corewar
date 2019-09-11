@@ -6,7 +6,7 @@
 /*   By: gdrai <gdrai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 13:33:24 by gdrai             #+#    #+#             */
-/*   Updated: 2019/09/10 14:33:10 by gdrai            ###   ########.fr       */
+/*   Updated: 2019/09/11 11:10:29 by gdrai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 ** Check if all chars are valid (in LABEL_CHARS)
 ** if false -> exit
 */
+
 void	check_syntax_label(t_env *env, char *label)
 {
 	int i;
@@ -49,8 +50,8 @@ int		check_label(t_env *env, t_asm_line *op)
 
 	i = 0;
 	while (env->line_splitted[0][i])
-        i++;
-    if (env->line_splitted[0][i - 1] != LABEL_CHAR)
+		i++;
+	if (env->line_splitted[0][i - 1] != LABEL_CHAR)
 		return (1);
 	check_syntax_label(env, env->line_splitted[0]);
 	op->label = ft_strndup(env->line_splitted[0],
