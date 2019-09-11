@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/31 09:59:05 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/03 16:11:15 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/11 18:50:34 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ int				main(int argc, char **argv)
 
 	if (!(--argc))
 		ft_putstr(USAGE_STR);
-	mstr = 0;
 	init(&mstr);
 	file_loading(mstr, argc, argv);
 	deassembler(mstr);
@@ -28,5 +27,6 @@ int				main(int argc, char **argv)
 	player_give_process(mstr);
 	war(mstr);
 	memory_dump(mstr);
+	exit_program(mstr);
 	return (0);
 }
