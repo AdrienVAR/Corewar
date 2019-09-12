@@ -6,7 +6,7 @@
 /*   By: gdrai <gdrai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/14 18:19:46 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/02 11:44:42 by gdrai            ###   ########.fr       */
+/*   Updated: 2019/09/12 15:16:15 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,5 +105,6 @@ int				ft_tab_len(char **tab);
 int				ft_atoi_base(char *str, char *base);
 void			ft_swap(int *a, int *b);
 char			*ft_strjoin_free(char *s1, char *s2);
+int				ft_in_range(int checked, int a, int b);
 
 #endif
