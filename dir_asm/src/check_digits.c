@@ -6,7 +6,7 @@
 /*   By: gdrai <gdrai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 16:12:40 by gdrai             #+#    #+#             */
-/*   Updated: 2019/09/11 15:07:59 by gdrai            ###   ########.fr       */
+/*   Updated: 2019/09/12 10:53:35 by gdrai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,7 @@ long int	ft_atol(const char *str)
 	if (*str == '+' || *str == '-')
 		sg = *str++ == '+' ? 1 : -1;
 	while (*str >= '0' && *str <= '9')
-	{
 		nb = nb * 10 + (*str++ - '0');
-		if ((nb > 0x7FFFFFFF && sg > 0) || (nb > 0x80000000 && sg < 0))
-			return (0);
-	}
 	return (nb * sg);
 }
 
