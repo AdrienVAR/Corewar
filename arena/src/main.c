@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/31 09:59:05 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/11 18:50:34 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/12 18:15:58 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,22 @@
 int				main(int argc, char **argv)
 {
 	t_master	*mstr;
+	t_opt		options;
 
-	if (!(--argc))
+	if (get_opt(&options, --argc, ++argv) == NO)
+	{
 		ft_putstr(USAGE_STR);
-	init(&mstr);
-	file_loading(mstr, argc, argv);
+		return (0);
+	}
+	init(&mstr, &options);
+	file_loading(mstr, argv);
 	deassembler(mstr);
 	file_closing(mstr);
 	arena_populate(mstr);
 	player_give_process(mstr);
 	war(mstr);
-	memory_dump(mstr);
+	if (mstr->options.end_dump)
+		memory_dump(mstr);
 	exit_program(mstr);
 	return (0);
 }

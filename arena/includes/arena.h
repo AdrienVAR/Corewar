@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/31 09:59:55 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/11 17:03:38 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/12 17:44:26 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,12 +126,32 @@ typedef struct	s_player
 	int				nb;
 	int				fd;
 	int				cursor_initial_pos;
-	char			*binary;
+	char			*binary_name;
 	int				code_size;
 	char			name[PROG_NAME_LENGTH + 1];
 	char			comment[COMMENT_LENGTH + 1];
 	char			exec[CHAMP_MAX_SIZE + 1];
 }				t_player;
+
+
+# define OPT_O "-o"
+# define OPT_V "-v"
+# define OPT_N "-n"
+# define OPT_DUMP "-dump"
+# define COR_EXT ".cor"
+# define N_DUMP 1
+# define END_DUMP 2
+
+typedef struct	s_opt
+{
+	int		verbose;
+	char	visu;
+	int		dump;
+	int		end_dump;
+	int		player[MAX_PLAYERS][2];
+	int		nb_players;
+}				t_opt;
+
 
 /*
 **		**********************************************
@@ -144,10 +164,13 @@ typedef struct	s_master
 	int				magic_number;
 	int				nb_of_players;
 	int				last_player_live;
+	int				live_signal;
+	int				check;
 	int				running_processes;
 	char			arena[MEM_SIZE];
 	t_player		*players[MAX_PLAYERS];
 	t_process		*process;
+	t_opt			options;
 	int				foamy_bat_cycle;
 	int				cur_cycle;
 }				t_master;
@@ -158,8 +181,8 @@ typedef struct	s_master
 **		**********
 */
 
-void			init(t_master **mstr);
-void			file_loading(t_master *mstr, int argc, char **argv);
+void			init(t_master **mstr, t_opt *options);
+void			file_loading(t_master *mstr, char **argv);
 void			deassembler(t_master *mstr);
 void			file_closing(t_master *mstr);
 
@@ -181,6 +204,8 @@ void			player_give_process(t_master *mstr);
 void			war(t_master *mstr);
 t_op			operation_get_info(char op_code);
 void			exit_program(t_master *mstr);
+
+int				get_opt(t_opt *opt, int argc, char **argv);
 
 int				command_get_info(t_process *cur_process, t_uchar op_code);
 void			command_get_types(t_process *cur_process, t_uchar type_code);

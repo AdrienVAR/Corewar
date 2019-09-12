@@ -6,7 +6,7 @@
 #    By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/17 11:56:45 by cgiron            #+#    #+#              #
-#    Updated: 2019/08/31 10:02:19 by cgiron           ###   ########.fr        #
+#    Updated: 2019/09/12 09:23:30 by cgiron           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,9 +49,11 @@ simulink:
 
 $(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)
+	mkdir -p ./$(OBJ_DIR)/ex_command
 
 %.o:%.c $(DEPENDANCIES_ARENA_O)
 	@mkdir -p $(OBJ_DIR)
+	@mkdir -p ./$(OBJ_DIR)/ex_command
 	$(CC) $(OPTI_FLAGS) $(CFLAGS) -c $< -o $(OBJ_DIR)/$@
 
 -include $(DEPENDANCY_OBJ_INC_FILE)
