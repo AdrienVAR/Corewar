@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/03 14:07:46 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/11 18:07:54 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/12 15:50:04 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,15 @@ void			run_command(t_master *mstr, t_process *cur_process, char *arena)
 	else if (op_id && op_id <= 11)
 		ex_command[op_id](cur_process, arena);
 	cursor_next_op(cur_process);
+	if (cur_process->vm.alive >= 1
+		&& cur_process->vm.alive <= mstr->nb_of_players)
+		{
+			mstr->last_player_live = cur_process->vm.alive;
+			mstr->live_signal++;
+		}
+	if (cur_process->vm.last_live == -1)
+			mstr->live_signal++;
+	cur_process->vm.alive = 0;
 }
 
 void			run_cycle(t_master *mstr)
@@ -59,10 +68,6 @@ void			run_cycle(t_master *mstr)
 				cur_process->pc++;
 			}
 		}
-		if (cur_process->vm.alive >= 1
-				&& cur_process->vm.alive <= mstr->nb_of_players)
-			mstr->last_player_live = cur_process->vm.alive;
-		cur_process->vm.alive = 0;
 		cur_process->vm.wait--;
 		cur_process->vm.last_live++;
 		cur_process = cur_process->next;
@@ -84,6 +89,8 @@ int			kill_processes(t_master *mstr, t_process **process)
 		test = cur->vm.process_nb;
 		if (cur->vm.last_live > mstr->foamy_bat_cycle)
 		{
+			printf("Cycle %d, death of process %d,last live %d,running processes %d\n",
+			mstr->cur_cycle ,cur->vm.process_nb, cur->vm.last_live , mstr->running_processes - 1);
 			ft_bzero(cur, sizeof(t_process));
 			ft_memdel((void **)&cur);
 			if (!prev)
@@ -95,6 +102,13 @@ int			kill_processes(t_master *mstr, t_process **process)
 		cur = next;
 		next = cur ? cur->next : next;
 	}
+	printf("amount of life signal %d and CTD : %d\n", mstr->live_signal, mstr->foamy_bat_cycle);
+	if (++mstr->check == MAX_CHECKS || mstr->live_signal >= NBR_LIVE)
+	{
+		mstr->check = 0;
+		mstr->foamy_bat_cycle -= CYCLE_DELTA;
+	}
+	mstr->live_signal = 0;
 	return (mstr->foamy_bat_cycle);
 }
 
@@ -103,12 +117,12 @@ void			war(t_master *mstr)
 	int		ctd;
 
 	ctd = mstr->foamy_bat_cycle;
-	while (mstr->cur_cycle < 20000)
+	while (mstr->process)
 	{
 		++mstr->cur_cycle;
 		ctd--;
 		run_cycle(mstr);
-		if (!ctd)
+		if (ctd <= 0)
 			ctd = kill_processes(mstr, &mstr->process);
 	}
 }
