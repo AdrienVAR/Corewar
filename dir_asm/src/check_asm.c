@@ -6,7 +6,7 @@
 /*   By: gdrai <gdrai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 15:59:32 by gdrai             #+#    #+#             */
-/*   Updated: 2019/09/11 11:39:03 by gdrai            ###   ########.fr       */
+/*   Updated: 2019/09/12 11:51:55 by gdrai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void		check_asm(t_env *env)
 {
 	while (get_next_line(env->fd, &env->line) > 0)
 	{
-		env->line_splitted = split_op_line(env);
+		split_op_line(env);
 		if (env->line_splitted != NULL)
 			create_asm_line(env);
 		clean_line_readed(env);
