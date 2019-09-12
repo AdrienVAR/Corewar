@@ -6,7 +6,7 @@
 /*   By: gdrai <gdrai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/30 13:04:14 by gdrai             #+#    #+#             */
-/*   Updated: 2019/09/11 11:43:10 by gdrai            ###   ########.fr       */
+/*   Updated: 2019/09/12 11:27:01 by gdrai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,15 @@ typedef struct			s_asm_line
 
 typedef struct			s_env
 {
+	char				*line;
 	char				**line_splitted;
 	char				*name;
 	char				*comment;
-	char				*line;
 	int					position_binary;
 	int					fd;
+	int					count;
+	int					quote;
+	int					white_space;
 	t_asm_line			*head;
 }						t_env;
 
@@ -117,7 +120,7 @@ char					**split_op_line(t_env *env);
 /*
 ** split_header_line.c
 */
-char					**split_header_line(t_env *env);
+void					split_header_line(t_env *env);
 
 /*
 ** fill_label.c

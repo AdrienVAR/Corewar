@@ -6,101 +6,111 @@
 /*   By: gdrai <gdrai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/10 13:16:13 by gdrai             #+#    #+#             */
-/*   Updated: 2019/09/11 11:32:07 by gdrai            ###   ########.fr       */
+/*   Updated: 2019/09/12 11:48:36 by gdrai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-char	**header_case(t_env *env, int count)
+int		fill_name(t_env *env, size_t i, int k)
 {
-	char	**tab;
-	size_t	i;
+	size_t j;
+
+	j = i;
+	while (env->line[j] != ' ' && env->line[j] != '\t'
+		&& env->line[j] != '"')
+		j++;
+	if (!(env->line_splitted[k] = ft_memalloc(j - i + 1)))
+		clean_exit(env, "Error: Memory allocation failed\n");
+	env->line_splitted[k] = ft_memcpy(env->line_splitted[k],
+		env->line + i, j - i);
+	return (j);
+}
+
+int		fill_in_quote(t_env *env, size_t i, int k)
+{
 	size_t	j;
+
+	j = i + 1;
+	while (env->line[j] != '"')
+		j++;
+	j++;
+	if (!(env->line_splitted[k] = ft_memalloc(j - i)))
+		clean_exit(env, "Error: Memory allocation failed\n");
+	env->line_splitted[k] = ft_memcpy(env->line_splitted[k],
+		env->line + i, j - i);
+	return (j);
+}
+
+void	header_case(t_env *env)
+{
+	size_t	i;
 	int		k;
 
-	if (!(tab = (char **)ft_memalloc(sizeof(char *) * (count + 1))))
-		clean_exit(env, "Error: Memory allocation failed\n");
-	tab[count] = NULL;
 	i = 0;
 	k = 0;
-	while (k < count)
+	while (k < env->count)
 	{
 		if (env->line[i] == '"')
 		{
-			j = i + 1;
-			while (env->line[j] != '"')
-				j++;
-			j++;
-			if (!(tab[k] = ft_memalloc(j - i)))
-				clean_exit(env, "Error: Memory allocation failed\n");
-			tab[k] = ft_memcpy(tab[k], env->line + i, j - i);
+			i = fill_in_quote(env, i, k) + 1;
 			k++;
-			i = j + 1;
 		}
 		else if (env->line[i] != ' ' && env->line[i] != '\t')
 		{
-			j = i;
-			while (env->line[j] != ' ' && env->line[j] != '\t'
-				&& env->line[j] != '"')
-				j++;
-			if (!(tab[k] = ft_memalloc(j - i + 1)))
-				clean_exit(env, "Error: Memory allocation failed\n");
-			tab[k] = ft_memcpy(tab[k], env->line + i, j - i);
+			i = fill_name(env, i, k);
 			k++;
-			i = j;
 		}
 		else
 			i++;
 	}
-	return (tab);
 }
 
-int		check_count_header(t_env *env)
+void	check_count_header(t_env *env)
 {
 	int i;
-	int count;
-	int quote;
-	int white_space;
 
 	i = 0;
-	count = 0;
-	quote = 0;
-	white_space = 1;
-	while (env->line[i] != '\0' && (env->line[i] != COMMENT_CHAR || quote % 2))
+	while (env->line[i] != '\0' && (env->line[i] != COMMENT_CHAR
+		|| env->quote % 2))
 	{
 		if (env->line[i] == '"')
 		{
 			if (env->line[i + 1] == '"')
-				count++;
-			white_space = 1;
-			quote++;
+				env->count++;
+			env->white_space = 1;
+			env->quote++;
 		}
-		else if (env->line[i] != ' ' && env->line[i] != '\t' && white_space)
+		else if (env->line[i] != ' ' && env->line[i] != '\t'
+			&& env->white_space)
 		{
-			count++;
-			white_space = 0;
+			env->count++;
+			env->white_space = 0;
 		}
-		else if ((env->line[i] == ' ' || env->line[i] == '\t') && !(quote % 2))
-			white_space = 1;
+		else if ((env->line[i] == ' ' || env->line[i] == '\t')
+			&& !(env->quote % 2))
+			env->white_space = 1;
 		i++;
 	}
-	if (quote != 0 && quote != 2)
-		clean_exit(env, "Error: Wrong number of quotes in header\n");
-	return (count);
 }
 
-char	**split_header_line(t_env *env)
+void	split_header_line(t_env *env)
 {
-	int count;
-
 	if (env->line == NULL)
-		return (NULL);
-	count = check_count_header(env);
-	if (count == 0)
-		return (NULL);
-	if (count != 2)
-		clean_exit(env,
-			"Error: Incorrect number of parameters for name or comment\n");
-	return (header_case(env, count));
+		return ;
+	env->count = 0;
+	env->quote = 0;
+	env->white_space = 1;
+	check_count_header(env);
+	if (env->quote != 0 && env->quote != 2)
+		clean_exit(env, "Error: Wrong number of quotes in header\n");
+	if (env->count == 0)
+		return ;
+	if (env->count != 2)
+		clean_exit(env, "Error: Incorrect name or comment\n");
+	if (!(env->line_splitted = (char **)ft_memalloc(sizeof(char *)
+		* (env->count + 1))))
+		clean_exit(env, "Error: Memory allocation failed\n");
+	env->line_splitted[env->count] = NULL;
+	header_case(env);
 }
