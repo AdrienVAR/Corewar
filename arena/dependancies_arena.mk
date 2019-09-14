@@ -6,7 +6,7 @@
 #    By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/31 09:59:29 by cgiron            #+#    #+#              #
-#    Updated: 2019/09/12 12:16:59 by cgiron           ###   ########.fr        #
+#    Updated: 2019/09/14 18:01:21 by cgiron           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,10 @@ SRC_EX_COMMAND :=	\
 			ex_command_zjmp.c\
 			ex_command_ldi.c\
 			ex_command_sti.c\
-			ex_command_fork.c
+			ex_command_fork.c\
+			ex_command_lld.c\
+			ex_command_lldi.c\
+			ex_command_lfork.c
 
 SRC_EX_COMMAND := $(addprefix ./ex_command/,$(SRC_EX_COMMAND))
 
@@ -55,10 +58,7 @@ SRC_ARENA := $(SRC_EX_COMMAND)\
 			player_give_process.c\
 			memory_dump.c\
 			operation_get_info.c\
-			command_extract_register.c\
-			command_extract_register_value.c\
-			command_extract_direct_value.c\
-			command_extract_indirect.c\
+			command_convert_param.c\
 			command_get.c\
 			command_valid_types.c\
 			cursor_next_op.c\
