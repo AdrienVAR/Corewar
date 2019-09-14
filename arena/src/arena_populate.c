@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 13:28:23 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/03 16:06:10 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/14 20:07:35 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void		arena_populate(t_master *mstr)
 	t_player		*player;
 	int				step;
 	int				i;
+	int				j;
 
 	i = -1;
 	arena = &(mstr->arena[0]);
@@ -32,7 +33,9 @@ void		arena_populate(t_master *mstr)
 	while (++i < mstr->nb_of_players)
 	{
 		player = mstr->players[i];
-		ft_memcpy(arena + i * step, player->exec, player->code_size);
-		player->cursor_initial_pos = i * step;
+		j = -1;
+		while (++j < player->code_size)
+			arena[(i * step + j) % MEM_SIZE] = player->exec[j];
+		player->cursor_initial_pos = (i) * step;
 	}
 }

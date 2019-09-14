@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/03 09:21:52 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/11 17:30:23 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/14 17:07:08 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void		player_give_process(t_master *mstr)
 		player = mstr->players[i];
 		if (!(process = (t_process *)ft_memalloc(sizeof(t_process))))
 			exit_program(mstr);
-		player_num.nb = player->nb;
+		player_num.nb = -player->nb;
 		memrevcpy(process->registry[0], player_num.casted, DIR_SIZE);
 		process->next = mstr->process;
 		process->pc = player->cursor_initial_pos;
