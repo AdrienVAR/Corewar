@@ -6,13 +6,23 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 15:23:16 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/04 18:13:34 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/14 18:17:34 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "arena.h"
 
-char	arena_val(char *arena, int ind)
+t_uchar	arena_val_get(char *arena, int ind)
 {
-	return (arena[ind % MEM_SIZE]);
+	ind = ind % MEM_SIZE;
+	ind = ind < 0 ? ind + MEM_SIZE : ind;
+	return ((t_uchar)arena[ind]);
+}
+
+void	arena_val_set(char *arena, char c, int ind)
+{
+	ind = ind % MEM_SIZE;
+	ind = ind < 0 ? ind + MEM_SIZE : ind;
+	printf("set ind : %d\n", ind);
+	arena[ind] = (t_uchar)c;
 }
