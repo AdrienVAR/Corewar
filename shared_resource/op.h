@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2019/09/10 14:56:35 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/14 17:54:58 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ typedef struct		s_op
 	char	description[64];
 	int		type_needed;
 	int		dir_size;
-	int		carry;
+	int		idx_mod;
 }					t_op;
 
 typedef struct		s_type
