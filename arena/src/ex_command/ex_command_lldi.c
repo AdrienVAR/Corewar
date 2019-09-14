@@ -1,32 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ex_command_or.c                                    :+:      :+:    :+:   */
+/*   ex_command_lldi.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 18:47:19 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/14 15:04:37 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/14 18:01:40 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "arena.h"
 
-void			ex_command_or(t_master *mstr, t_process *process, char *arena)
+void			ex_command_lldi(t_master *mstr, t_process *process, char *arena)
 {
-	t_dir_cast	comp[3];
-	int			reg_dst;
 	t_command	command;
+	t_dir_cast	elem[3];
+	t_dir_cast	dest_val;
+	int			jump;
+	int			i;
 
 	(void)mstr;
-	(void)arena;
 	command = process->vm.command;
-	comp[0] = command.types[0].type != T_DIR ?
+	elem[0] = command.types[0].type != T_DIR ?
 	command.param_ext_conv[0] : command.param_conv[0];
-	comp[1] = command.types[1].type != T_DIR ?
+	elem[1] = command.types[1].type != T_DIR ?
 	command.param_ext_conv[1] : command.param_conv[1];
-	reg_dst = command.param_conv[2].nb;
-	comp[2].nb = comp[0].nb | comp[1].nb;
-	memrevcpy(process->registry[reg_dst], comp[2].casted, DIR_SIZE);
-	process->carry = !(comp[2].nb) ? YES : NO;
+	elem[2] = command.param_conv[2];
+	jump = (elem[0].nb + elem[1].nb) + process->pc;
+	i = -1;
+	while (++i < DIR_SIZE)
+		dest_val.casted[DIR_SIZE - i - 1] =
+			arena_val_get(arena, jump + i);
+	memrevcpy(process->registry[elem[2].nb], dest_val.casted, DIR_SIZE);
+	process->carry = dest_val.nb ? YES : NO;
 }

@@ -6,26 +6,23 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 18:47:19 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/06 16:17:04 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/14 17:03:10 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "arena.h"
 
-void			ex_command_live(t_process *process, char *arena)
+void			ex_command_live(t_master *mstr, t_process *process, char *arena)
 {
 	t_command	command;
-	int			i;
-	t_int_cast	player;
-	int			jump;
 
+	(void)arena;
 	command = process->vm.command;
-	jump = command.op.type_needed ? 2 : 1;
-	player.nb = 0;
-	i = -1;
-	while (++i < DIR_SIZE)
-		player.casted[DIR_SIZE - 1 - i] =
-			arena_val(arena, process->pc + i + jump);
 	process->vm.last_live = -1;
-	process->vm.alive = player.nb;
+	process->vm.alive = command.param_conv[0].nb;
+	if (process->vm.alive >= 1
+		&& process->vm.alive <= mstr->nb_of_players)
+		mstr->last_player_live = process->vm.alive;
+	process->vm.alive = 0;
+	mstr->live_signal++;
 }

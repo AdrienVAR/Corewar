@@ -6,47 +6,32 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 18:47:19 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/10 15:36:41 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/14 15:45:39 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "arena.h"
 
-static			int elem_ind_dir(int pc, t_command command, char *arena)
-{
-	if (command.types[0].type == T_DIR)
-		return (command.ind_val[0].nb);
-	else
-		return (command_extract_direct_value(arena,
-			command.ind_val[0].nb, pc).nb);
-}
-
-static void		command_elem_ldi(t_process *process, t_command command, char *arena)
-{
-	t_dir_cast	elem[3];
-	int			reg_dst;
-
-	elem[0].nb = command.types[0].type == T_REG ?
-		command_extract_register_value(process, command.reg_val[0].nb).nb :
-		elem_ind_dir(process->pc, command, arena);
-	elem[1].nb = command.types[1].type == T_REG ?
-		command_extract_register_value(process, command.reg_val[1].nb).nb :
-		command.ind_val[1].nb;
-	reg_dst = command.reg_val[2].nb - 1;
-	elem[2] = command_extract_direct_value(arena,
-		(elem[0].nb + elem[1].nb) % IDX_MOD, process->pc);
-	memrevcpy(process->registry[reg_dst], elem[2].casted, DIR_SIZE);
-	process->carry = !(elem[2].nb) ? YES : NO;
-}
-
-void			ex_command_ldi(t_process *process, char *arena)
+void			ex_command_ldi(t_master *mstr, t_process *process, char *arena)
 {
 	t_command	command;
+	t_dir_cast	elem[3];
+	t_dir_cast	dest_val;
+	int			jump;
+	int			i;
 
+	(void)mstr;
 	command = process->vm.command;
-	if (command_valid_types(command) == NO
-		|| command_extract_register(&command) == NO)
-		return ;
-	command_extract_indirect(&command);
-	command_elem_ldi(process, command, arena);
+	elem[0] = command.types[0].type != T_DIR ?
+	command.param_ext_conv[0] : command.param_conv[0];
+	elem[1] = command.types[1].type != T_DIR ?
+	command.param_ext_conv[1] : command.param_conv[1];
+	elem[2] = command.param_conv[2];
+	jump = (elem[0].nb + elem[1].nb) % IDX_MOD + process->pc;
+	i = -1;
+	while (++i < DIR_SIZE)
+		dest_val.casted[DIR_SIZE - i - 1] =
+			arena_val_get(arena, jump + i);
+	memrevcpy(process->registry[elem[2].nb], dest_val.casted, DIR_SIZE);
+	process->carry = dest_val.nb ? YES : NO;
 }
