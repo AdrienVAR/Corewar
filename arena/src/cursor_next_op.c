@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 15:41:18 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/11 11:58:54 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/14 16:49:46 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,13 @@ void		cursor_next_op(t_process *process)
 	int			size;
 
 	command = process->vm.command;
+	process->pc = process->pc % MEM_SIZE;
 	pc = process->pc;
 	if (command.op.id == 9 && process->carry)
+	{
+		printf("SUCESS\n");
 		return ;
+	}
 	else if (!command.op.type_needed)
 		pc += 1 + command.op.dir_size;
 	else
