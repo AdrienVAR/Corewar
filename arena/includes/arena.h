@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/31 09:59:55 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/12 17:44:26 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/14 17:59:49 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,8 +89,8 @@ typedef	struct	s_command
 {
 	t_op		op;
 	char		param[MAX_ARGS_NUMBER][MAX_SIZE];
-	t_reg_cast	reg_val[MAX_ARGS_NUMBER];
-	t_ind_cast	ind_val[MAX_ARGS_NUMBER];
+	t_dir_cast	param_conv[MAX_ARGS_NUMBER];
+	t_dir_cast	param_ext_conv[MAX_ARGS_NUMBER];
 	t_type		types[MAX_ARGS_NUMBER];
 }				t_command;
 
@@ -188,7 +188,8 @@ void			file_closing(t_master *mstr);
 
 
 
-char			arena_val(char *arena, int ind);
+t_uchar			arena_val_get(char *arena, int ind);
+void			arena_val_set(char *arena, char c,int ind);
 t_type			type_val(int type_code);
 
 /*
@@ -207,26 +208,27 @@ void			exit_program(t_master *mstr);
 
 int				get_opt(t_opt *opt, int argc, char **argv);
 
-int				command_get_info(t_process *cur_process, t_uchar op_code);
-void			command_get_types(t_process *cur_process, t_uchar type_code);
+int				command_get_info(t_process *cur_process, int pc, char *arena);
+void			command_get_types(t_process *cur_process, int pc, char *arena);
 void			command_get_param(t_process *cur_process, char *arena);
+int				command_convert_param(t_process *process, char *arena);
 int				command_valid_types(t_command command);
-int				command_extract_register(t_command *command);
-t_dir_cast		command_extract_register_value(t_process *process, int reg_n);
 t_dir_cast		command_extract_direct_value(char *arena, int dec, int pos);
-void			command_extract_indirect(t_command *command);
-void			ex_command_live(t_process *process, char *arena);
-void			ex_command_ld(t_process *process, char *arena);
-void			ex_command_st(t_process *process, char *arena);
-void			ex_command_add(t_process *process);
-void			ex_command_sub(t_process *process);
-void			ex_command_and(t_process *process, char *arena);
-void			ex_command_or(t_process *process, char *arena);
-void			ex_command_xor(t_process *process, char *arena);
-void			ex_command_zjmp(t_process *process, char *arena);
-void			ex_command_ldi(t_process *process, char *arena);
-void			ex_command_sti(t_process *process, char *arena);
+void			ex_command_live(t_master *mstr, t_process *process, char *arena);
+void			ex_command_ld(t_master *mstr, t_process *process, char *arena);
+void			ex_command_st(t_master *mstr, t_process *process, char *arena);
+void			ex_command_add(t_master *mstr, t_process *process, char *arena);
+void			ex_command_sub(t_master *mstr, t_process *process, char *arena);
+void			ex_command_and(t_master *mstr, t_process *process, char *arena);
+void			ex_command_or(t_master *mstr, t_process *process, char *arena);
+void			ex_command_xor(t_master *mstr, t_process *process, char *arena);
+void			ex_command_zjmp(t_master *mstr, t_process *process, char *arena);
+void			ex_command_ldi(t_master *mstr, t_process *process, char *arena);
+void			ex_command_sti(t_master *mstr, t_process *process, char *arena);
 void			ex_command_fork(t_master *mstr, t_process *process, char *arena);
+void			ex_command_lld(t_master *mstr, t_process *process, char *arena);
+void			ex_command_lldi(t_master *mstr, t_process *process, char *arena);
+void			ex_command_lfork(t_master *mstr, t_process *process, char *arena);
 
 void			*memrevcpy(void *dst, const void *src, int n);
 void			cursor_next_op(t_process *process);
