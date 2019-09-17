@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/03 14:07:46 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/14 20:11:34 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/17 14:31:55 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ void			run_command(t_master *mstr, t_process *cur_process, char *arena)
 	if (command_valid_types(cur_process->vm.command) == YES &&
 		command_convert_param(cur_process, arena) == YES)
 	{
-		printf("command en cours : %s\n", cur_process->vm.command.op.name);
 		if (op_id && op_id < AVAILABLE_OPERATIONS)
 			ex_command[op_id](mstr, cur_process, arena);
 	}
