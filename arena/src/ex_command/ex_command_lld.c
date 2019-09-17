@@ -6,11 +6,31 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 18:47:19 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/14 19:30:20 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/17 18:13:17 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "arena.h"
+
+static void			lld_verbose(t_process *process, int load_val)
+{
+	t_command command;
+
+	command = process->vm.command;
+	if (command.types[0].type == T_IND)
+		printf("P - %5d | op : %s [IND %d = %d] =>  r%d\n",
+		process->vm.process_nb,
+		command.op.name,
+		command.param_conv[0].nb,
+		load_val,
+		command.param_conv[1].nb + 1);
+	else
+		printf("P - %5d | op : %s %d =>  r%d\n",
+		process->vm.process_nb,
+		command.op.name,
+		command.param_conv[0].nb,
+		command.param_conv[1].nb + 1);
+}
 
 void			ex_command_lld(t_master *mstr, t_process *process, char *arena)
 {
@@ -23,11 +43,12 @@ void			ex_command_lld(t_master *mstr, t_process *process, char *arena)
 	(void)arena;
 	command = process->vm.command;
 	i = -1;
-	while (++i < IND_SIZE)
+	while (command.types[0].type == T_IND && ++i < IND_SIZE)
 		ind_case.casted[i] =
 			(command.param_ext_conv[0].casted[DIR_SIZE - IND_SIZE + i]);
 	load_val.nb = command.types[0].type == T_IND ?
 		ind_case.nb : command.param_conv[0].nb;
+	lld_verbose(process, load_val.nb);
 	memrevcpy(process->registry[command.param_conv[1].nb],
 		load_val.casted, DIR_SIZE);
 	process->carry = !load_val.nb ? YES : NO;

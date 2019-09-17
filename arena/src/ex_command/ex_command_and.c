@@ -6,11 +6,22 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 18:47:19 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/14 15:18:38 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/17 17:08:52 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "arena.h"
+
+static void			and_verbose(t_process *process, t_dir_cast *comp)
+{
+	printf("P - %5d | op : %s %d & %d = %d (=> r%d)\n",
+		process->vm.process_nb,
+		process->vm.command.op.name,
+		comp[0].nb,
+		comp[1].nb,
+		comp[2].nb,
+		process->vm.command.param_conv[2].nb + 1);
+}
 
 void			ex_command_and(t_master *mstr, t_process *process, char *arena)
 {
@@ -28,6 +39,7 @@ void			ex_command_and(t_master *mstr, t_process *process, char *arena)
 	reg_dst = command.param_conv[2].nb;
 	comp[2].nb = 0;
 	comp[2].nb = comp[0].nb & comp[1].nb;
+	and_verbose(process, &(comp[0]));
 	memrevcpy(process->registry[reg_dst], comp[2].casted, DIR_SIZE);
 	process->carry = !(comp[2].nb) ? YES : NO;
 }

@@ -6,11 +6,22 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 15:18:04 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/14 15:06:55 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/17 17:14:58 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "arena.h"
+
+static void			xor_verbose(t_process *process, t_dir_cast *comp)
+{
+	printf("P - %5d | op : %s %d ^ %d = %d (=> r%d)\n",
+		process->vm.process_nb,
+		process->vm.command.op.name,
+		comp[0].nb,
+		comp[1].nb,
+		comp[2].nb,
+		process->vm.command.param_conv[2].nb + 1);
+}
 
 void			ex_command_xor(t_master *mstr, t_process *process, char *arena)
 {
@@ -27,6 +38,7 @@ void			ex_command_xor(t_master *mstr, t_process *process, char *arena)
 	command.param_ext_conv[1] : command.param_conv[1];
 	reg_dst = command.param_conv[2].nb;
 	comp[2].nb = comp[0].nb ^ comp[1].nb;
+	xor_verbose(process, &(comp[0]));
 	memrevcpy(process->registry[reg_dst], comp[2].casted, DIR_SIZE);
 	process->carry = !(comp[2].nb) ? YES : NO;
 }

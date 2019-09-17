@@ -6,11 +6,32 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 18:47:19 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/14 18:18:58 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/17 18:49:32 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "arena.h"
+
+static void			st_verbose(t_process *process, int jump)
+{
+	t_command command;
+
+	command = process->vm.command;
+	if (command.types[1].type == T_REG)
+		printf("P - %5d | op : %s r%d[val = %d] => r%d\n",
+		process->vm.process_nb,
+		command.op.name,
+		command.param_conv[0].nb + 1,
+		command.param_ext_conv[0].nb,
+		command.param_conv[1].nb + 1);
+	else
+		printf("P - %5d | op : %s r%d[val = %d] =>  [ARENA] pc : %d\n",
+		process->vm.process_nb,
+		command.op.name,
+		command.param_conv[0].nb + 1,
+		command.param_ext_conv[0].nb,
+		jump);
+}
 
 void			ex_command_st(t_master *mstr, t_process *process, char *arena)
 {
@@ -25,6 +46,7 @@ void			ex_command_st(t_master *mstr, t_process *process, char *arena)
 	reg[0] = command.param_conv[0].nb;
 	reg[1] = command.param_conv[1].nb;
 	i = -1;
+	jump = 0;
 	if (command.types[1].type == T_IND)
 	{
 		jump = process->pc + command.param_conv[1].nb % IDX_MOD;
@@ -36,4 +58,5 @@ void			ex_command_st(t_master *mstr, t_process *process, char *arena)
 		while (++i < DIR_SIZE)
 			process->registry[reg[1]][i] = process->registry[reg[0]][i];
 	}
+	st_verbose(process, jump);
 }
