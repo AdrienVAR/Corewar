@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+         #
+#    By: cizeur <cizeur@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/17 11:56:45 by cgiron            #+#    #+#              #
-#    Updated: 2019/09/18 08:50:02 by cgiron           ###   ########.fr        #
+#    Updated: 2019/09/18 21:39:40 by cizeur           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,6 @@ ifeq ($(CHECK_LIBFT_DEP),)
 $(error LIBFT_DEPENDANCIES not included)
 endif
 
-DEPENDANCY_OBJ_INC_FILE := ./dependancies_$(L_ARENA_DIR)_object.mk
 L_FT    := ../libft
 EXFLAGS := -L $(L_FT) -lft $(SHARE_FLAGS)
 SIMULINK := $(SHARE_INC_DIR)/$(NAME_LIBFT)
@@ -35,6 +34,9 @@ INC_DIR := $(SHARE_INC_DIR)
 OBJ_DIR := $(SHARE_OBJ_DIR)
 SRC 	:= $(SRC_ARENA)
 OBJ		:= $(patsubst %.c,%.o,$(SRC))
+DEP		:= $(patsubst %.o,%.d,$(OBJ))
+vpath	%c $(SRC_DIR)/ex_command
+
 
 CC      := gcc
 CFLAGS  := $(SHARE_FLAGS)
@@ -48,13 +50,15 @@ simulink:
 	ln -s	../$(L_FT)/$(INC_DIR) $(INC_DIR)/$(L_LIBFT_DIR)
 
 $(OBJ_DIR):
-	@mkdir -p $(OBJ_DIR) ./$(OBJ_DIR)/ex_command
+	@mkdir -p $(OBJ_DIR)
 
 %.o:%.c $(DEPENDANCIES_ARENA_O)
-	@mkdir -p $(OBJ_DIR) ./$(OBJ_DIR)/ex_command
-	$(CC) $(OPTI_FLAGS) $(CFLAGS) -c $< -o $(OBJ_DIR)/$@
+	@mkdir -p $(OBJ_DIR)
+	$(CC) $(OPTI_FLAGS) $(CFLAGS) -c $< -o  $(addprefix $(OBJ_DIR)/,$@)
 
--include $(DEPENDANCY_OBJ_INC_FILE)
+$(OBJ_DIR)/%.d:%.c $(DEPENDANCIES_ARENA_O)
+	@mkdir -p $(OBJ_DIR)
+	$(CC) $(OPTI_FLAGS) $(CFLAGS) -MM -MG -c $< -o $@
 
 $(NAME): $(OBJ) $(DEPENDANCIES_ARENA)
 	$(MAKE) -C $(L_FT) "OPTI_FLAGS=$(OPTI_FLAGS)" --no-print-directory
@@ -72,3 +76,6 @@ debug: OPTI_FLAGS := $(SHARE_DEBUG)
 debug: re clean
 
 re: fclean all
+
+include  $(addprefix $(OBJ_DIR)/,$(DEP))
+

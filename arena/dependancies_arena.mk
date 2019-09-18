@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    dependancies_arena.mk                              :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+         #
+#    By: cizeur <cizeur@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/31 09:59:29 by cgiron            #+#    #+#              #
-#    Updated: 2019/09/18 14:15:49 by cgiron           ###   ########.fr        #
+#    Updated: 2019/09/18 21:49:10 by cizeur           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,9 +42,7 @@ SRC_EX_COMMAND :=	\
 			ex_command_lfork.c\
 			ex_command_aff.c
 
-SRC_EX_COMMAND := $(addprefix ./ex_command/,$(SRC_EX_COMMAND))
-
-SRC_ARENA := $(SRC_EX_COMMAND)\
+SRC_MAIN	:= \
 			get_opt.c\
 			main.c\
 			memrevcpy.c\
@@ -67,19 +65,19 @@ SRC_ARENA := $(SRC_EX_COMMAND)\
 			op.c\
 			exit.c\
 
-INC_ARENA					:= arena.h
+SRC_ARENA					:= $(SRC_MAIN) $(SRC_EX_COMMAND)
+SRC_ARENA_EXPORT			:= $(addprefix ex_command/,$(SRC_EX_COMMAND)) $(SRC_MAIN)
+
+INC_ARENA					:= arena.h op.h libft/libft.h libft/ft_printf.h
 
 DEPENDANCIES_ARENA_O		:= Makefile ./dependancies_$(L_ARENA_DIR).mk\
-								 ./dependancies_$(L_ARENA_DIR)_object.mk\
-								 ../shared_val.mk ./$(SHARE_INC_DIR)/op.h
-
-DEPENDANCIES_ARENA_O		+= includes/*.h
-
+								 ../shared_val.mk
 
 DEPENDANCIES_ARENA			:= $(DEPENDANCIES_ARENA_O) \
  								$(addprefix ../,$(DEPENDANCIES_LIBFT_EXPORT))
 
 INC_ARENA_EXPORT			:= $(addprefix $(SHARE_INC_DIR)/,$(INC_ARENA))
-SRC_ARENA_EXPORT			:= $(addprefix $(SHARE_SRC_DIR)/,$(SRC_ARENA))
+
+SRC_ARENA_EXPORT			:= $(addprefix $(SHARE_SRC_DIR)/,$(SRC_ARENA_EXPORT))
 DEPENDANCIES_ARENA_E 		:= $(DEPENDANCIES_ARENA) $(SRC_ARENA_EXPORT) $(INC_ARENA_EXPORT)
 DEPENDANCIES_ARENA_EXPORT	:= $(addprefix $(L_ARENA_DIR)/,$(DEPENDANCIES_ARENA_E))
