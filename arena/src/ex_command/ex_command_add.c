@@ -6,11 +6,12 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 18:47:19 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/17 17:25:46 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/18 09:35:26 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "arena.h"
+#include "libft/ft_printf.h"
 
 static void			add_verbose(t_process *process)
 {
@@ -18,7 +19,7 @@ static void			add_verbose(t_process *process)
 
 	command = process->vm.command;
 
-	printf("P - %5d | op : %s r%d + r%d =>> r%d ( %d + %d = %d)\n",
+	ft_printf("P - %5d | op : %s r%d + r%d =>> r%d ( %d + %d = %d)\n",
 		process->vm.process_nb,
 		command.op.name,
 		command.param_conv[0].nb + 1,

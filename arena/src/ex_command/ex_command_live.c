@@ -6,15 +6,16 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 18:47:19 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/17 14:25:29 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/18 09:50:50 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "arena.h"
+#include "libft/ft_printf.h"
 
 static void		live_verbose(t_process *process)
 {
-	printf("P - %5d | op : %5s %d\n",
+	ft_printf("P - %5d | op : %5s %d\n",
 		process->vm.process_nb,
 		process->vm.command.op.name,
 		process->vm.command.param_conv[0].nb);

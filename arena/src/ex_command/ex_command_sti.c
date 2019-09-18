@@ -6,33 +6,34 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/10 12:46:42 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/17 19:05:24 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/18 11:14:44 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "arena.h"
+#include "libft/ft_printf.h"
 
-static void			sti_verbose(t_process *process, int jump, int dest_val)
+static void			sti_verbose(t_process *process, int jump)
 {
 	t_command	command;
 	int			cor;
 
 	command = process->vm.command;
-	printf("P - %5d | op : %s ",
+	ft_printf("P - %5d | op : %s ",
 		process->vm.process_nb,
 		command.op.name);
-	printf(" src: r%d (val = %d)",
+	ft_printf(" src: r%d (val = %d)",
 		command.param_conv[0].nb + 1, command.param_ext_conv[0].nb);
 	cor = command.types[1].type == T_REG ? 1 : 0;
-	printf(" => dest : pc + ");
+	ft_printf(" => dest : pc + ");
 	if (command.types[1].type != T_DIR)
-		printf("%s", command.types[1].type == T_REG ? "r" : "[IND] ");
-	printf("%d + ", command.param_conv[1].nb + cor);
+		ft_printf("%s", command.types[1].type == T_REG ? "r" : "[IND] ");
+	ft_printf("%d + ", command.param_conv[1].nb + cor);
 	if (command.types[2].type != T_DIR)
-		printf("r");
+		ft_printf("r");
 	cor = command.types[2].type == T_REG ? 1 : 0;
-	printf("%d", command.param_conv[2].nb + cor);
-	printf(" to pc : %d (val = %d)\n", jump, dest_val);
+	ft_printf("%d", command.param_conv[2].nb + cor);
+	ft_printf(" to pc : %d \n", jump);
 }
 
 void			ex_command_sti(t_master *mstr, t_process *process, char *arena)
@@ -56,5 +57,5 @@ void			ex_command_sti(t_master *mstr, t_process *process, char *arena)
 	while (++i < DIR_SIZE)
 		arena_val_set(arena, src.casted[DIR_SIZE - 1 - i],
 			jump + i);
-	sti_verbose(process, jump, src.nb);
+	sti_verbose(process, jump);
 }

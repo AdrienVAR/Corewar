@@ -6,12 +6,13 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/03 14:07:46 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/17 14:31:55 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/18 15:49:13 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "arena.h"
 #include "libft/libft.h"
+#include "libft/ft_printf.h"
 
 /*
 **		**************************************************
@@ -26,8 +27,10 @@ void			run_command(t_master *mstr, t_process *cur_process, char *arena)
 		&ex_command_live, &ex_command_ld, &ex_command_st, &ex_command_add
 		, &ex_command_sub, &ex_command_and, &ex_command_or, &ex_command_xor
 		, ex_command_zjmp, ex_command_ldi, ex_command_sti, &ex_command_fork,
-		&ex_command_lld, &ex_command_lldi, ex_command_lfork};
+		&ex_command_lld, &ex_command_lldi, ex_command_lfork, &ex_command_aff};
 
+	//ft_printf("Current Cycle %d \n", mstr->cur_cycle);
+	ft_printf("pc in %d\n", cur_process->pc);
 	op_id = cur_process->vm.command.op.id;
 	if (command_valid_types(cur_process->vm.command) == YES &&
 		command_convert_param(cur_process, arena) == YES)
@@ -84,10 +87,10 @@ int			kill_processes(t_master *mstr, t_process **process)
 	while (cur)
 	{
 		test = cur->vm.process_nb;
-		if (cur->vm.last_live > mstr->foamy_bat_cycle)
+		if (cur->vm.last_live >= mstr->foamy_bat_cycle)
 		{
-			printf("Cycle %d, death of process %d,last live %d,running processes %d\n",
-			mstr->cur_cycle ,cur->vm.process_nb, cur->vm.last_live , mstr->running_processes - 1);
+			ft_printf("Cycle %d, death of process %d : last live %d : [A: %d / T :%d ] and [CTD = %d]\n",
+			mstr->cur_cycle ,cur->vm.process_nb, cur->vm.last_live, --mstr->active_processes, mstr->total_processes, mstr->foamy_bat_cycle);
 			ft_bzero(cur, sizeof(t_process));
 			ft_memdel((void **)&cur);
 			if (!prev)
@@ -99,7 +102,6 @@ int			kill_processes(t_master *mstr, t_process **process)
 		cur = next;
 		next = cur ? cur->next : next;
 	}
-	printf("amount of life signal %d and CTD : %d\n", mstr->live_signal, mstr->foamy_bat_cycle);
 	if (++mstr->check == MAX_CHECKS || mstr->live_signal >= NBR_LIVE)
 	{
 		mstr->check = 0;
@@ -120,6 +122,7 @@ void			war(t_master *mstr)
 			&& mstr->options.end_dump == N_DUMP)
 			break ;
 		++mstr->cur_cycle;
+	ft_printf("Current Cycle %d \n", mstr->cur_cycle);
 		ctd--;
 		run_cycle(mstr);
 		if (ctd <= 0)

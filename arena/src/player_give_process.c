@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/03 09:21:52 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/14 17:07:08 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/18 15:39:46 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ void		player_give_process(t_master *mstr)
 		memrevcpy(process->registry[0], player_num.casted, DIR_SIZE);
 		process->next = mstr->process;
 		process->pc = player->cursor_initial_pos;
-		process->vm.process_nb = ++mstr->running_processes;
+		process->vm.process_nb = ++mstr->total_processes;
+		++mstr->active_processes;
 		mstr->process = process;
-
 	}
 }

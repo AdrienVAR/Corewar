@@ -6,11 +6,12 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 18:47:19 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/17 18:20:05 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/18 09:35:37 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "arena.h"
+#include "libft/ft_printf.h"
 
 static void			ld_verbose(t_process *process)
 {
@@ -18,14 +19,14 @@ static void			ld_verbose(t_process *process)
 
 	command = process->vm.command;
 	if (command.types[0].type == T_IND)
-		printf("P - %5d | op : %s [IND %d = %d] =>  r%d\n",
+		ft_printf("P - %5d | op : %s [IND %d = %d] =>  r%d\n",
 		process->vm.process_nb,
 		command.op.name,
 		command.param_conv[0].nb,
 		command.param_ext_conv[0].nb,
 		command.param_conv[1].nb + 1);
 	else
-		printf("P - %5d | op : %s %d =>  r%d\n",
+		ft_printf("P - %5d | op : %s %d =>  r%d\n",
 		process->vm.process_nb,
 		command.op.name,
 		command.param_conv[0].nb,

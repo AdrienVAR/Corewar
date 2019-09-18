@@ -6,16 +6,17 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 18:47:19 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/17 18:06:36 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/18 15:38:49 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "arena.h"
 #include "libft/libft.h"
+#include "libft/ft_printf.h"
 
 static void	lfork_verbose(t_process *process, t_process *new)
 {
-	printf("P - %5d | op : %5s %d (%d -> %d) => [P - %d]\n",
+	ft_printf("P - %5d | op : %5s %d (%d -> %d) => [P - %5d]\n",
 		process->vm.process_nb,
 		process->vm.command.op.name,
 		process->vm.command.param_conv[0].nb,
@@ -38,7 +39,8 @@ void		ex_command_lfork(t_master *mstr, t_process *process, char *arena)
 		process->registry, sizeof(process->registry));
 	new_process->next = mstr->process;
 	new_process->vm.last_live = process->vm.last_live + 1;
-	new_process->vm.process_nb = ++mstr->running_processes;
+	new_process->vm.process_nb = ++mstr->total_processes;
+	++mstr->active_processes;
 	mstr->process = new_process;
 	lfork_verbose(process, new_process);
 }
