@@ -6,7 +6,7 @@
 #    By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/17 11:56:45 by cgiron            #+#    #+#              #
-#    Updated: 2019/09/12 09:23:30 by cgiron           ###   ########.fr        #
+#    Updated: 2019/09/18 08:50:02 by cgiron           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,12 +48,10 @@ simulink:
 	ln -s	../$(L_FT)/$(INC_DIR) $(INC_DIR)/$(L_LIBFT_DIR)
 
 $(OBJ_DIR):
-	mkdir -p $(OBJ_DIR)
-	mkdir -p ./$(OBJ_DIR)/ex_command
+	@mkdir -p $(OBJ_DIR) ./$(OBJ_DIR)/ex_command
 
 %.o:%.c $(DEPENDANCIES_ARENA_O)
-	@mkdir -p $(OBJ_DIR)
-	@mkdir -p ./$(OBJ_DIR)/ex_command
+	@mkdir -p $(OBJ_DIR) ./$(OBJ_DIR)/ex_command
 	$(CC) $(OPTI_FLAGS) $(CFLAGS) -c $< -o $(OBJ_DIR)/$@
 
 -include $(DEPENDANCY_OBJ_INC_FILE)
