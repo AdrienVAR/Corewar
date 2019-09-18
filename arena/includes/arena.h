@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/31 09:59:55 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/14 17:59:49 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/18 15:38:19 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,7 +166,8 @@ typedef struct	s_master
 	int				last_player_live;
 	int				live_signal;
 	int				check;
-	int				running_processes;
+	int				active_processes;
+	int				total_processes;
 	char			arena[MEM_SIZE];
 	t_player		*players[MAX_PLAYERS];
 	t_process		*process;
@@ -229,6 +230,7 @@ void			ex_command_fork(t_master *mstr, t_process *process, char *arena);
 void			ex_command_lld(t_master *mstr, t_process *process, char *arena);
 void			ex_command_lldi(t_master *mstr, t_process *process, char *arena);
 void			ex_command_lfork(t_master *mstr, t_process *process, char *arena);
+void			ex_command_aff(t_master *mstr, t_process *process, char *arena);
 
 void			*memrevcpy(void *dst, const void *src, int n);
 void			cursor_next_op(t_process *process);
