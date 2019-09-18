@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gdrai <gdrai@student.42.fr>                +#+  +:+       +#+        */
+/*   By: cizeur <cizeur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 14:41:23 by advardon          #+#    #+#             */
-/*   Updated: 2019/09/11 11:17:17 by gdrai            ###   ########.fr       */
+/*   Updated: 2019/09/18 22:00:29 by cizeur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,4 +23,5 @@ int		main(int argc, char **argv)
 	parsing(argv[1], env);
 	writing(argv[1], env);
 	clean_exit(env, "Success: Writing output...\n");
+	return (0);
 }
