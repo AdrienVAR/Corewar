@@ -21,7 +21,7 @@ static void		(*g_stat_dico_conv[DICO_CONV_SIZE])() =
 	&ft_conv_color, &ft_conv_u_int, &ft_conv_u_int, &ft_conv_np_str,
 	&ft_conv_time, &ft_conv_n};
 
-static void		ft_flag_optn_reset(t_master *mstr)
+static void		ft_flag_optn_reset(t_printf *mstr)
 {
 	int i;
 
@@ -31,7 +31,7 @@ static void		ft_flag_optn_reset(t_master *mstr)
 	mstr->options[5] = -1;
 }
 
-void			ft_flag_mngmt(t_master *mstr)
+void			ft_flag_mngmt(t_printf *mstr)
 {
 	int *options;
 

@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-static char		*ft_sip_through(t_master *mstr)
+static char		*ft_sip_through(t_printf *mstr)
 {
 	char *shuttle;
 
@@ -27,12 +27,12 @@ static char		*ft_sip_through(t_master *mstr)
 
 int				ft_sprintf(char *str, const char *restrict format, ...)
 {
-	t_master	mstr_val;
-	t_master	*mstr;
+	t_printf	mstr_val;
+	t_printf	*mstr;
 	t_list		*depart;
 
 	mstr = &mstr_val;
-	ft_init_master(mstr, format);
+	ft_init_printf(mstr, format);
 	depart = mstr->buffer;
 	va_start(mstr->arg, format);
 	while ((mstr->shuttle = ft_sip_through(mstr))

@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-static void			ft_init_color_text(t_master *mstr)
+static void			ft_init_color_text(t_printf *mstr)
 {
 	int	*options;
 
@@ -37,7 +37,7 @@ static void			ft_init_color_text(t_master *mstr)
 		ft_update_buffer(mstr, ';');
 }
 
-static void			ft_init_color_background(t_master *mstr)
+static void			ft_init_color_background(t_printf *mstr)
 {
 	int	*options;
 
@@ -62,7 +62,7 @@ static void			ft_init_color_background(t_master *mstr)
 		ft_update_buffer(mstr, ';');
 }
 
-static void			ft_init_style(t_master *mstr)
+static void			ft_init_style(t_printf *mstr)
 {
 	int	*options;
 
@@ -79,7 +79,7 @@ static void			ft_init_style(t_master *mstr)
 		ft_str_to_buffer(mstr, "8");
 }
 
-void				ft_conv_color(t_master *mstr)
+void				ft_conv_color(t_printf *mstr)
 {
 	int *options;
 

@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-void	ft_buffer_digits_base(t_master *mstr, uintmax_t nb, char *base)
+void	ft_buffer_digits_base(t_printf *mstr, uintmax_t nb, char *base)
 {
 	uintmax_t		n;
 	int				i;

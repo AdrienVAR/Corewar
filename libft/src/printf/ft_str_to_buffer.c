@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-void		ft_str_to_buffer(t_master *mstr, char *str)
+void		ft_str_to_buffer(t_printf *mstr, char *str)
 {
 	if (!str)
 		return ;

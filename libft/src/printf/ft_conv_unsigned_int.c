@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-static void			ft_u_int_padding(t_master *mstr, char c, int activation)
+static void			ft_u_int_padding(t_printf *mstr, char c, int activation)
 {
 	intmax_t		n;
 	int				padding;
@@ -31,7 +31,7 @@ static void			ft_u_int_padding(t_master *mstr, char c, int activation)
 	}
 }
 
-static char			*u_base_choice(t_master *mstr)
+static char			*u_base_choice(t_printf *mstr)
 {
 	int type;
 
@@ -47,7 +47,7 @@ static char			*u_base_choice(t_master *mstr)
 	return ("0123456789");
 }
 
-static void			ft_set_prefix(t_master *mstr)
+static void			ft_set_prefix(t_printf *mstr)
 {
 	if (mstr->fringe[1] && mstr->options[2])
 	{
@@ -70,7 +70,7 @@ static void			ft_set_prefix(t_master *mstr)
 	}
 }
 
-void				ft_conv_u_int(t_master *mstr)
+void				ft_conv_u_int(t_printf *mstr)
 {
 	uintmax_t		nb;
 	char			*base;

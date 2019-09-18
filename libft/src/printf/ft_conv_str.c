@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-static void		ft_str_padding(t_master *mstr, int strlen, char c, int activate)
+static void		ft_str_padding(t_printf *mstr, int strlen, char c, int activate)
 {
 	int		padding;
 	int		precision;
@@ -52,7 +52,7 @@ static int		ft_strl_length(char *str, wchar_t *strl, int precision)
 	return (len);
 }
 
-static void		ft_null_str(t_master *mstr)
+static void		ft_null_str(t_printf *mstr)
 {
 	int		padding;
 	int		precision;
@@ -76,7 +76,7 @@ static void		ft_null_str(t_master *mstr)
 		ft_update_buffer(mstr, ' ');
 }
 
-void			ft_conv_str(t_master *mstr)
+void			ft_conv_str(t_printf *mstr)
 {
 	wchar_t		*strl;
 	char		*str;

@@ -20,7 +20,7 @@ static int		ft_flag_conv_opt_cmp(char needle, char *activ)
 	return (found ? (int)(found - activ) : -1);
 }
 
-static char		*ft_extract_nb(char *navette, int *value, t_master *mstr)
+static char		*ft_extract_nb(char *navette, int *value, t_printf *mstr)
 {
 	*value = 0;
 	if (*navette >= '0' && *navette <= '9')
@@ -55,14 +55,14 @@ static int		ft_flag_size_val(char mark, int actualval)
 	return (actualval);
 }
 
-static void		ft_flag_star_extract(t_master *mstr)
+static void		ft_flag_star_extract(t_printf *mstr)
 {
 	mstr->options[6] = (int)va_arg(mstr->arg, int);
 	mstr->options[0] = mstr->options[6] < 0 ? 1 : 0;
 	mstr->options[6] = ft_abs(mstr->options[6]);
 }
 
-char			*ft_flag_option_check(char *navette, t_master *mstr)
+char			*ft_flag_option_check(char *navette, t_printf *mstr)
 {
 	int		dec;
 

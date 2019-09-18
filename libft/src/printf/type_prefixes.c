@@ -23,7 +23,7 @@ int				ft_prec_zero_pref(int type)
 	return (0);
 }
 
-void			ft_prefixes(t_master *mstr, int prefix)
+void			ft_prefixes(t_printf *mstr, int prefix)
 {
 	if (prefix == PRE_RESET || mstr->prefix[0] == -1)
 	{

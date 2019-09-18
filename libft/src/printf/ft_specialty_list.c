@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-void		ft_list_sprint(char *str, t_list *buffer, t_master *mstr)
+void		ft_list_sprint(char *str, t_list *buffer, t_printf *mstr)
 {
 	int i;
 
@@ -28,7 +28,7 @@ void		ft_list_sprint(char *str, t_list *buffer, t_master *mstr)
 	str[++i] = 0;
 }
 
-void		ft_list_asprint(char **str, t_list *buffer, t_master *mstr)
+void		ft_list_asprint(char **str, t_list *buffer, t_printf *mstr)
 {
 	int i;
 
@@ -46,7 +46,7 @@ void		ft_list_asprint(char **str, t_list *buffer, t_master *mstr)
 	}
 }
 
-void		ft_list_dprint(int fd, t_list *buffer, t_master *mstr)
+void		ft_list_dprint(int fd, t_list *buffer, t_printf *mstr)
 {
 	while (buffer)
 	{

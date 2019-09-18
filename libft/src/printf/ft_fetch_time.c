@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-uintmax_t	ft_fetch_time(t_master *mstr)
+uintmax_t	ft_fetch_time(t_printf *mstr)
 {
 	return ((uintmax_t)va_arg(mstr->arg, uintmax_t));
 }

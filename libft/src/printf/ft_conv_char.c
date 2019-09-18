@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-static void			ft_char_padding(t_master *mstr, char c, int act, int c_len)
+static void			ft_char_padding(t_printf *mstr, char c, int act, int c_len)
 {
 	int			padding;
 
@@ -24,7 +24,7 @@ static void			ft_char_padding(t_master *mstr, char c, int act, int c_len)
 	}
 }
 
-void				ft_conv_char(t_master *mstr)
+void				ft_conv_char(t_printf *mstr)
 {
 	wint_t			chrl;
 	char			chr;

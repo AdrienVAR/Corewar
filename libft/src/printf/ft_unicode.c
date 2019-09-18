@@ -24,7 +24,7 @@ int			ft_unichar_length(int uni)
 		return (4);
 }
 
-void		ft_add_uni_buffer(t_master *mstr, wchar_t uni)
+void		ft_add_uni_buffer(t_printf *mstr, wchar_t uni)
 {
 	char	unistr[5];
 	int		unisz;

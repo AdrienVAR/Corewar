@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-static void		ft_flt_padding(t_master *mstr, int strlen, char c, int activate)
+static void		ft_flt_padding(t_printf *mstr, int strlen, char c, int activate)
 {
 	int		padding;
 	int		precision;
@@ -27,7 +27,7 @@ static void		ft_flt_padding(t_master *mstr, int strlen, char c, int activate)
 	}
 }
 
-static int		ft_flt_len(t_master *mstr, char *flt_ptr)
+static int		ft_flt_len(t_printf *mstr, char *flt_ptr)
 {
 	int *options;
 	int flt_len;
@@ -46,7 +46,7 @@ static int		ft_flt_len(t_master *mstr, char *flt_ptr)
 	return (flt_len);
 }
 
-static void		ft_point_or_plus(t_master *mstr, char *flt_ptr, int which)
+static void		ft_point_or_plus(t_printf *mstr, char *flt_ptr, int which)
 {
 	int *options;
 
@@ -59,7 +59,7 @@ static void		ft_point_or_plus(t_master *mstr, char *flt_ptr, int which)
 		ft_update_buffer(mstr, '.');
 }
 
-static void		ft_print_extraprecision(t_master *mstr, char *flt_ptr)
+static void		ft_print_extraprecision(t_printf *mstr, char *flt_ptr)
 {
 	int *options;
 	int precision;
@@ -77,7 +77,7 @@ static void		ft_print_extraprecision(t_master *mstr, char *flt_ptr)
 	}
 }
 
-void			ft_conv_flt_g(t_master *mstr)
+void			ft_conv_flt_g(t_printf *mstr)
 {
 	double		dbl;
 	long double	ldbl;

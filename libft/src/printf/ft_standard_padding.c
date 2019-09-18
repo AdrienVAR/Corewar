@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-void			ft_standard_padding(t_master *mstr, char c)
+void			ft_standard_padding(t_printf *mstr, char c)
 {
 	int			padding;
 

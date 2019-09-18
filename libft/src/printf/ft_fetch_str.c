@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-void		ft_fetch_str(t_master *mstr, wchar_t **strl, char **str)
+void		ft_fetch_str(t_printf *mstr, wchar_t **strl, char **str)
 {
 	int size;
 

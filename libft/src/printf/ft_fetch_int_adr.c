@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-intmax_t	*ft_fetch_int_adr(t_master *mstr)
+intmax_t	*ft_fetch_int_adr(t_printf *mstr)
 {
 	return ((intmax_t *)va_arg(mstr->arg, intmax_t *));
 }

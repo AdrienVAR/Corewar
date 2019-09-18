@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-static void		ft_str_padding(t_master *mstr, int strlen, char c, int act)
+static void		ft_str_padding(t_printf *mstr, int strlen, char c, int act)
 {
 	int		padding;
 
@@ -53,7 +53,7 @@ static void		ft_year_month_day(uintmax_t t, int ymd[3])
 	ymd[2] = var[5];
 }
 
-int				ft_time_length(t_master *mstr)
+int				ft_time_length(t_printf *mstr)
 {
 	int size;
 
@@ -66,7 +66,7 @@ int				ft_time_length(t_master *mstr)
 		return (10);
 }
 
-void			ft_write_component(t_master *mstr, int comp, int size)
+void			ft_write_component(t_printf *mstr, int comp, int size)
 {
 	if (size == 4)
 	{
@@ -79,7 +79,7 @@ void			ft_write_component(t_master *mstr, int comp, int size)
 	ft_update_buffer(mstr, comp % 10 + '0');
 }
 
-void			ft_conv_time(t_master *mstr)
+void			ft_conv_time(t_printf *mstr)
 {
 	uintmax_t	time;
 	int			ymd[3];

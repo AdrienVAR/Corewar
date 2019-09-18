@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-uintmax_t	ft_fetch_ptr(t_master *mstr)
+uintmax_t	ft_fetch_ptr(t_printf *mstr)
 {
 	uintmax_t addr;
 

@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-static void			ft_ptr_padding(t_master *mstr, char c, int activate)
+static void			ft_ptr_padding(t_printf *mstr, char c, int activate)
 {
 	int			padding;
 	int			precision;
@@ -33,7 +33,7 @@ static void			ft_ptr_padding(t_master *mstr, char c, int activate)
 	}
 }
 
-void				ft_conv_ptr(t_master *mstr)
+void				ft_conv_ptr(t_printf *mstr)
 {
 	uintmax_t	addr;
 	int			*options;

@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-void		ft_fetch_flt(t_master *mstr, double *dbl, long double *ldbl)
+void		ft_fetch_flt(t_printf *mstr, double *dbl, long double *ldbl)
 {
 	int size;
 

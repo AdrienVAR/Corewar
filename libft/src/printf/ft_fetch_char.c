@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-void		ft_fetch_char(t_master *mstr, wint_t *chrl, char *chr)
+void		ft_fetch_char(t_printf *mstr, wint_t *chrl, char *chr)
 {
 	int size;
 	int temp;

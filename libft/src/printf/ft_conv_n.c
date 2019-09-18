@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-void				ft_conv_n(t_master *mstr)
+void				ft_conv_n(t_printf *mstr)
 {
 	intmax_t *nb;
 

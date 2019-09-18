@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-static void			ft_percent_padding(t_master *mstr, char c, int activate)
+static void			ft_percent_padding(t_printf *mstr, char c, int activate)
 {
 	int			padding;
 
@@ -24,7 +24,7 @@ static void			ft_percent_padding(t_master *mstr, char c, int activate)
 	}
 }
 
-void				ft_conv_percent(t_master *mstr)
+void				ft_conv_percent(t_printf *mstr)
 {
 	int			*options;
 

@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-intmax_t	ft_fetch_int(t_master *mstr)
+intmax_t	ft_fetch_int(t_printf *mstr)
 {
 	int			size;
 	intmax_t	nb;

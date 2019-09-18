@@ -13,7 +13,7 @@
 #include "ft_printf.h"
 #include <stdlib.h>
 
-void		ft_init_master(t_master *mstr, const char *restrict format)
+void		ft_init_printf(t_printf *mstr, const char *restrict format)
 {
 	t_list		*new;
 
@@ -37,7 +37,7 @@ void		ft_init_master(t_master *mstr, const char *restrict format)
 	mstr->size = 0;
 }
 
-void		ft_buffer_grow(t_master *mstr)
+void		ft_buffer_grow(t_printf *mstr)
 {
 	t_list *added;
 	t_list *buffer;
@@ -59,7 +59,7 @@ void		ft_buffer_grow(t_master *mstr)
 	mstr->buffer = added;
 }
 
-void		ft_update_buffer(t_master *mstr, char c)
+void		ft_update_buffer(t_printf *mstr, char c)
 {
 	char	*segment;
 	t_list	*buffer;
@@ -91,7 +91,7 @@ void		ft_buffer_del(t_list **buffer)
 	}
 }
 
-void		ft_list_print(t_list *buffer, t_master *mstr)
+void		ft_list_print(t_list *buffer, t_printf *mstr)
 {
 	while (buffer)
 	{
