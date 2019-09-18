@@ -6,7 +6,7 @@
 #    By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/31 09:59:29 by cgiron            #+#    #+#              #
-#    Updated: 2019/09/14 18:01:21 by cgiron           ###   ########.fr        #
+#    Updated: 2019/09/18 14:15:49 by cgiron           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,8 @@ SRC_EX_COMMAND :=	\
 			ex_command_fork.c\
 			ex_command_lld.c\
 			ex_command_lldi.c\
-			ex_command_lfork.c
+			ex_command_lfork.c\
+			ex_command_aff.c
 
 SRC_EX_COMMAND := $(addprefix ./ex_command/,$(SRC_EX_COMMAND))
 
