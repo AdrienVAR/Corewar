@@ -6,7 +6,7 @@
 #    By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/07 09:01:34 by cgiron            #+#    #+#              #
-#    Updated: 2019/08/11 16:53:34 by cgiron           ###   ########.fr        #
+#    Updated: 2019/09/18 09:03:45 by cgiron           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,7 @@ $(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)
 
 %.o:%.c $(DEPENDANCIES_LIBFT)
-	@mkdir -p $(OBJ_DIR)
+	@mkdir -p $(OBJ_DIR) $(OBJ_DIR)/printf $(OBJ_DIR)/ftoa
 	$(CC) $(OPTI_FLAGS) $(CFLAGS)  -o $(OBJ_DIR)/$@ -c $<
 
 -include ./dependancies_$(L_LIBFT_DIR)_object.mk

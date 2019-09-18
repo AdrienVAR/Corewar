@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    dependancies_libft.mk                              :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gdrai <gdrai@student.42.fr>                +#+  +:+       +#+         #
+#    By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/19 10:08:33 by cgiron            #+#    #+#              #
-#    Updated: 2019/09/12 15:17:05 by cgiron           ###   ########.fr        #
+#    Updated: 2019/09/18 09:25:04 by cgiron           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,74 @@ L_LIBFT_DIR	:= libft
 
 NAME_LIBFT	:= libft.a
 
-SRC_LIBFT = ft_abs.c\
+
+SRC_PRINTF :=	\
+	ft_asprintf.c\
+	ft_buffer_digits_base.c\
+	ft_conv_char.c\
+	ft_conv_color.c\
+	ft_conv_flt.c\
+	ft_conv_flt_e.c\
+	ft_conv_flt_g.c\
+	ft_conv_int.c\
+	ft_conv_n.c\
+	ft_conv_np_str.c\
+	ft_conv_percent.c\
+	ft_conv_ptr.c\
+	ft_conv_str.c\
+	ft_conv_time.c\
+	ft_conv_unsigned_int.c\
+	ft_dprintf.c\
+	ft_fetch_char.c\
+	ft_fetch_flt.c\
+	ft_fetch_int.c\
+	ft_fetch_int_adr.c\
+	ft_fetch_ptr.c\
+	ft_fetch_str.c\
+	ft_fetch_time.c\
+	ft_fetch_u_int.c\
+	ft_flag_mngmt.c\
+	ft_flag_option_check.c\
+	ft_int_size_base.c\
+	ft_list.c\
+	ft_printf.c\
+	ft_specialty_list.c\
+	ft_sprintf.c\
+	ft_standard_padding.c\
+	ft_str_to_buffer.c\
+	ft_unicode.c\
+	type_prefixes.c
+
+SRC_PRINTF  := $(addprefix ./printf/,$(SRC_PRINTF))
+
+SRC_FTOA :=	ft_float_apply_exp.c\
+	ft_float_bin_dbl_extract.c\
+	ft_float_bin_ldbl_extract.c\
+	ft_float_dbl_special.c\
+	ft_float_extract_e_exp.c\
+	ft_float_g_rounder.c\
+	ft_float_get_mantissa.c\
+	ft_float_ldbl_special.c\
+	ft_float_mstr_init.c\
+	ft_float_output_str.c\
+	ft_float_rounder.c\
+	ft_float_str_addstart.c\
+	ft_float_str_insert_dot.c\
+	ft_float_str_remove_dot.c\
+	ft_float_str_remove_leading_zero.c\
+	ft_float_str_remove_trailing_zero.c\
+	ft_float_str_write_exp.c\
+	ft_float_tab_op.c\
+	ft_float_write_str.c\
+	ft_ftoa_dbl.c\
+	ft_ftoa_ldbl.c\
+	ft_putnbr_str.c
+
+SRC_FTOA  := $(addprefix ./ftoa/,$(SRC_FTOA))
+
+SRC_LIBFT = $(SRC_FTOA)\
+	$(SRC_PRINTF)\
+	ft_abs.c\
 	ft_atoi.c\
 	ft_atoi_base.c\
 	ft_bzero.c \
@@ -106,7 +173,7 @@ SRC_LIBFT = ft_abs.c\
 	ft_strjoin_free.c\
 	ft_in_range.c
 
-INC_LIBFT					:= libft.h get_next_line.h
+INC_LIBFT					:= libft.h get_next_line.h ft_printf.h ftoa.h
 
 DEPENDANCIES_LIBFT			:= Makefile ./dependancies_$(L_LIBFT_DIR).mk\
 								./dependancies_$(L_LIBFT_DIR)_object.mk\
