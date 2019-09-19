@@ -6,7 +6,7 @@
 #    By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/31 09:59:29 by cgiron            #+#    #+#              #
-#    Updated: 2019/09/19 10:43:20 by cgiron           ###   ########.fr        #
+#    Updated: 2019/09/19 14:16:34 by cgiron           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,11 +71,10 @@ SRC_ARENA_EXPORT			:= $(addprefix ex_command/,$(SRC_EX_COMMAND)) $(SRC_MAIN)
 INC_ARENA					:= arena.h op.h libft/libft.h libft/ft_printf.h
 
 DEPENDANCIES_ARENA_O		:= Makefile ./dependancies_$(L_ARENA_DIR).mk\
-								 ../shared_val.mk
+							 ../shared_val.mk
 
 DEPENDANCIES_ARENA			:= $(DEPENDANCIES_ARENA_O) \
  								$(addprefix ../,$(DEPENDANCIES_LIBFT_EXPORT))
-
 INC_ARENA_EXPORT			:= $(addprefix $(SHARE_INC_DIR)/,$(INC_ARENA))
 
 SRC_ARENA_EXPORT			:= $(addprefix $(SHARE_SRC_DIR)/,$(SRC_ARENA_EXPORT))

@@ -1,13 +1,13 @@
 # **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2019/06/17 11:56:45 by cgiron            #+#    #+#              #
-#    Updated: 2019/09/19 10:51:43 by cgiron           ###   ########.fr        #
-#                                                                              #
+#																			  #
+#														 :::	  ::::::::	#
+#	Makefile										   :+:	  :+:	:+:	#
+#													 +:+ +:+		 +:+	  #
+#	By: cgiron <cgiron@student.42.fr>			  +#+  +:+	   +#+		 #
+#												 +#+#+#+#+#+   +#+			#
+#	Created: 2019/06/17 11:56:45 by cgiron			#+#	#+#			  #
+#	Updated: 2019/09/19 12:31:44 by cgiron		   ###   ########.fr		#
+#																			  #
 # **************************************************************************** #
 
 include ./dependancies_arena.mk
@@ -24,18 +24,19 @@ ifeq ($(CHECK_LIBFT_DEP),)
 $(error LIBFT_DEPENDANCIES not included)
 endif
 
-L_FT    := ../libft
+L_FT	:= ../libft
 EXFLAGS := -L $(L_FT) -lft $(SHARE_FLAGS)
 SIMULINK := $(SHARE_INC_DIR)/$(NAME_LIBFT)
 
-NAME 	:= $(NAME_ARENA)
+NAME	 := $(NAME_ARENA)
 SRC_DIR := $(SHARE_SRC_DIR)
 INC_DIR := $(SHARE_INC_DIR)
 OBJ_DIR := $(SHARE_OBJ_DIR)
-SRC 	:= $(SRC_ARENA)
+SRC	 := $(SRC_ARENA)
+INC		:= $(INC_ARENA)
 OBJ		:= $(patsubst %.c,%.o,$(SRC))
 
-CC      := gcc
+CC	  := gcc
 CFLAGS  := $(SHARE_FLAGS)
 
 vpath	%c $(SRC_DIR)/ex_command
@@ -43,25 +44,6 @@ vpath	%c $(SRC_DIR)/ex_command
 .PHONY: all clean fclean re debug simulink depend
 
 all: $(NAME)
-
-DEP		:= $(patsubst %.o,%.d,$(OBJ))
-ifneq ($(MAKECMDGOALS), clean)
-ifneq ($(MAKECMDGOALS), simulink)
-ifneq ($(MAKECMDGOALS), fclean)
-ifneq ($(MAKECMDGOALS), re)
-include  $(addprefix $(OBJ_DIR)/,$(DEP))
-endif
-endif
-endif
-endif
-
-depend: $(addprefix $(OBJ_DIR)/,$(DEP))
-
-re: fclean depend all
-
-$(OBJ_DIR)/%.d:%.c $(DEPENDANCIES_ARENA_O)
-	@mkdir -p $(OBJ_DIR)
-	$(CC) $(OPTI_FLAGS) $(CFLAGS) -MM -MG -c $< -o $@
 
 simulink:
 	rm -rf	$(INC_DIR)/$(L_LIBFT_DIR)
@@ -78,15 +60,32 @@ $(NAME): $(OBJ) $(DEPENDANCIES_ARENA)
 	$(MAKE) -C $(L_FT) "OPTI_FLAGS=$(OPTI_FLAGS)" --no-print-directory
 	$(CC) $(OPTI_FLAGS) $(CFLAGS) $(EXFLAGS)  $(addprefix $(OBJ_DIR)/,$(OBJ)) -o $(NAME)
 
+depend: depend.mk
+
+depend.mk: $(SRC) $(INC)
+		rm -f ./depend.mk
+		$(CC) $(CFLAGS) -MM $^ -MG >> ./depend.mk;
+
+ifneq ($(MAKECMDGOALS), clean)
+ifneq ($(MAKECMDGOALS), simulink)
+ifneq ($(MAKECMDGOALS), fclean)
+ifneq ($(MAKECMDGOALS), re)
+include   depend.mk
+endif
+endif
+endif
+endif
+
+re: fclean depend all
+
 clean:
 	$(MAKE) clean -C $(L_FT) --no-print-directory
+	rm -f ./depend.mk
 	rm -rf $(OBJ_DIR)
 
 fclean: clean
 	$(MAKE) fclean -C $(L_FT) --no-print-directory
 	rm -f $(NAME)
-
-depend: $(DEP)
 
 debug: OPTI_FLAGS := $(SHARE_DEBUG)
 debug: re clean

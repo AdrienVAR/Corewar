@@ -6,7 +6,7 @@
 #    By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/07 09:01:34 by cgiron            #+#    #+#              #
-#    Updated: 2019/09/19 14:44:41 by cgiron           ###   ########.fr        #
+#    Updated: 2019/09/19 14:52:41 by cgiron           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ SRC_DIR := $(SHARE_SRC_DIR)
 INC_DIR := $(SHARE_INC_DIR)
 OBJ_DIR := $(SHARE_OBJ_DIR)
 SRC 	:= $(SRC_LIBFT)
+INC		:= $(INC_LIBFT)
 OBJ		:= $(patsubst %.c,%.o,$(SRC))
 DEPENDANCIES:= $(DEPENDANCIES_LIBFT)
 
@@ -54,7 +55,7 @@ debug: re clean
 
 depend: depend.mk
 
-depend.mk: $(SRC) $(INC_LIBFT)
+depend.mk: $(SRC) $(INC)
 		rm -f ./depend.mk
 		$(CC) $(CFLAGS) -MM $^ -MG >> ./depend.mk;
 

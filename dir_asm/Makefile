@@ -6,7 +6,7 @@
 #    By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/17 11:56:45 by cgiron            #+#    #+#              #
-#    Updated: 2019/09/19 10:54:02 by cgiron           ###   ########.fr        #
+#    Updated: 2019/09/19 14:49:15 by cgiron           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,7 @@ SRC_DIR := $(SHARE_SRC_DIR)
 INC_DIR := $(SHARE_INC_DIR)
 OBJ_DIR := $(SHARE_OBJ_DIR)
 SRC 	:= $(SRC_ASM)
+INC		:= $(INC_ASM)
 OBJ		:= $(patsubst %.c,%.o,$(SRC))
 
 CC      := gcc
@@ -46,25 +47,6 @@ simulink:
 	rm -rf	$(INC_DIR)/$(L_LIBFT_DIR)
 	ln -s	../$(L_FT)/$(INC_DIR) $(INC_DIR)/$(L_LIBFT_DIR)
 
-DEP		:= $(patsubst %.o,%.d,$(OBJ))
-ifneq ($(MAKECMDGOALS), clean)
-ifneq ($(MAKECMDGOALS), simulink)
-ifneq ($(MAKECMDGOALS), fclean)
-ifneq ($(MAKECMDGOALS), re)
-include  $(addprefix $(OBJ_DIR)/,$(DEP))
-endif
-endif
-endif
-endif
-
-depend: $(addprefix $(OBJ_DIR)/,$(DEP))
-
-re: fclean depend all
-
-$(OBJ_DIR)/%.d:%.c $(DEPENDANCIES_ARENA_O)
-	@mkdir -p $(OBJ_DIR)
-	$(CC) $(OPTI_FLAGS) $(CFLAGS) -MM -MG -c $< -o $@
-
 $(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)
 
@@ -76,8 +58,27 @@ $(NAME): $(OBJ) $(DEPENDANCIES_ASM)
 	$(MAKE) -C $(L_FT) "OPTI_FLAGS=$(OPTI_FLAGS)" --no-print-directory
 	$(CC) $(OPTI_FLAGS) $(CFLAGS) $(EXFLAGS)  $(addprefix $(OBJ_DIR)/,$(OBJ)) -o $(NAME)
 
+depend: depend.mk
+
+depend.mk: $(SRC) $(INC)
+		rm -f ./depend.mk
+		$(CC) $(CFLAGS) -MM $^ -MG >> ./depend.mk;
+
+ifneq ($(MAKECMDGOALS), clean)
+ifneq ($(MAKECMDGOALS), simulink)
+ifneq ($(MAKECMDGOALS), fclean)
+ifneq ($(MAKECMDGOALS), re)
+include   depend.mk
+endif
+endif
+endif
+endif
+
+re: fclean depend all
+
 clean:
 	$(MAKE) clean -C $(L_FT) --no-print-directory
+	rm -f ./depend.mk
 	rm -rf $(OBJ_DIR)
 
 fclean: clean
