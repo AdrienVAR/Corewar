@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_opt.c                                          :+:      :+:    :+:   */
+/*   option_get.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 11:36:10 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/12 18:11:14 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/19 15:02:29 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,7 @@ static int		option_clean_player(t_opt *opt)
 	return (YES);
 }
 
-int			get_opt(t_opt *opt, int argc, char **argv)
+int			option_get(t_opt *opt, int argc, char **argv)
 {
 	int i;
 
