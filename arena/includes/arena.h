@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/31 09:59:55 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/19 17:03:29 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/19 17:34:00 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,6 +136,13 @@ typedef struct	s_player
 
 # define OPT_O "-o"
 # define OPT_V "-v"
+# define VERBOSE_LIFE 1
+# define VERBOSE_DEATH 2
+# define VERBOSE_BORN 4
+# define VERBOSE_OPER 8
+# define VERBOSE_CURS 16
+# define VERBOSE_CYCL 32
+
 # define OPT_N "-n"
 # define OPT_DUMP "-dump"
 # define COR_EXT ".cor"
