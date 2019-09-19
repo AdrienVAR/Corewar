@@ -6,11 +6,12 @@
 /*   By: gdrai <gdrai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 15:59:32 by gdrai             #+#    #+#             */
-/*   Updated: 2019/09/12 11:51:55 by gdrai            ###   ########.fr       */
+/*   Updated: 2019/09/19 11:37:50 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
+#include "libft/get_next_line.h"
 
 /*
 ** Create a new struct and add it at end of the list.

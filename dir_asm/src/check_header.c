@@ -6,11 +6,12 @@
 /*   By: gdrai <gdrai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 15:14:17 by gdrai             #+#    #+#             */
-/*   Updated: 2019/09/12 11:31:04 by gdrai            ###   ########.fr       */
+/*   Updated: 2019/09/19 11:37:27 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
+#include "libft/get_next_line.h"
 
 /*
 ** Name or comment in header must be in double quotes.
