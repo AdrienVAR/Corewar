@@ -46,10 +46,11 @@ SRC_ASM = \
 
 INC_ASM					:= asm.h op.h libft/libft.h libft/get_next_line.h
 
-DEPENDANCIES_ASM_O		:= Makefile ./dependancies_$(L_ASM_DIR).mk
+DEPENDANCIES_ASM_O		:= Makefile ./dependancies_$(L_ASM_DIR).mk\
+							../shared_val.mk
 
 DEPENDANCIES_ASM			:= $(DEPENDANCIES_ASM_O) \
- 								$(addprefix ../,$(DEPENDANCIES_LIBFT_EXPORT))
+ 								$(addprefix ../,$(DEPENDANCIES_LIBFT_EXPORT))\
 
 INC_ASM_EXPORT			:= $(addprefix $(SHARE_INC_DIR)/,$(INC_ASM))
 SRC_ASM_EXPORT			:= $(addprefix $(SHARE_SRC_DIR)/,$(SRC_ASM))

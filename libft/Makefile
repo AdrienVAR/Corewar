@@ -6,7 +6,7 @@
 #    By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/07 09:01:34 by cgiron            #+#    #+#              #
-#    Updated: 2019/09/19 10:44:03 by cgiron           ###   ########.fr        #
+#    Updated: 2019/09/19 14:44:41 by cgiron           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,25 +38,6 @@ vpath	%c $(SRC_DIR)/ftoa
 
 all: $(NAME)
 
-DEP		:= $(patsubst %.o,%.d,$(OBJ))
-ifneq ($(MAKECMDGOALS), clean)
-ifneq ($(MAKECMDGOALS), simulink)
-ifneq ($(MAKECMDGOALS), fclean)
-ifneq ($(MAKECMDGOALS), re)
-include  $(addprefix $(OBJ_DIR)/,$(DEP))
-endif
-endif
-endif
-endif
-
-depend: $(addprefix $(OBJ_DIR)/,$(DEP))
-
-re: fclean depend all
-
-$(OBJ_DIR)/%.d:%.c $(DEPENDANCIES_ARENA_O)
-	@mkdir -p $(OBJ_DIR)
-	$(CC) $(OPTI_FLAGS) $(CFLAGS) -MM -MG -c $< -o $@
-
 $(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)
 
@@ -71,7 +52,26 @@ $(NAME): $(OBJ)
 debug: OPTI_FLAGS := $(SHARE_DEBUG)
 debug: re clean
 
+depend: depend.mk
+
+depend.mk: $(SRC) $(INC_LIBFT)
+		rm -f ./depend.mk
+		$(CC) $(CFLAGS) -MM $^ -MG >> ./depend.mk;
+
+ifneq ($(MAKECMDGOALS), clean)
+ifneq ($(MAKECMDGOALS), simulink)
+ifneq ($(MAKECMDGOALS), fclean)
+ifneq ($(MAKECMDGOALS), re)
+include   depend.mk
+endif
+endif
+endif
+endif
+
+re: fclean depend all
+
 clean:
+	rm -f ./depend.mk
 	rm -rf $(OBJ_DIR)
 
 fclean: clean
