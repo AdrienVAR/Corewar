@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/03 14:07:46 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/18 15:49:13 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/19 15:54:04 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,6 @@ void			run_command(t_master *mstr, t_process *cur_process, char *arena)
 		, ex_command_zjmp, ex_command_ldi, ex_command_sti, &ex_command_fork,
 		&ex_command_lld, &ex_command_lldi, ex_command_lfork, &ex_command_aff};
 
-	//ft_printf("Current Cycle %d \n", mstr->cur_cycle);
-	ft_printf("pc in %d\n", cur_process->pc);
 	op_id = cur_process->vm.command.op.id;
 	if (command_valid_types(cur_process->vm.command) == YES &&
 		command_convert_param(cur_process, arena) == YES)
