@@ -6,7 +6,7 @@
 #    By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/31 09:59:29 by cgiron            #+#    #+#              #
-#    Updated: 2019/09/19 15:03:59 by cgiron           ###   ########.fr        #
+#    Updated: 2019/09/19 17:07:53 by cgiron           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,10 @@ CHECK_ARENA_DEP := 1
 L_ARENA_DIR	:= arena
 
 NAME_ARENA	:= corewar
+
+SRC_ARENA_UTILS := \
+			is_integer.c\
+			memrevcpy.c
 
 SRC_EX_COMMAND :=	\
 			ex_command_st.c\
@@ -45,7 +49,6 @@ SRC_EX_COMMAND :=	\
 SRC_MAIN	:= \
 			option_get.c\
 			main.c\
-			memrevcpy.c\
 			init.c\
 			file_loading.c\
 			binary_read.c\
@@ -65,10 +68,13 @@ SRC_MAIN	:= \
 			op.c\
 			exit.c\
 
-SRC_ARENA					:= $(SRC_MAIN) $(SRC_EX_COMMAND)
-SRC_ARENA_EXPORT			:= $(addprefix ex_command/,$(SRC_EX_COMMAND)) $(SRC_MAIN)
+SRC_ARENA					:= $(SRC_MAIN) $(SRC_EX_COMMAND) $(SRC_ARENA_UTILS)
+SRC_ARENA_EXPORT			:= $(addprefix ex_command/,$(SRC_EX_COMMAND))\
+								$(addprefix utils/,$(SRC_ARENA_UTILS))\
+								$(SRC_MAIN)
 
-INC_ARENA					:= arena.h op.h libft/libft.h libft/ft_printf.h
+INC_ARENA					:= arena.h op.h libft/libft.h\
+								libft/ft_printf.h utils.h
 
 DEPENDANCIES_ARENA_O		:= Makefile ./dependancies_$(L_ARENA_DIR).mk\
 							 ../shared_val.mk
