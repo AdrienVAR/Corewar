@@ -6,7 +6,7 @@
 #    By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/31 09:59:29 by cgiron            #+#    #+#              #
-#    Updated: 2019/09/19 10:12:03 by cgiron           ###   ########.fr        #
+#    Updated: 2019/09/19 14:56:42 by cgiron           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,7 @@ SRC_ASM = \
 		check_typecode.c\
 		fill_label.c\
 
-INC_ASM					:= asm.h op.h libft/libft.h libft/get_next_line.h
+INC_ASM					:= asm.h op.h libft/libft.h libft/get_next_line.h libft/ft_printf.h
 
 DEPENDANCIES_ASM_O		:= Makefile ./dependancies_$(L_ASM_DIR).mk\
 							../shared_val.mk
