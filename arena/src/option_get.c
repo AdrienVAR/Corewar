@@ -6,32 +6,14 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 11:36:10 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/19 15:03:48 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/19 17:03:04 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "arena.h"
 #include "libft/libft.h"
-
-static int		is_integer(char *line)
-{
-	int len;
-	int i;
-
-	len = 0;
-	i = 0;
-	while ((line[i] >= 8 && line[i] <= 13) || line[i] == 32)
-		++i;
-	if (line[i] == '+' || line[i] == '-')
-		++i;
-	while (line[i] == '0')
-		++i;
-	while (ft_isdigit(line[i + len]))
-		len++;
-	if ((len && !ft_atoi(line)) || i + len != (int)ft_strlen(line))
-		return (NO);
-	return (YES);
-}
+#include "libft/ft_printf.h"
+#include "utils.h"
 
 static int		option_check_dump(int argc, char **argv, int *i, t_opt *opt)
 {
@@ -52,10 +34,13 @@ static int		option_check_player(char *player, t_opt *option, int i)
 {
 	char	*end;
 
-	if (!(*player) || !(end = ft_strstr(player, COR_EXT)))
-		return (!(*player) ? YES : NO);
-	if (ft_strcmp(end, COR_EXT))
+	if (!(player))
+		return (YES);
+	if (!(end = ft_strstr(player, COR_EXT)) || ft_strcmp(end, COR_EXT))
+	{
+		ft_printf("Arg : %2.0~%s%~ not ending in .cor : %2.0~check validity%~\n", player);
 		return (NO);
+	}
 	option->player[option->nb_players][1] = i;
 	return (YES);
 }
@@ -64,29 +49,24 @@ static int		option_check_n(int argc, char **argv, int *i, t_opt *opt)
 {
 	int player_nb;
 
-	if (*i >= argc || ft_strcmp(argv[*i], OPT_N))
+	if (ft_strcmp(argv[*i], OPT_N))
 		return (YES);
 	if (*i + 2 < argc && is_integer(argv[*i + 1]))
 	{
 		player_nb = ft_atoi(argv[*i + 1]);
 		if (!ft_in_range(player_nb, 1, MAX_PLAYERS))
-		{
-			ft_putstr("	\e[31mPlayer number not in range (\e[32m >= 1 & <= ");
-			ft_putnbr(MAX_PLAYERS);
-			ft_putstr("\e[31m)\e[0m\n");
-			return (NO);
-		}
-		if (opt->player[player_nb - 1][0])
-		{
-			ft_putstr("	\e[31mDual player assignation\n\e[0m");
-			return (NO);
-		}
+			ft_printf("Player nb %2.0~%d%~ out of range\
+(between %3.0~1%~ and %3.0~%d%~)\n", player_nb ,MAX_PLAYERS);
+		else if (opt->player[player_nb - 1][0])
+			ft_printf("Player nb : %2.0~%d%~ already assigned\n", player_nb);
 		else
+		{
 			opt->player[player_nb - 1][0] = opt->nb_players + 1;
-		*i += 2;
-		return (YES);
+			*i += 2;
+			return (YES);
+		}
 	}
-	ft_putstr("\e[31m	Invalid -n usage\e[0m\n");
+	ft_printf("Invalid -n usage : %3.0~-n [nb] [player.cor]%~\n");
 	return (NO);
 }
 
@@ -144,10 +124,7 @@ int			option_get(t_opt *opt, int argc, char **argv)
 		else if (option_check_n(argc, argv, &i, opt) == NO)
 			return (NO);
 		else if (option_check_player(argv[i], opt, i) == NO)
-		{
-			ft_putstr("	\e[31mInvalid argument\e[0m\n");
 			return (NO);
-		}
 		else if (++opt->nb_players > MAX_PLAYERS)
 			return (NO);
 	}
