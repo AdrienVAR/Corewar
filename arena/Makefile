@@ -40,6 +40,7 @@ CC	  := gcc
 CFLAGS  := $(SHARE_FLAGS)
 
 vpath	%c $(SRC_DIR)/ex_command
+vpath	%c $(SRC_DIR)/utils
 
 .PHONY: all clean fclean re debug simulink depend
 
