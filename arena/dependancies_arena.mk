@@ -6,7 +6,7 @@
 #    By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/31 09:59:29 by cgiron            #+#    #+#              #
-#    Updated: 2019/09/19 14:16:34 by cgiron           ###   ########.fr        #
+#    Updated: 2019/09/19 15:03:59 by cgiron           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,7 @@ SRC_EX_COMMAND :=	\
 			ex_command_aff.c
 
 SRC_MAIN	:= \
-			get_opt.c\
+			option_get.c\
 			main.c\
 			memrevcpy.c\
 			init.c\
