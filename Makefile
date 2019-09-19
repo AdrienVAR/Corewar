@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cizeur <cizeur@student.42.fr>              +#+  +:+       +#+         #
+#    By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/17 12:16:41 by cgiron            #+#    #+#              #
-#    Updated: 2019/09/18 21:50:43 by cizeur           ###   ########.fr        #
+#    Updated: 2019/09/19 10:56:11 by cgiron           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,7 +60,7 @@ fclean:
 
 simulink:
 	$(MAKE) simulink -C $(L_ARENA_DIR) --no-print-directory
-	$(MAKE) simulink -C $(L_ASM_DIR) --no-print-director/
+	$(MAKE) simulink -C $(L_ASM_DIR) --no-print-director
 
 debug:
 	$(MAKE) debug -C $(L_ARENA_DIR) $(L_NAME) --no-print-directory

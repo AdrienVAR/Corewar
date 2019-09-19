@@ -6,7 +6,7 @@
 #    By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/19 10:08:33 by cgiron            #+#    #+#              #
-#    Updated: 2019/09/18 09:25:04 by cgiron           ###   ########.fr        #
+#    Updated: 2019/09/19 10:45:17 by cgiron           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,6 @@ CHECK_LIBFT_DEP := 1
 L_LIBFT_DIR	:= libft
 
 NAME_LIBFT	:= libft.a
-
 
 SRC_PRINTF :=	\
 	ft_asprintf.c\
@@ -61,8 +60,6 @@ SRC_PRINTF :=	\
 	ft_unicode.c\
 	type_prefixes.c
 
-SRC_PRINTF  := $(addprefix ./printf/,$(SRC_PRINTF))
-
 SRC_FTOA :=	ft_float_apply_exp.c\
 	ft_float_bin_dbl_extract.c\
 	ft_float_bin_ldbl_extract.c\
@@ -86,10 +83,7 @@ SRC_FTOA :=	ft_float_apply_exp.c\
 	ft_ftoa_ldbl.c\
 	ft_putnbr_str.c
 
-SRC_FTOA  := $(addprefix ./ftoa/,$(SRC_FTOA))
-
-SRC_LIBFT = $(SRC_FTOA)\
-	$(SRC_PRINTF)\
+SRC_STANDARD = \
 	ft_abs.c\
 	ft_atoi.c\
 	ft_atoi_base.c\
@@ -173,12 +167,16 @@ SRC_LIBFT = $(SRC_FTOA)\
 	ft_strjoin_free.c\
 	ft_in_range.c
 
+SRC_LIBFT					:= $(SRC_FTOA) $(SRC_PRINTF) $(SRC_STANDARD)
+SRC_LIBFT_EXPORT			:= $(addprefix ./printf/,$(SRC_PRINTF))\
+								$(addprefix ./ftoa/,$(SRC_FTOA))\
+								$(SRC_STANDARD)
+
 INC_LIBFT					:= libft.h get_next_line.h ft_printf.h ftoa.h
 
 DEPENDANCIES_LIBFT			:= Makefile ./dependancies_$(L_LIBFT_DIR).mk\
-								./dependancies_$(L_LIBFT_DIR)_object.mk\
 								../shared_val.mk
 INC_LIBFT_EXPORT			:= $(addprefix $(SHARE_INC_DIR)/,$(INC_LIBFT))
-SRC_LIBFT_EXPORT			:= $(addprefix $(SHARE_SRC_DIR)/,$(SRC_LIBFT))
+SRC_LIBFT_EXPORT			:= $(addprefix $(SHARE_SRC_DIR)/,$(SRC_LIBFT_EXPORT))
 DEPENDANCIES_LIBFT_E 		:= $(DEPENDANCIES_LIBFT) $(SRC_LIBFT_EXPORT) $(INC_LIBFT_EXPORT)
 DEPENDANCIES_LIBFT_EXPORT	:= $(addprefix $(L_LIBFT_DIR)/,$(DEPENDANCIES_LIBFT_E))
