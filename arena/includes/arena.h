@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/31 09:59:55 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/19 15:04:57 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/19 17:03:29 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -232,7 +232,6 @@ void			ex_command_lldi(t_master *mstr, t_process *process, char *arena);
 void			ex_command_lfork(t_master *mstr, t_process *process, char *arena);
 void			ex_command_aff(t_master *mstr, t_process *process, char *arena);
 
-void			*memrevcpy(void *dst, const void *src, int n);
 void			cursor_next_op(t_process *process);
 
 #endif
