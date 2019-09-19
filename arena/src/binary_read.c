@@ -6,13 +6,14 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 10:17:22 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/09 15:37:18 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/19 17:03:48 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "arena.h"
 #include "libft/libft.h"
 #include <unistd.h>
+#include "utils.h"
 
 int		binary_read_integer(int fd, t_master *mstr)
 {

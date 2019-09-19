@@ -6,12 +6,13 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 18:47:19 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/18 09:35:26 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/19 17:04:34 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "arena.h"
 #include "libft/ft_printf.h"
+#include "utils.h"
 
 static void			add_verbose(t_process *process)
 {

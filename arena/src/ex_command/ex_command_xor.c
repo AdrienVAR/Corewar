@@ -6,12 +6,13 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 15:18:04 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/18 09:38:43 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/19 17:05:10 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "arena.h"
 #include "libft/ft_printf.h"
+#include "utils.h"
 
 static void			xor_verbose(t_process *process, t_dir_cast *comp)
 {

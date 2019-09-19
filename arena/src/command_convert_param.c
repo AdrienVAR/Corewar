@@ -6,11 +6,12 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 09:52:51 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/14 18:39:04 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/19 17:04:12 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "arena.h"
+#include "utils.h"
 
 int			command_extract_register(t_command *command, int p_ind)
 {
