@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/31 09:59:55 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/18 15:38:19 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/19 15:04:57 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -207,7 +207,7 @@ void			war(t_master *mstr);
 t_op			operation_get_info(char op_code);
 void			exit_program(t_master *mstr);
 
-int				get_opt(t_opt *opt, int argc, char **argv);
+int				option_get(t_opt *opt, int argc, char **argv);
 
 int				command_get_info(t_process *cur_process, int pc, char *arena);
 void			command_get_types(t_process *cur_process, int pc, char *arena);

@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/31 09:59:05 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/12 18:15:58 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/19 15:04:30 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int				main(int argc, char **argv)
 	t_master	*mstr;
 	t_opt		options;
 
-	if (get_opt(&options, --argc, ++argv) == NO)
+	if (option_get(&options, --argc, ++argv) == NO)
 	{
 		ft_putstr(USAGE_STR);
 		return (0);
