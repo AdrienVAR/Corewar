@@ -65,8 +65,9 @@ SRC_MAIN	:= \
 			command_valid_types.c\
 			cursor_next_op.c\
 			war.c\
+			process_killing.c\
 			op.c\
-			exit.c\
+			exit.c
 
 SRC_ARENA					:= $(SRC_MAIN) $(SRC_EX_COMMAND) $(SRC_ARENA_UTILS)
 SRC_ARENA_EXPORT			:= $(addprefix ex_command/,$(SRC_EX_COMMAND))\
