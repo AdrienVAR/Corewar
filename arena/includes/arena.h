@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   arena.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cizeur <cizeur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/31 09:59:55 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/19 17:34:00 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/20 20:17:49 by cizeur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,8 +134,6 @@ typedef struct	s_player
 }				t_player;
 
 
-# define OPT_O "-o"
-# define OPT_V "-v"
 # define VERBOSE_LIFE 1
 # define VERBOSE_DEATH 2
 # define VERBOSE_BORN 4
@@ -143,8 +141,11 @@ typedef struct	s_player
 # define VERBOSE_CURS 16
 # define VERBOSE_CYCL 32
 
+
 # define OPT_N "-n"
 # define OPT_DUMP "-dump"
+# define OPT_VISU "-s"
+# define OPT_VERB "-v"
 # define COR_EXT ".cor"
 # define N_DUMP 1
 # define END_DUMP 2
@@ -211,6 +212,7 @@ void			arena_populate(t_master *mstr);
 void			memory_dump(t_master *mstr);
 void			player_give_process(t_master *mstr);
 void			war(t_master *mstr);
+int				process_killing(t_master *mstr, t_process **process);
 t_op			operation_get_info(char op_code);
 void			exit_program(t_master *mstr);
 
@@ -239,6 +241,6 @@ void			ex_command_lldi(t_master *mstr, t_process *process, char *arena);
 void			ex_command_lfork(t_master *mstr, t_process *process, char *arena);
 void			ex_command_aff(t_master *mstr, t_process *process, char *arena);
 
-void			cursor_next_op(t_process *process);
+void			cursor_next_op(t_process *process, int verbose);
 
 #endif
