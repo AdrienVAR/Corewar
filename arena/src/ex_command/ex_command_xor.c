@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ex_command_xor.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cizeur <cizeur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 15:18:04 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/19 17:05:10 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/20 20:01:46 by cizeur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ void			ex_command_xor(t_master *mstr, t_process *process, char *arena)
 	command.param_ext_conv[1] : command.param_conv[1];
 	reg_dst = command.param_conv[2].nb;
 	comp[2].nb = comp[0].nb ^ comp[1].nb;
-	xor_verbose(process, &(comp[0]));
 	memrevcpy(process->registry[reg_dst], comp[2].casted, DIR_SIZE);
 	process->carry = !(comp[2].nb) ? YES : NO;
+	if (mstr->options.verbose & VERBOSE_OPER)
+		xor_verbose(process, &(comp[0]));
 }

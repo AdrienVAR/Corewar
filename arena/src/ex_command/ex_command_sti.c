@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ex_command_sti.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cizeur <cizeur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/10 12:46:42 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/18 11:14:44 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/20 20:02:36 by cizeur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,6 @@ void			ex_command_sti(t_master *mstr, t_process *process, char *arena)
 	while (++i < DIR_SIZE)
 		arena_val_set(arena, src.casted[DIR_SIZE - 1 - i],
 			jump + i);
-	sti_verbose(process, jump);
+	if (mstr->options.verbose & VERBOSE_OPER)
+		sti_verbose(process, jump);
 }

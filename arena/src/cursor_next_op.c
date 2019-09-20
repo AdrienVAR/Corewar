@@ -3,23 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   cursor_next_op.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cizeur <cizeur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 15:41:18 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/18 12:34:41 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/20 20:21:25 by cizeur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "arena.h"
 #include "libft/ft_printf.h"
 
-static	void	cursor_verbose(int old_pc, int new_pc, int pcs_nb)
+static	void	cursor_verbose(int old_pc, int new_pc, int pcs_nb, int verb)
 {
+	if (!(verb & VERBOSE_CURS))
+		return;
 	ft_printf("Cursor    : %#06x -> %#06x = %d (P - %5d)\n",
 		old_pc, new_pc, new_pc - old_pc, pcs_nb);
 }
 
-void			cursor_next_op(t_process *process)
+void			cursor_next_op(t_process *process, int verbose)
 {
 	int			i;
 	int			pc;
@@ -46,6 +48,7 @@ void			cursor_next_op(t_process *process)
 			pc += size;
 		}
 	}
-	cursor_verbose(process->pc, pc % MEM_SIZE, process->vm.process_nb);
+	cursor_verbose(process->pc, pc % MEM_SIZE,
+	process->vm.process_nb, verbose);
 	process->pc = pc % MEM_SIZE;
 }

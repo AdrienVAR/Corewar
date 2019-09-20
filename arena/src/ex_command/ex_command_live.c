@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ex_command_live.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cizeur <cizeur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 18:47:19 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/18 09:50:50 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/20 19:59:29 by cizeur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ void			ex_command_live(t_master *mstr, t_process *process, char *arena)
 	command = process->vm.command;
 	process->vm.last_live = -1;
 	process->vm.alive = command.param_conv[0].nb;
-	live_verbose(process);
+	if (mstr->options.verbose & VERBOSE_OPER)
+		live_verbose(process);
 	if (process->vm.alive >= 1
 		&& process->vm.alive <= mstr->nb_of_players)
 		mstr->last_player_live = process->vm.alive;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ex_command_lfork.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cizeur <cizeur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 18:47:19 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/18 15:38:49 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/20 20:42:46 by cizeur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,15 @@ static void	lfork_verbose(t_process *process, t_process *new)
 		process->pc,
 		new->pc,
 		new->vm.process_nb);
+}
+
+static void			born_verbose(t_process *new, t_master *mstr)
+{
+	ft_printf("P - %5d is BORN at PC : %5d [ A: %d / T :%d ]\n",
+		new->vm.process_nb,
+		new->pc,
+		mstr->active_processes,
+		mstr->total_processes);
 }
 
 void		ex_command_lfork(t_master *mstr, t_process *process, char *arena)
@@ -42,5 +51,8 @@ void		ex_command_lfork(t_master *mstr, t_process *process, char *arena)
 	new_process->vm.process_nb = ++mstr->total_processes;
 	++mstr->active_processes;
 	mstr->process = new_process;
-	lfork_verbose(process, new_process);
+	if (mstr->options.verbose & VERBOSE_OPER)
+		lfork_verbose(process, new_process);
+	if (mstr->options.verbose & VERBOSE_BORN)
+		born_verbose(new_process, mstr);
 }

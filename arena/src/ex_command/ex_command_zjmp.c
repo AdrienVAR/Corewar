@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ex_command_zjmp.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cizeur <cizeur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 18:47:19 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/18 09:34:21 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/20 19:46:46 by cizeur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ void			ex_command_zjmp(t_master *mstr, t_process *process, char *arena)
 {
 	(void)mstr;
 	(void)arena;
-	zjmp_verbose(process, process->carry);
+	if (mstr->options.verbose & VERBOSE_OPER)
+		zjmp_verbose(process, process->carry);
 	if (process->carry == NO)
 		return ;
 	process->pc = process->pc + process->vm.command.param_conv[0].nb % IDX_MOD;

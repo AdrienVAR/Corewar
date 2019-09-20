@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ex_command_ldi.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cizeur <cizeur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 18:47:19 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/19 17:05:19 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/20 19:45:56 by cizeur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,8 @@ void			ex_command_ldi(t_master *mstr, t_process *process, char *arena)
 	while (++i < DIR_SIZE)
 		dest_val.casted[DIR_SIZE - i - 1] =
 			arena_val_get(arena, jump + i);
-	ldi_verbose(process, jump, dest_val.nb);
 	memrevcpy(process->registry[elem[2].nb], dest_val.casted, DIR_SIZE);
 	process->carry = !dest_val.nb ? YES : NO;
+	if (mstr->options.verbose & VERBOSE_OPER)
+		ldi_verbose(process, jump, dest_val.nb);
 }

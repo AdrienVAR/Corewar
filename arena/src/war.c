@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   war.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cizeur <cizeur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/03 14:07:46 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/19 15:54:04 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/20 20:18:10 by cizeur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void			run_command(t_master *mstr, t_process *cur_process, char *arena)
 		if (op_id && op_id < AVAILABLE_OPERATIONS)
 			ex_command[op_id](mstr, cur_process, arena);
 	}
-	cursor_next_op(cur_process);
+	cursor_next_op(cur_process, mstr->options.verbose);
 	cur_process->vm.alive = 0;
 	ft_bzero(&(cur_process->vm.command), sizeof(t_command));
 }
@@ -72,42 +72,7 @@ void			run_cycle(t_master *mstr)
 	}
 }
 
-int			kill_processes(t_master *mstr, t_process **process)
-{
-	t_process *prev;
-	t_process *cur;
-	t_process *next;
-	int test;
 
-	prev = 0;
-	cur = *process;
-	next = cur->next;
-	while (cur)
-	{
-		test = cur->vm.process_nb;
-		if (cur->vm.last_live >= mstr->foamy_bat_cycle)
-		{
-			ft_printf("Cycle %d, death of process %d : last live %d : [A: %d / T :%d ] and [CTD = %d]\n",
-			mstr->cur_cycle ,cur->vm.process_nb, cur->vm.last_live, --mstr->active_processes, mstr->total_processes, mstr->foamy_bat_cycle);
-			ft_bzero(cur, sizeof(t_process));
-			ft_memdel((void **)&cur);
-			if (!prev)
-				*process = next;
-			else
-				prev->next = next;
-		}
-		prev = cur ? cur : prev;
-		cur = next;
-		next = cur ? cur->next : next;
-	}
-	if (++mstr->check == MAX_CHECKS || mstr->live_signal >= NBR_LIVE)
-	{
-		mstr->check = 0;
-		mstr->foamy_bat_cycle -= CYCLE_DELTA;
-	}
-	mstr->live_signal = 0;
-	return (mstr->foamy_bat_cycle);
-}
 
 void			war(t_master *mstr)
 {
@@ -120,10 +85,11 @@ void			war(t_master *mstr)
 			&& mstr->options.end_dump == N_DUMP)
 			break ;
 		++mstr->cur_cycle;
-	ft_printf("Current Cycle %d \n", mstr->cur_cycle);
+		if (mstr->options.verbose & VERBOSE_CYCL)
+			ft_printf("Current Cycle %d \n", mstr->cur_cycle);
 		ctd--;
 		run_cycle(mstr);
 		if (ctd <= 0)
-			ctd = kill_processes(mstr, &mstr->process);
+			ctd = process_killing(mstr, &mstr->process);
 	}
 }

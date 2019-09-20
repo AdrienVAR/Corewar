@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ex_command_lld.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cizeur <cizeur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 18:47:19 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/19 17:05:26 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/20 19:59:53 by cizeur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,9 @@ void			ex_command_lld(t_master *mstr, t_process *process, char *arena)
 			(command.param_ext_conv[0].casted[DIR_SIZE - IND_SIZE + i]);
 	load_val.nb = command.types[0].type == T_IND ?
 		ind_case.nb : command.param_conv[0].nb;
-	lld_verbose(process, load_val.nb);
 	memrevcpy(process->registry[command.param_conv[1].nb],
 		load_val.casted, DIR_SIZE);
 	process->carry = !load_val.nb ? YES : NO;
+	if (mstr->options.verbose & VERBOSE_OPER)
+		lld_verbose(process, load_val.nb);
 }

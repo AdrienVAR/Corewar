@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ex_command_st.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cizeur <cizeur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 18:47:19 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/18 11:14:31 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/20 20:00:59 by cizeur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,5 +59,6 @@ void			ex_command_st(t_master *mstr, t_process *process, char *arena)
 		while (++i < DIR_SIZE)
 			process->registry[reg[1]][i] = process->registry[reg[0]][i];
 	}
-	st_verbose(process, jump);
+	if (mstr->options.verbose & VERBOSE_OPER)
+		st_verbose(process, jump);
 }

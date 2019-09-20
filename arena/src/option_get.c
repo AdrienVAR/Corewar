@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   option_get.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cizeur <cizeur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 11:36:10 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/19 17:56:46 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/20 19:58:01 by cizeur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,23 @@
 #include "libft/ft_printf.h"
 #include "utils.h"
 
-static int		option_check_dump(int argc, char **argv, int *i, t_opt *opt)
+static int		option_dump_verbose(int argc, char **argv, int *i, t_opt *opt)
 {
-	if (*i >= argc || ft_strcmp(argv[*i], OPT_DUMP))
+	int which;
+
+	if (*i >= argc || (ft_strcmp(argv[*i], OPT_DUMP)
+		&& ft_strcmp(argv[*i], OPT_VERB)))
 		return (NO);
+	which = !ft_strcmp(argv[*i], OPT_DUMP) ? 1 : 0;
 	if (*i + 1 < argc && is_integer(argv[*i + 1]) && ft_atoi(argv[*i + 1]) >= 0)
 	{
-		opt->end_dump = N_DUMP;
-		opt->dump = ft_atoi(argv[*i + 1]);
+		opt->end_dump = which ? N_DUMP : opt->end_dump;
+		opt->dump = which ? ft_atoi(argv[*i + 1]) : opt->dump;
+		opt->verbose = !which ? ft_atoi(argv[*i + 1]) : opt->verbose;
 		(*i)++;
 	}
 	else
-		opt->end_dump = END_DUMP;
+		opt->end_dump = which ? END_DUMP : opt->end_dump;
 	return (YES);
 }
 
@@ -113,9 +118,9 @@ int			option_get(t_opt *opt, int argc, char **argv)
 	i = -1;
 	while (++i < argc)
 	{
-		if (!ft_strcmp(argv[i], OPT_V))
+		if (!ft_strcmp(argv[i], OPT_VISU))
 			opt->visu = YES;
-		else if (option_check_dump(argc, argv, &i, opt) == YES)
+		else if (option_dump_verbose(argc, argv, &i, opt) == YES)
 			continue;
 		else if (option_check_n(argc, argv, &i, opt) == NO)
 			return (NO);

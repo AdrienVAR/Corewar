@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ex_command_aff.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cizeur <cizeur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 18:47:19 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/18 17:09:48 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/20 19:44:01 by cizeur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void			ex_command_aff(t_master *mstr, t_process *process, char *arena)
 {
 	(void)mstr;
 	(void)arena;
-	aff_verbose(process);
 	ft_printf("%c\n", process->vm.command.param_ext_conv[0].nb % 256);
+	if (mstr->options.verbose & VERBOSE_OPER)
+		aff_verbose(process);
 }
