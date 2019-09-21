@@ -6,7 +6,7 @@
 /*   By: cizeur <cizeur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/31 09:59:55 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/20 20:17:49 by cizeur           ###   ########.fr       */
+/*   Updated: 2019/09/21 17:39:24 by cizeur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -215,6 +215,7 @@ void			war(t_master *mstr);
 int				process_killing(t_master *mstr, t_process **process);
 t_op			operation_get_info(char op_code);
 void			exit_program(t_master *mstr);
+void			free_everything(t_master *mstr);
 
 int				option_get(t_opt *opt, int argc, char **argv);
 

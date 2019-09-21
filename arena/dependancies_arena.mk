@@ -67,7 +67,8 @@ SRC_MAIN	:= \
 			war.c\
 			process_killing.c\
 			op.c\
-			exit.c
+			exit.c\
+			free_everything.c
 
 SRC_ARENA					:= $(SRC_MAIN) $(SRC_EX_COMMAND) $(SRC_ARENA_UTILS)
 SRC_ARENA_EXPORT			:= $(addprefix ex_command/,$(SRC_EX_COMMAND))\
