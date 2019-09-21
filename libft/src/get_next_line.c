@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cizeur <cizeur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/20 17:40:14 by cgiron            #+#    #+#             */
-/*   Updated: 2019/07/12 15:04:56 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/21 21:34:39 by cizeur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ static int		ft_complete_line(char **gnl, int fd, char *buf, int *r)
 		free(temp);
 		if (!gnl[fd])
 			return (0);
+		if ((int)ft_strlen(gnl[fd]) != *r)
+			return (ft_free_return(&gnl[fd], 0));
 		ft_bzero(buf, BUFF_SIZE + 1);
 	}
 	return (1);
