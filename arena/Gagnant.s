@@ -1,5 +1,5 @@
 .comment	"Jour .J"
-.name		"CelebrationCDV86FQwJ7FvTjtNIttPa9KBkkZQSEqBIGrfjiHO4qp7tEJRZWENzH5ak1NWJPYymqLkYsCXgFglnWlgNCw2lZ8nbWKLfXtIEP2T63dkgn53wWMr45em6"
+.name		"Celebration"
 
 		ld   %0,r3		
 label:		zjmp %:avantdebut
