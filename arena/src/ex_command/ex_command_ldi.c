@@ -6,7 +6,7 @@
 /*   By: cizeur <cizeur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 18:47:19 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/20 19:45:56 by cizeur           ###   ########.fr       */
+/*   Updated: 2019/09/21 20:53:40 by cizeur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void			ldi_verbose(t_process *process, int jump, int dest_val)
 	ft_printf("%d + ", command.param_conv[0].nb + cor);
 	cor = command.types[1].type == T_REG ? 1 : 0;
 	if (command.types[1].type == T_REG)
-		ft_printf("r");
+		ft_printf("(val = %d) r", command.param_ext_conv[1].nb);
 	ft_printf("%d = > r%d", command.param_conv[1].nb + cor,
 		command.param_conv[2].nb + 1);
 	ft_printf(" from pc : %d (val = %d)\n", jump, dest_val);
@@ -56,7 +56,6 @@ void			ex_command_ldi(t_master *mstr, t_process *process, char *arena)
 		dest_val.casted[DIR_SIZE - i - 1] =
 			arena_val_get(arena, jump + i);
 	memrevcpy(process->registry[elem[2].nb], dest_val.casted, DIR_SIZE);
-	process->carry = !dest_val.nb ? YES : NO;
 	if (mstr->options.verbose & VERBOSE_OPER)
 		ldi_verbose(process, jump, dest_val.nb);
 }
