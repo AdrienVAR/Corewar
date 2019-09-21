@@ -6,7 +6,7 @@
 /*   By: cizeur <cizeur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 11:36:10 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/20 19:58:01 by cizeur           ###   ########.fr       */
+/*   Updated: 2019/09/21 17:19:17 by cizeur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,10 @@ static int		option_dump_verbose(int argc, char **argv, int *i, t_opt *opt)
 		(*i)++;
 	}
 	else
+	{
+		opt->verbose = !which ? 0 : opt->verbose;
 		opt->end_dump = which ? END_DUMP : opt->end_dump;
+	}
 	return (YES);
 }
 
