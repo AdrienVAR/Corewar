@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   war.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cizeur <cizeur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/03 14:07:46 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/20 20:18:10 by cizeur           ###   ########.fr       */
+/*   Updated: 2019/09/23 10:24:51 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,22 +57,12 @@ void			run_cycle(t_master *mstr)
 			run_command(mstr, cur_process, arena);
 		}
 		else if (!cur_process->vm.wait)
-		{
-			if (command_get_info(cur_process, cur_process->pc, arena) == YES)
-				;
-			else
-			{
-				cur_process->vm.wait++;
-				cur_process->pc++;
-			}
-		}
+			command_get_info(cur_process, cur_process->pc, arena);
 		cur_process->vm.wait--;
 		cur_process->vm.last_live++;
 		cur_process = cur_process->next;
 	}
 }
-
-
 
 void			war(t_master *mstr)
 {

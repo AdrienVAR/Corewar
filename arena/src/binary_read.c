@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 10:17:22 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/19 17:03:48 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/23 09:35:14 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int		binary_read_integer(int fd, t_master *mstr)
 {
 	char			nb_str[4];
 	int				read_ret;
-	t_int_cast 		caster;
+	t_int_cast		caster;
 
 	caster.nb = 0;
 	ft_bzero(nb_str, 4);

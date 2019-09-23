@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 14:31:12 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/14 16:16:57 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/23 10:26:46 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void		command_get_types(t_process *cur_process, int pc, char *arena)
 {
 	int			i;
 	t_uchar		type;
-	t_uchar 	type_code;
+	t_uchar		type_code;
 
 	if (!cur_process->vm.command.op.type_needed)
 	{
@@ -33,18 +33,23 @@ void		command_get_types(t_process *cur_process, int pc, char *arena)
 	}
 }
 
-int			command_get_info(t_process *cur_process, int pc, char *arena)
+void		command_get_info(t_process *cur_process, int pc, char *arena)
 {
 	t_op			operation;
 	char			op_code;
 
 	op_code = arena_val_get(arena, pc);
 	operation = operation_get_info(op_code);
-	if (!operation.id)
-		return (NO);
-	cur_process->vm.command.op = operation;
-	cur_process->vm.wait = operation.duration;
-	return (YES);
+	if (operation.id)
+	{
+		cur_process->vm.command.op = operation;
+		cur_process->vm.wait = operation.duration;
+	}
+	else
+	{
+		cur_process->vm.wait++;
+		cur_process->pc++;
+	}
 }
 
 void		command_get_param(t_process *cur_process, char *arena)

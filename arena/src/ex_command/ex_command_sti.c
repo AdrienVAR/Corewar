@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/10 12:46:42 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/23 09:32:13 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/23 10:30:57 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void		sti_verbose(t_process *process, int jump)
 	ft_printf(" src: r%d (val = %d)",
 		command.param_conv[0].nb + 1, command.param_ext_conv[0].nb);
 	cor = command.types[1].type == T_REG ? 1 : 0;
-	ft_printf(" => dest : pc + ");
+	ft_printf(" => dest : pc (val = %d) + ", process->pc);
 	if (command.types[1].type != T_DIR)
 		ft_printf("%s", command.types[1].type == T_REG ? "r" : "[IND] ");
 	ft_printf("%d + ", command.param_conv[1].nb + cor);
@@ -33,7 +33,7 @@ static void		sti_verbose(t_process *process, int jump)
 		ft_printf("r");
 	cor = command.types[2].type == T_REG ? 1 : 0;
 	ft_printf("%d", command.param_conv[2].nb + cor);
-	ft_printf(" to pc : %d \n", jump);
+	ft_printf(" => pc : %d \n", jump);
 }
 
 void			ex_command_sti(t_master *mstr, t_process *process, char *arena)

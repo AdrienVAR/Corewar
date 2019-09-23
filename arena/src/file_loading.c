@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/31 16:38:37 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/12 18:06:00 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/23 10:19:11 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,15 +37,16 @@ static void	ft_error_on_opening(char *filename, t_master *mstr)
 
 void		file_loading(t_master *mstr, char **argv)
 {
-	int i;
-	int fd;
-	char *filename;
+	int		i;
+	int		fd;
+	char	*filename;
+	int		player_nb;
 
 	i = -1;
-
 	while (++i < mstr->nb_of_players)
 	{
-		filename = argv[mstr->options.player[mstr->options.player[i][0] - 1][1]];
+		player_nb = mstr->options.player[mstr->options.player[i][0] - 1][1];
+		filename = argv[player_nb];
 		fd = open(filename, O_RDONLY);
 		if (fd == -1)
 			ft_error_on_opening(filename, mstr);

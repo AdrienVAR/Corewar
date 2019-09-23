@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   arena.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cizeur <cizeur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/31 09:59:55 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/21 17:39:24 by cizeur           ###   ########.fr       */
+/*   Updated: 2019/09/23 10:24:27 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,9 @@
 # define ARENA_H
 
 # include "op.h"
-# include <stdio.h> //to remove
 
-extern t_op	g_op_tab[AVAILABLE_OPERATIONS];
-extern t_type	g_type[4];
+extern t_op				g_op_tab[AVAILABLE_OPERATIONS];
+extern t_type			g_type[4];
 
 /*
 **		*******
@@ -37,7 +36,7 @@ extern t_type	g_type[4];
 */
 
 # define USAGE_STR "./corewar [-dump nbr_cycles] [[-n number] champion1.cor]\n"
-# define DUMP_SIZE 64 // change back to 32
+# define DUMP_SIZE 64 //change back to 32
 
 /*
 ** **	OPTION
@@ -77,42 +76,38 @@ typedef union			u_reg_cast
 
 typedef unsigned char	t_uchar;
 
-
-
 /*
 **		*********************************
 ** **	Process List we can cycle through ** **
 **		*********************************
 */
 
-typedef	struct	s_command
+typedef	struct			s_command
 {
-	t_op		op;
-	char		param[MAX_ARGS_NUMBER][MAX_SIZE];
-	t_dir_cast	param_conv[MAX_ARGS_NUMBER];
-	t_dir_cast	param_ext_conv[MAX_ARGS_NUMBER];
-	t_type		types[MAX_ARGS_NUMBER];
-}				t_command;
+	t_op				op;
+	char				param[MAX_ARGS_NUMBER][MAX_SIZE];
+	t_dir_cast			param_conv[MAX_ARGS_NUMBER];
+	t_dir_cast			param_ext_conv[MAX_ARGS_NUMBER];
+	t_type				types[MAX_ARGS_NUMBER];
+}						t_command;
 
-
-typedef	struct	s_vm_pcs_track
+typedef	struct			s_vm_pcs_track
 {
-	int			last_live;
-	int			alive;
-	int			wait;
-	int			process_nb;
-	t_command	command;
-}				t_vm_pcs_track;
+	int					last_live;
+	int					alive;
+	int					wait;
+	int					process_nb;
+	t_command			command;
+}						t_vm_pcs_track;
 
-
-typedef struct	s_process
+typedef struct			s_process
 {
 	char				registry[REG_NUMBER][DIR_SIZE];
 	int					pc;
 	int					carry;
 	t_vm_pcs_track		vm;
 	struct s_process	*next;
-}				t_process;
+}						t_process;
 
 /*
 **		************
@@ -120,19 +115,18 @@ typedef struct	s_process
 **		************
 */
 
-typedef struct	s_player
+typedef struct			s_player
 {
-	int				magic;
-	int				nb;
-	int				fd;
-	int				cursor_initial_pos;
-	char			*binary_name;
-	int				code_size;
-	char			name[PROG_NAME_LENGTH + 1];
-	char			comment[COMMENT_LENGTH + 1];
-	char			exec[CHAMP_MAX_SIZE + 1];
-}				t_player;
-
+	int					magic;
+	int					nb;
+	int					fd;
+	int					cursor_initial_pos;
+	char				*binary_name;
+	int					code_size;
+	char				name[PROG_NAME_LENGTH + 1];
+	char				comment[COMMENT_LENGTH + 1];
+	char				exec[CHAMP_MAX_SIZE + 1];
+}						t_player;
 
 # define VERBOSE_LIFE 1
 # define VERBOSE_DEATH 2
@@ -140,7 +134,6 @@ typedef struct	s_player
 # define VERBOSE_OPER 8
 # define VERBOSE_CURS 16
 # define VERBOSE_CYCL 32
-
 
 # define OPT_N "-n"
 # define OPT_DUMP "-dump"
@@ -150,16 +143,15 @@ typedef struct	s_player
 # define N_DUMP 1
 # define END_DUMP 2
 
-typedef struct	s_opt
+typedef struct			s_opt
 {
-	int		verbose;
-	char	visu;
-	int		dump;
-	int		end_dump;
-	int		player[MAX_PLAYERS][2];
-	int		nb_players;
-}				t_opt;
-
+	int					verbose;
+	char				visu;
+	int					dump;
+	int					end_dump;
+	int					player[MAX_PLAYERS][2];
+	int					nb_players;
+}						t_opt;
 
 /*
 **		**********************************************
@@ -167,22 +159,22 @@ typedef struct	s_opt
 **		**********************************************
 */
 
-typedef struct	s_master
+typedef struct			s_master
 {
-	int				magic_number;
-	int				nb_of_players;
-	int				last_player_live;
-	int				live_signal;
-	int				check;
-	int				active_processes;
-	int				total_processes;
-	char			arena[MEM_SIZE];
-	t_player		*players[MAX_PLAYERS];
-	t_process		*process;
-	t_opt			options;
-	int				foamy_bat_cycle;
-	int				cur_cycle;
-}				t_master;
+	int					magic_number;
+	int					nb_of_players;
+	int					last_player_live;
+	int					live_signal;
+	int					check;
+	int					active_processes;
+	int					total_processes;
+	char				arena[MEM_SIZE];
+	t_player			*players[MAX_PLAYERS];
+	t_process			*process;
+	t_opt				options;
+	int					foamy_bat_cycle;
+	int					cur_cycle;
+}						t_master;
 
 /*
 **		**********
@@ -190,58 +182,74 @@ typedef struct	s_master
 **		**********
 */
 
-void			init(t_master **mstr, t_opt *options);
-void			file_loading(t_master *mstr, char **argv);
-void			deassembler(t_master *mstr);
-void			file_closing(t_master *mstr);
-
-
-
-t_uchar			arena_val_get(char *arena, int ind);
-void			arena_val_set(char *arena, char c,int ind);
-t_type			type_val(int type_code);
+void					init(t_master **mstr, t_opt *options);
+void					file_loading(t_master *mstr, char **argv);
+void					deassembler(t_master *mstr);
+void					file_closing(t_master *mstr);
+t_uchar					arena_val_get(char *arena, int ind);
+void					arena_val_set(char *arena, char c, int ind);
+t_type					type_val(int type_code);
 
 /*
 ** **	BINARY_READ
 */
 
-int				binary_read_integer(int fd, t_master *mstr);
-void			binary_read_string(int fd, char *str, int sz, t_master *mstr);
-void			binary_read_null(int fd, t_master *mstr);
-void			arena_populate(t_master *mstr);
-void			memory_dump(t_master *mstr);
-void			player_give_process(t_master *mstr);
-void			war(t_master *mstr);
-int				process_killing(t_master *mstr, t_process **process);
-t_op			operation_get_info(char op_code);
-void			exit_program(t_master *mstr);
-void			free_everything(t_master *mstr);
+int						binary_read_integer(int fd, t_master *mstr);
+void					binary_read_string(int fd, char *str, int sz,
+							t_master *mstr);
+void					binary_read_null(int fd, t_master *mstr);
+void					arena_populate(t_master *mstr);
+void					memory_dump(t_master *mstr);
+void					player_give_process(t_master *mstr);
+void					war(t_master *mstr);
+int						process_killing(t_master *mstr, t_process **process);
+t_op					operation_get_info(char op_code);
+void					exit_program(t_master *mstr);
+void					free_everything(t_master *mstr);
+int						option_get(t_opt *opt, int argc, char **argv);
 
-int				option_get(t_opt *opt, int argc, char **argv);
+void					command_get_info(t_process *cur_process,
+							int pc, char *arena);
+void					command_get_types(t_process *cur_process,
+							int pc, char *arena);
+void					command_get_param(t_process *cur_process, char *arena);
+int						command_convert_param(t_process *process, char *arena);
+int						command_valid_types(t_command command);
+t_dir_cast				command_extract_direct_value(char *arena, int dec,
+							int pos);
+void					ex_command_live(t_master *mstr,
+							t_process *process, char *arena);
+void					ex_command_ld(t_master *mstr,
+							t_process *process, char *arena);
+void					ex_command_st(t_master *mstr,
+							t_process *process, char *arena);
+void					ex_command_add(t_master *mstr,
+							t_process *process, char *arena);
+void					ex_command_sub(t_master *mstr,
+							t_process *process, char *arena);
+void					ex_command_and(t_master *mstr,
+							t_process *process, char *arena);
+void					ex_command_or(t_master *mstr,
+							t_process *process, char *arena);
+void					ex_command_xor(t_master *mstr,
+							t_process *process, char *arena);
+void					ex_command_zjmp(t_master *mstr,
+							t_process *process, char *arena);
+void					ex_command_ldi(t_master *mstr,
+							t_process *process, char *arena);
+void					ex_command_sti(t_master *mstr,
+							t_process *process, char *arena);
+void					ex_command_fork(t_master *mstr,
+							t_process *process, char *arena);
+void					ex_command_lld(t_master *mstr,
+							t_process *process, char *arena);
+void					ex_command_lldi(t_master *mstr,
+							t_process *process, char *arena);
+void					ex_command_lfork(t_master *mstr,
+							t_process *process, char *arena);
+void					ex_command_aff(t_master *mstr,
+							t_process *process, char *arena);
 
-int				command_get_info(t_process *cur_process, int pc, char *arena);
-void			command_get_types(t_process *cur_process, int pc, char *arena);
-void			command_get_param(t_process *cur_process, char *arena);
-int				command_convert_param(t_process *process, char *arena);
-int				command_valid_types(t_command command);
-t_dir_cast		command_extract_direct_value(char *arena, int dec, int pos);
-void			ex_command_live(t_master *mstr, t_process *process, char *arena);
-void			ex_command_ld(t_master *mstr, t_process *process, char *arena);
-void			ex_command_st(t_master *mstr, t_process *process, char *arena);
-void			ex_command_add(t_master *mstr, t_process *process, char *arena);
-void			ex_command_sub(t_master *mstr, t_process *process, char *arena);
-void			ex_command_and(t_master *mstr, t_process *process, char *arena);
-void			ex_command_or(t_master *mstr, t_process *process, char *arena);
-void			ex_command_xor(t_master *mstr, t_process *process, char *arena);
-void			ex_command_zjmp(t_master *mstr, t_process *process, char *arena);
-void			ex_command_ldi(t_master *mstr, t_process *process, char *arena);
-void			ex_command_sti(t_master *mstr, t_process *process, char *arena);
-void			ex_command_fork(t_master *mstr, t_process *process, char *arena);
-void			ex_command_lld(t_master *mstr, t_process *process, char *arena);
-void			ex_command_lldi(t_master *mstr, t_process *process, char *arena);
-void			ex_command_lfork(t_master *mstr, t_process *process, char *arena);
-void			ex_command_aff(t_master *mstr, t_process *process, char *arena);
-
-void			cursor_next_op(t_process *process, int verbose);
+void					cursor_next_op(t_process *process, int verbose);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 09:02:21 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/06 12:38:50 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/23 09:35:27 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,6 @@ void			deassembler(t_master *mstr)
 		binary_read_null(player->fd, mstr);
 		if (player->code_size < CHAMP_MAX_SIZE && player->code_size > 0)
 			binary_read_string(
-			player->fd, &(player->exec[0]), player->code_size , mstr);
+			player->fd, &(player->exec[0]), player->code_size, mstr);
 	}
 }

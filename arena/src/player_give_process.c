@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_give_process.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cizeur <cizeur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/03 09:21:52 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/21 21:00:07 by cizeur           ###   ########.fr       */
+/*   Updated: 2019/09/23 10:17:36 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 **		****************************************************
 */
 
-static void			born_verbose(t_process *new, t_master *mstr)
+static void		born_verbose(t_process *new, t_master *mstr)
 {
 	ft_printf("P - %5d is BORN at PC : %5d [ A: %d / T :%d ]\n",
 		new->vm.process_nb,
@@ -30,7 +30,7 @@ static void			born_verbose(t_process *new, t_master *mstr)
 		mstr->total_processes);
 }
 
-void		player_give_process(t_master *mstr)
+void			player_give_process(t_master *mstr)
 {
 	t_process	*process;
 	t_player	*player;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   option_get.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cizeur <cizeur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 11:36:10 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/21 17:19:17 by cizeur           ###   ########.fr       */
+/*   Updated: 2019/09/23 10:21:22 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ static int		option_set_player(t_opt *opt)
 	return (YES);
 }
 
-int			option_get(t_opt *opt, int argc, char **argv)
+int				option_get(t_opt *opt, int argc, char **argv)
 {
 	int i;
 
