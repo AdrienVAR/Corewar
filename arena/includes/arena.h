@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/31 09:59:55 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/23 10:24:27 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/23 18:57:27 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 # define ARENA_H
 
 # include "op.h"
+# include "visu_arena.h"
+
+#    include <stdio.h>
 
 extern t_op				g_op_tab[AVAILABLE_OPERATIONS];
 extern t_type			g_type[4];
@@ -97,6 +100,7 @@ typedef	struct			s_vm_pcs_track
 	int					alive;
 	int					wait;
 	int					process_nb;
+	int					player;
 	t_command			command;
 }						t_vm_pcs_track;
 
@@ -137,7 +141,7 @@ typedef struct			s_player
 
 # define OPT_N "-n"
 # define OPT_DUMP "-dump"
-# define OPT_VISU "-s"
+# define OPT_VISU "-visu"
 # define OPT_VERB "-v"
 # define COR_EXT ".cor"
 # define N_DUMP 1
@@ -169,11 +173,14 @@ typedef struct			s_master
 	int					active_processes;
 	int					total_processes;
 	char				arena[MEM_SIZE];
+	char				col_arena[MEM_SIZE];
 	t_player			*players[MAX_PLAYERS];
 	t_process			*process;
 	t_opt				options;
 	int					foamy_bat_cycle;
+	int					ctd;
 	int					cur_cycle;
+	t_visu				*visu;
 }						t_master;
 
 /*
@@ -202,10 +209,12 @@ void					arena_populate(t_master *mstr);
 void					memory_dump(t_master *mstr);
 void					player_give_process(t_master *mstr);
 void					war(t_master *mstr);
+void					run_cycle(t_master *mstr);
 int						process_killing(t_master *mstr, t_process **process);
 t_op					operation_get_info(char op_code);
 void					exit_program(t_master *mstr);
 void					free_everything(t_master *mstr);
+void					print_winner(t_player *player);
 int						option_get(t_opt *opt, int argc, char **argv);
 
 void					command_get_info(t_process *cur_process,
@@ -251,5 +260,10 @@ void					ex_command_aff(t_master *mstr,
 							t_process *process, char *arena);
 
 void					cursor_next_op(t_process *process, int verbose);
+
+void					visu_corewar(t_master *mstr);
+void					exit_visu(t_master *mstr);
+void					refresh_arena(t_master *mstr, t_visu *visu);
+void					visu_one_turn(t_master *mstr, t_visu *visu);
 
 #endif
