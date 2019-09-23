@@ -25,7 +25,9 @@ $(error LIBFT_DEPENDANCIES not included)
 endif
 
 L_FT	:= ../libft
+L_MLX	:= ../mlx
 EXFLAGS := -L $(L_FT) -lft $(SHARE_FLAGS)
+EXFLAGS += -L $(L_MLX) -lmlx -framework OpenGL -framework AppKit
 SIMULINK := $(SHARE_INC_DIR)/$(NAME_LIBFT)
 
 NAME	 := $(NAME_ARENA)
@@ -40,6 +42,7 @@ CC	  := gcc
 CFLAGS  := $(SHARE_FLAGS)
 
 vpath	%c $(SRC_DIR)/ex_command
+vpath	%c $(SRC_DIR)/visu
 vpath	%c $(SRC_DIR)/utils
 
 .PHONY: all clean fclean re debug simulink depend
