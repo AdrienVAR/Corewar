@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/03 14:07:46 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/23 10:24:51 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/23 18:29:19 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,7 @@ void			run_cycle(t_master *mstr)
 
 void			war(t_master *mstr)
 {
-	int		ctd;
-
-	ctd = mstr->foamy_bat_cycle;
+	mstr->ctd = mstr->foamy_bat_cycle;
 	while (mstr->process)
 	{
 		if (mstr->cur_cycle >= mstr->options.dump
@@ -77,9 +75,9 @@ void			war(t_master *mstr)
 		++mstr->cur_cycle;
 		if (mstr->options.verbose & VERBOSE_CYCL)
 			ft_printf("Current Cycle %d \n", mstr->cur_cycle);
-		ctd--;
+		mstr->ctd--;
 		run_cycle(mstr);
-		if (ctd <= 0)
-			ctd = process_killing(mstr, &mstr->process);
+		if (mstr->ctd <= 0)
+			mstr->ctd = process_killing(mstr, &mstr->process);
 	}
 }
