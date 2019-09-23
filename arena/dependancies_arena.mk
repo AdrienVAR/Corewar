@@ -6,7 +6,7 @@
 #    By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/31 09:59:29 by cgiron            #+#    #+#              #
-#    Updated: 2019/09/19 17:07:53 by cgiron           ###   ########.fr        #
+#    Updated: 2019/09/23 18:48:42 by cgiron           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,17 @@ SRC_EX_COMMAND :=	\
 			ex_command_lfork.c\
 			ex_command_aff.c
 
-SRC_MAIN	:= \
+SRC_ARENA_VISU := \
+			visu_corewar.c\
+			key_simple_press.c\
+			key_loop.c\
+			clear_window.c\
+			refresh_arena.c\
+			exit_visu.c\
+			visu_one_turn.c\
+			reset_screen.c
+
+SRC_MAIN_ARENA	:= \
 			option_get.c\
 			main.c\
 			init.c\
@@ -67,16 +77,19 @@ SRC_MAIN	:= \
 			war.c\
 			process_killing.c\
 			op.c\
-			exit.c\
+			exit_program.c\
+			print_winner.c\
 			free_everything.c
 
-SRC_ARENA					:= $(SRC_MAIN) $(SRC_EX_COMMAND) $(SRC_ARENA_UTILS)
+SRC_ARENA					:= $(SRC_MAIN_ARENA) $(SRC_EX_COMMAND)\
+								$(SRC_ARENA_UTILS) $(SRC_ARENA_VISU)
 SRC_ARENA_EXPORT			:= $(addprefix ex_command/,$(SRC_EX_COMMAND))\
 								$(addprefix utils/,$(SRC_ARENA_UTILS))\
-								$(SRC_MAIN)
+								$(addprefix visu/,$(SRC_ARENA_VISU))\
+								$(SRC_MAIN_ARENA)
 
 INC_ARENA					:= arena.h op.h libft/libft.h\
-								libft/ft_printf.h utils.h
+								libft/ft_printf.h utils.h visu_arena.h
 
 DEPENDANCIES_ARENA_O		:= Makefile ./dependancies_$(L_ARENA_DIR).mk\
 							 ../shared_val.mk
