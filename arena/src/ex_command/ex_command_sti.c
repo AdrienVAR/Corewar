@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ex_command_sti.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cizeur <cizeur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/10 12:46:42 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/20 20:02:36 by cizeur           ###   ########.fr       */
+/*   Updated: 2019/09/23 09:32:13 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "arena.h"
 #include "libft/ft_printf.h"
 
-static void			sti_verbose(t_process *process, int jump)
+static void		sti_verbose(t_process *process, int jump)
 {
 	t_command	command;
 	int			cor;

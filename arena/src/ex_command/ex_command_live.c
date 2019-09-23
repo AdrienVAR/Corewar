@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ex_command_live.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cizeur <cizeur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 18:47:19 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/21 17:14:44 by cizeur           ###   ########.fr       */
+/*   Updated: 2019/09/23 09:32:45 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "arena.h"
 #include "libft/ft_printf.h"
 
-static void		live_verbose(t_process *process)
+static void	live_verbose(t_process *process)
 {
 	ft_printf("P - %5d | op : %5s %d\n",
 		process->vm.process_nb,
@@ -21,16 +21,16 @@ static void		live_verbose(t_process *process)
 		process->vm.command.param_conv[0].nb);
 }
 
-static void		player_live_verbose(t_master *mstr)
+static void	player_live_verbose(t_master *mstr)
 {
 	if (!(mstr->options.verbose & VERBOSE_LIFE))
-		return;
+		return ;
 	ft_printf("Player %d : %s squeezed in a live signal\n",
 		mstr->last_player_live,
 		mstr->players[mstr->last_player_live - 1]->name);
 }
 
-void			ex_command_live(t_master *mstr, t_process *process, char *arena)
+void		ex_command_live(t_master *mstr, t_process *process, char *arena)
 {
 	t_command	command;
 
@@ -42,10 +42,10 @@ void			ex_command_live(t_master *mstr, t_process *process, char *arena)
 		live_verbose(process);
 	if (process->vm.alive >= 1
 		&& process->vm.alive <= mstr->nb_of_players)
-		{
-			mstr->last_player_live = process->vm.alive;
-			player_live_verbose(mstr);
-		}
+	{
+		mstr->last_player_live = process->vm.alive;
+		player_live_verbose(mstr);
+	}
 	process->vm.alive = 0;
 	mstr->live_signal++;
 }

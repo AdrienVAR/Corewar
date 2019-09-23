@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ex_command_ldi.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cizeur <cizeur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 18:47:19 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/21 20:53:40 by cizeur           ###   ########.fr       */
+/*   Updated: 2019/09/23 09:31:18 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "libft/ft_printf.h"
 #include "utils.h"
 
-static void			ldi_verbose(t_process *process, int jump, int dest_val)
+static void		ldi_verbose(t_process *process, int jump, int dest_val)
 {
 	t_command	command;
 	int			cor;

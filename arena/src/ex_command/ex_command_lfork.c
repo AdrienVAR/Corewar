@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ex_command_lfork.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cizeur <cizeur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 18:47:19 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/20 20:42:46 by cizeur           ###   ########.fr       */
+/*   Updated: 2019/09/23 09:31:30 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	lfork_verbose(t_process *process, t_process *new)
 		new->vm.process_nb);
 }
 
-static void			born_verbose(t_process *new, t_master *mstr)
+static void	born_verbose(t_process *new, t_master *mstr)
 {
 	ft_printf("P - %5d is BORN at PC : %5d [ A: %d / T :%d ]\n",
 		new->vm.process_nb,

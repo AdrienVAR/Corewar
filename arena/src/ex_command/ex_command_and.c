@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ex_command_and.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cizeur <cizeur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 18:47:19 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/20 19:44:34 by cizeur           ###   ########.fr       */
+/*   Updated: 2019/09/23 09:31:02 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "libft/ft_printf.h"
 #include "utils.h"
 
-static void			and_verbose(t_process *process, t_dir_cast *comp)
+static void		and_verbose(t_process *process, t_dir_cast *comp)
 {
 	ft_printf("P - %5d | op : %s %d & %d = %d (=> r%d)\n",
 		process->vm.process_nb,

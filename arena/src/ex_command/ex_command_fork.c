@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ex_command_fork.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cizeur <cizeur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 18:47:19 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/20 20:33:13 by cizeur           ###   ########.fr       */
+/*   Updated: 2019/09/23 09:31:07 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "libft/libft.h"
 #include "libft/ft_printf.h"
 
-static void			fork_verbose(t_process *process, t_process *new)
+static void		fork_verbose(t_process *process, t_process *new)
 {
 	ft_printf("P - %5d | op : %5s %d (%d -> %d) => [P - %5d]\n",
 		process->vm.process_nb,
@@ -25,7 +25,7 @@ static void			fork_verbose(t_process *process, t_process *new)
 		new->vm.process_nb);
 }
 
-static void			born_verbose(t_process *new, t_master *mstr)
+static void		born_verbose(t_process *new, t_master *mstr)
 {
 	ft_printf("P - %5d is BORN at PC : %5d [ A: %d / T :%d ]\n",
 		new->vm.process_nb,

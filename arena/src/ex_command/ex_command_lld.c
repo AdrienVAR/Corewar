@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ex_command_lld.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cizeur <cizeur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 18:47:19 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/20 19:59:53 by cizeur           ###   ########.fr       */
+/*   Updated: 2019/09/23 09:32:59 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "libft/ft_printf.h"
 #include "utils.h"
 
-static void			lld_verbose(t_process *process, int load_val)
+static void		lld_verbose(t_process *process, int load_val)
 {
 	t_command command;
 
@@ -39,7 +39,7 @@ void			ex_command_lld(t_master *mstr, t_process *process, char *arena)
 	t_command	command;
 	t_dir_cast	load_val;
 	t_ind_cast	ind_case;
-	int 		i;
+	int			i;
 
 	(void)mstr;
 	(void)arena;

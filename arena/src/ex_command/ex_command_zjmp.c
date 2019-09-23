@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ex_command_zjmp.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cizeur <cizeur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 18:47:19 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/20 19:46:46 by cizeur           ###   ########.fr       */
+/*   Updated: 2019/09/23 09:32:29 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "arena.h"
 #include "libft/ft_printf.h"
 
-static void			zjmp_verbose(t_process *process, int carry)
+static void		zjmp_verbose(t_process *process, int carry)
 {
 	ft_printf("P - %5d | op : %5s %d (%d -> %d) : %s\n",
 		process->vm.process_nb,
