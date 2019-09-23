@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 18:47:19 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/23 09:31:07 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/23 17:04:34 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void			ex_command_fork(t_master *mstr, t_process *process, char *arena)
 	new_process->next = mstr->process;
 	new_process->vm.last_live = process->vm.last_live + 1;
 	new_process->vm.process_nb = ++mstr->total_processes;
+	new_process->vm.player = process->vm.player;
 	++mstr->active_processes;
 	mstr->process = new_process;
 	if (mstr->options.verbose & VERBOSE_OPER)
