@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/03 09:21:52 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/23 10:17:36 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/23 17:02:58 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ void			player_give_process(t_master *mstr)
 		process->next = mstr->process;
 		process->pc = player->cursor_initial_pos;
 		process->vm.process_nb = ++mstr->total_processes;
+		process->vm.player = player->nb;
 		++mstr->active_processes;
 		if (mstr->options.verbose & VERBOSE_BORN)
 			born_verbose(process, mstr);
