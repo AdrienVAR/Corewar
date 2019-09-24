@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/23 16:40:36 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/23 17:24:17 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/24 16:59:14 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,7 @@ int				color_dimmer(int color, int dim)
 
 int				color_player(int player)
 {
-	if (player == MAX_PLAYERS + 1)
-		return (color_dimmer(COLOR_BASIC, 50));
-	else if (player == 1)
+	if (player == 1)
 		return (P1_COL);
 	else if (player == 2)
 		return (P2_COL);
@@ -41,7 +39,7 @@ int				color_player(int player)
 	else if (player == 4)
 		return (P4_COL);
 	else
-		return (COLOR_BASIC);
+		return (color_dimmer(COLOR_BASIC, 50));
 }
 
 void			refresh_arena(t_master *mstr, t_visu *visu)
@@ -54,15 +52,15 @@ void			refresh_arena(t_master *mstr, t_visu *visu)
 	i = -1;
 	while (++i < MEM_SIZE)
 	{
-		byte[2] = mstr->arena[i];
+		byte[2] = mstr->arena[i].value;
 		byte[0] = (hexa[(t_uchar)byte[2] / 16]);
 		byte[1] = (hexa[(t_uchar)byte[2] % 16]);
 		byte[2] = 0;
-		color = color_player(mstr->col_arena[i]);
+		color = color_player(mstr->arena[i].player);
 		mlx_string_put(visu->mem_ptr[MLX_PTR],
 						visu->mem_ptr[WIN_PTR],
-						LEFT_X + i % 64 * 22,
-						TOP_Y + i / 64 * (YRES - (TOP_Y + BOTTOM_Y)) / (MEM_SIZE / 64),
+						LEFT_X + i % 64 * BYTE_X,
+						TOP_Y + i / 64 * BYTE_Y,
 						color,
 						byte);
 	}
