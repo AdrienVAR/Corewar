@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/24 10:53:50 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/24 16:08:47 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/24 17:36:59 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void		refresh(t_master *mstr, t_visu *visu)
 
 	clean_image_background(visu);
 	draw_cursors(mstr, visu);
-	reset_screen(visu);
+	flush_image(visu);
 	ft_asprintf(&string, "Cycle : %d", mstr->cur_cycle);
 	mlx_string_put(visu->mem_ptr[MLX_PTR], visu->mem_ptr[WIN_PTR],
 				RIGHT_BAR_X + STD_BUF, TOP_Y, COLOR_BASIC, string);
