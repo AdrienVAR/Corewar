@@ -6,7 +6,7 @@
 #    By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/17 12:16:41 by cgiron            #+#    #+#              #
-#    Updated: 2019/09/24 09:08:17 by cgiron           ###   ########.fr        #
+#    Updated: 2019/09/24 17:43:39 by cgiron           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,7 +56,7 @@ clean:
 
 fclean:
 	$(MAKE) fclean -C $(L_LIBFT_DIR) --no-print-directory
-	$(MAKE) fclean -C ./mlx --no-print-directory
+	$(MAKE) clean -C ./mlx --no-print-directory
 	$(MAKE) fclean -C $(L_ARENA_DIR) --no-print-directory
 	$(MAKE) fclean -C $(L_ASM_DIR) --no-print-directory
 	rm -f $(NAME)
