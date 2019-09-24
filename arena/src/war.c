@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/03 14:07:46 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/23 18:29:19 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/24 09:28:40 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 **		**************************************************
 */
 
-void			run_command(t_master *mstr, t_process *cur_process, char *arena)
+void			run_command(t_master *mstr, t_process *cur_process, t_arena *arena)
 {
 	int				op_id;
 	static void		(*ex_command[AVAILABLE_OPERATIONS])() = {0,
@@ -44,7 +44,7 @@ void			run_command(t_master *mstr, t_process *cur_process, char *arena)
 void			run_cycle(t_master *mstr)
 {
 	t_process	*cur_process;
-	char		*arena;
+	t_arena		*arena;
 
 	arena = mstr->arena;
 	cur_process = mstr->process;
