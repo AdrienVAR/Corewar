@@ -12,7 +12,7 @@
 
 #include "arena.h"
 
-void		command_get_types(t_process *cur_process, int pc, char *arena)
+void		command_get_types(t_process *cur_process, int pc, t_arena *arena)
 {
 	int			i;
 	t_uchar		type;
@@ -33,7 +33,7 @@ void		command_get_types(t_process *cur_process, int pc, char *arena)
 	}
 }
 
-void		command_get_info(t_process *cur_process, int pc, char *arena)
+void		command_get_info(t_process *cur_process, int pc, t_arena *arena)
 {
 	t_op			operation;
 	char			op_code;
@@ -52,7 +52,7 @@ void		command_get_info(t_process *cur_process, int pc, char *arena)
 	}
 }
 
-void		command_get_param(t_process *cur_process, char *arena)
+void		command_get_param(t_process *cur_process, t_arena *arena)
 {
 	t_command		command;
 	int				pc;

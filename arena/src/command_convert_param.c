@@ -30,7 +30,7 @@ int			command_extract_register(t_command *command, int p_ind)
 	return (YES);
 }
 
-void		command_extract_indirect(t_process *process, int p_ind, char *arena)
+void		command_extract_indirect(t_process *process, int p_ind, t_arena *arena)
 {
 	t_ind_cast		ind_cast;
 	t_dir_cast		ind_val;
@@ -89,7 +89,7 @@ void		command_extract_register_value(t_process *process, int p_ind)
 	process->vm.command.param_ext_conv[p_ind].nb = reg.nb;
 }
 
-int			command_convert_param(t_process *process, char *arena)
+int			command_convert_param(t_process *process, t_arena *arena)
 {
 	int			i;
 	int			type;
