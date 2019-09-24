@@ -6,7 +6,7 @@
 #    By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/31 09:59:29 by cgiron            #+#    #+#              #
-#    Updated: 2019/09/23 18:48:42 by cgiron           ###   ########.fr        #
+#    Updated: 2019/09/24 17:37:23 by cgiron           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,9 @@ NAME_ARENA	:= corewar
 
 SRC_ARENA_UTILS := \
 			is_integer.c\
-			memrevcpy.c
+			memrevcpy.c\
+			rgb.c\
+			multi_turn_selector.c
 
 SRC_EX_COMMAND :=	\
 			ex_command_st.c\
@@ -52,9 +54,12 @@ SRC_ARENA_VISU := \
 			key_loop.c\
 			clear_window.c\
 			refresh_arena.c\
+			refresh.c\
 			exit_visu.c\
-			visu_one_turn.c\
-			reset_screen.c
+			visu_play.c\
+			flush_image.c\
+			draw_pixel_image.c\
+			draw_cursors.c
 
 SRC_MAIN_ARENA	:= \
 			option_get.c\
