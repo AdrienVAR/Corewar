@@ -34,7 +34,7 @@ static void		ld_verbose(t_process *process)
 		command.param_conv[1].nb + 1);
 }
 
-void			ex_command_ld(t_master *mstr, t_process *process, char *arena)
+void			ex_command_ld(t_master *mstr, t_process *process, t_arena *arena)
 {
 	t_command	command;
 	t_dir_cast	load_val;

@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/10 12:46:42 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/23 10:30:57 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/24 09:30:31 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static void		sti_verbose(t_process *process, int jump)
 	ft_printf(" => pc : %d \n", jump);
 }
 
-void			ex_command_sti(t_master *mstr, t_process *process, char *arena)
+void			ex_command_sti(t_master *mstr, t_process *process, t_arena *arena)
 {
 	t_command	command;
 	t_dir_cast	src;
@@ -56,7 +56,7 @@ void			ex_command_sti(t_master *mstr, t_process *process, char *arena)
 	i = -1;
 	while (++i < DIR_SIZE)
 		arena_val_set(arena, src.casted[DIR_SIZE - 1 - i],
-			jump + i);
+			jump + i, process->vm.player);
 	if (mstr->options.verbose & VERBOSE_OPER)
 		sti_verbose(process, jump);
 }

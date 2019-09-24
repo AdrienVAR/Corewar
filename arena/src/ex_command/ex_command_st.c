@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 18:47:19 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/23 09:32:10 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/24 09:30:02 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static void		st_verbose(t_process *process, int jump)
 		jump);
 }
 
-void			ex_command_st(t_master *mstr, t_process *process, char *arena)
+void			ex_command_st(t_master *mstr, t_process *process, t_arena *arena)
 {
 	t_command	command;
 	int			i;
@@ -52,7 +52,8 @@ void			ex_command_st(t_master *mstr, t_process *process, char *arena)
 	{
 		jump = process->pc + command.param_conv[1].nb % IDX_MOD;
 		while (++i < DIR_SIZE)
-			arena_val_set(arena, process->registry[reg[0]][i], jump + i);
+			arena_val_set(arena, process->registry[reg[0]][i],
+				jump + i, process->vm.player);
 	}
 	else if (command.types[1].type == T_REG)
 	{

@@ -24,7 +24,7 @@ static void		zjmp_verbose(t_process *process, int carry)
 		carry ? "SUCCESS" : "FAILURE");
 }
 
-void			ex_command_zjmp(t_master *mstr, t_process *process, char *arena)
+void			ex_command_zjmp(t_master *mstr, t_process *process, t_arena *arena)
 {
 	(void)mstr;
 	(void)arena;

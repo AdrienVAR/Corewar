@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 18:47:19 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/23 19:19:10 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/24 10:06:42 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static void	born_verbose(t_process *new, t_master *mstr)
 		mstr->total_processes);
 }
 
-void		ex_command_lfork(t_master *mstr, t_process *process, char *arena)
+void		ex_command_lfork(t_master *mstr, t_process *process, t_arena *arena)
 {
 	t_process	*new_process;
 
@@ -44,6 +44,7 @@ void		ex_command_lfork(t_master *mstr, t_process *process, char *arena)
 	new_process->carry = process->carry;
 	new_process->pc = (process->pc +
 		process->vm.command.param_conv[0].nb) % MEM_SIZE;
+	new_process->pc += new_process->pc < 0 ? MEM_SIZE : 0;
 	ft_memcpy(new_process->registry,
 		process->registry, sizeof(process->registry));
 	new_process->next = mstr->process;

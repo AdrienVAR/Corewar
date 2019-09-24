@@ -21,7 +21,7 @@ static void		aff_verbose(t_process *process)
 		process->vm.command.param_ext_conv[0].nb);
 }
 
-void			ex_command_aff(t_master *mstr, t_process *process, char *arena)
+void			ex_command_aff(t_master *mstr, t_process *process, t_arena *arena)
 {
 	(void)mstr;
 	(void)arena;

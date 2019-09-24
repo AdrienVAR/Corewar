@@ -25,7 +25,7 @@ static void		or_verbose(t_process *process, t_dir_cast *comp)
 		process->vm.command.param_conv[2].nb + 1);
 }
 
-void			ex_command_or(t_master *mstr, t_process *process, char *arena)
+void			ex_command_or(t_master *mstr, t_process *process, t_arena *arena)
 {
 	t_dir_cast	comp[3];
 	int			reg_dst;

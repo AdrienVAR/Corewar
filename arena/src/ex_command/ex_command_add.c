@@ -30,7 +30,7 @@ static void		add_verbose(t_process *process)
 		command.param_ext_conv[0].nb + command.param_ext_conv[1].nb);
 }
 
-void			ex_command_add(t_master *mstr, t_process *process, char *arena)
+void			ex_command_add(t_master *mstr, t_process *process, t_arena *arena)
 {
 	t_dir_cast	result;
 	t_command	command;

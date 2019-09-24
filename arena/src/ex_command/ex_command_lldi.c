@@ -35,7 +35,7 @@ static void		lldi_verbose(t_process *process, int jump, int dest_val)
 	ft_printf(" from pc : %d (val = %d)\n", jump, dest_val);
 }
 
-void			ex_command_lldi(t_master *mstr, t_process *process, char *arena)
+void			ex_command_lldi(t_master *mstr, t_process *process, t_arena *arena)
 {
 	t_command	command;
 	t_dir_cast	elem[3];

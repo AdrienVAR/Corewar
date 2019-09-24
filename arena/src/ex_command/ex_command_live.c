@@ -30,7 +30,7 @@ static void	player_live_verbose(t_master *mstr)
 		mstr->players[mstr->last_player_live - 1]->name);
 }
 
-void		ex_command_live(t_master *mstr, t_process *process, char *arena)
+void		ex_command_live(t_master *mstr, t_process *process, t_arena *arena)
 {
 	t_command	command;
 
