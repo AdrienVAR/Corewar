@@ -6,7 +6,7 @@
 #    By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/17 12:16:41 by cgiron            #+#    #+#              #
-#    Updated: 2019/09/19 10:56:11 by cgiron           ###   ########.fr        #
+#    Updated: 2019/09/24 09:08:17 by cgiron           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,6 +41,7 @@ STD_DEPENDANCY := $(DEPENDANCIES_LIBFT_EXPORT)
 
 $(NAME_ARENA) : $(DEPENDANCIES_ARENA_EXPORT) $(STD_DEPENDANCY)
 	$(MAKE) -C $(L_LIBFT_DIR) --no-print-directory
+	$(MAKE) -C ./mlx --no-print-directory
 	$(MAKE) -C $(L_ARENA_DIR) $(L_NAME) --no-print-directory
 
 $(NAME_ASM) : $(DEPENDANCIES_ASM_EXPORT) $(STD_DEPENDANCY)
@@ -49,11 +50,13 @@ $(NAME_ASM) : $(DEPENDANCIES_ASM_EXPORT) $(STD_DEPENDANCY)
 
 clean:
 	$(MAKE) clean -C $(L_LIBFT_DIR) --no-print-directory
+	$(MAKE) clean -C ./mlx --no-print-directory
 	$(MAKE) clean -C $(L_ARENA_DIR) --no-print-directory
 	$(MAKE) clean -C $(L_ASM_DIR) --no-print-directory
 
 fclean:
 	$(MAKE) fclean -C $(L_LIBFT_DIR) --no-print-directory
+	$(MAKE) fclean -C ./mlx --no-print-directory
 	$(MAKE) fclean -C $(L_ARENA_DIR) --no-print-directory
 	$(MAKE) fclean -C $(L_ASM_DIR) --no-print-directory
 	rm -f $(NAME)
