@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/03 09:21:52 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/23 17:02:58 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/25 12:09:04 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,13 @@ static void		born_verbose(t_process *new, t_master *mstr)
 		mstr->total_processes);
 }
 
+static void		info_game_start(t_player *player)
+{
+	ft_printf("%*.0~Player %d%~ (%#x) of size %d Bytes : %3.0~%s%~ [%s]\n",
+	player->nb + 1, player->nb, -player->nb, player->code_size,
+	player->name, player->comment);
+}
+
 void			player_give_process(t_master *mstr)
 {
 	t_process	*process;
@@ -38,12 +45,14 @@ void			player_give_process(t_master *mstr)
 	int			i;
 
 	i = -1;
+	ft_printf("Starting a game with %3.0~%d%~ players\n\n", mstr->nb_of_players);
 	while (++i < mstr->nb_of_players)
 	{
 		player = mstr->players[i];
 		if (!(process = (t_process *)ft_memalloc(sizeof(t_process))))
 			exit_program(mstr);
 		player_num.nb = -player->nb;
+		info_game_start(player);
 		memrevcpy(process->registry[0], player_num.casted, DIR_SIZE);
 		process->next = mstr->process;
 		process->pc = player->cursor_initial_pos;
@@ -55,4 +64,5 @@ void			player_give_process(t_master *mstr)
 		mstr->process = process;
 		mstr->last_player_live = i + 1;
 	}
+	ft_printf("\n");
 }
