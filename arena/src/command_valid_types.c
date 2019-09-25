@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 11:14:14 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/05 12:35:13 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/25 16:32:42 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,6 @@ int			command_valid_types(t_command command)
 	while (++i < op.nb_params)
 	{
 		if (!(command.types[i].type & op.params_type[i]))
-			return (NO);
-	}
-	while (i < MAX_ARGS_NUMBER)
-	{
-		if (command.types[i++].type_code)
 			return (NO);
 	}
 	return (YES);
