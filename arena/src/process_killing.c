@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/20 20:04:34 by cizeur            #+#    #+#             */
-/*   Updated: 2019/09/25 11:45:51 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/25 14:19:02 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	update_life_check(t_master *mstr)
 	if (++mstr->check == MAX_CHECKS || mstr->live_signal >= NBR_LIVE)
 	{
 		mstr->check = 0;
-		mstr->foamy_bat_cycle -= CYCLE_DELTA;
+		mstr->foamy_bat_cycle -= mstr->foamy_bat_cycle > 0 ? CYCLE_DELTA : 0;
 	}
 	i = -1;
 	while (++i < mstr->nb_of_players)
