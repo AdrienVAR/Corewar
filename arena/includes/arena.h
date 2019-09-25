@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/31 09:59:55 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/25 12:22:38 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/25 18:01:00 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,6 +183,7 @@ typedef struct			s_master
 	int					total_processes;
 	t_arena				arena[MEM_SIZE];
 	t_player			*players[MAX_PLAYERS];
+	t_player			*sorted_player[MAX_PLAYERS];
 	t_process			*process;
 	t_opt				options;
 	int					foamy_bat_cycle;
@@ -279,7 +280,7 @@ void					refresh_arena(t_master *mstr, t_visu *visu);
 void					visu_play_one_turn(t_master *mstr, t_visu *visu);
 void					visu_play_multi_turn(t_master *mstr, t_visu *visu);
 void					refresh(t_master *mstr, t_visu *visu);
-void					draw_cursors(t_master *mstr, t_visu *visu);
+void					draw_cursors_image(t_master *mstr, t_visu *visu);
 void					clean_image_background(t_visu *visu);
 void					visu_play_till_action(t_master *mstr, t_visu *visu);
 void					refresh_sidebar(t_master *mstr, t_visu *visu);
