@@ -6,7 +6,7 @@
 #    By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/31 09:59:29 by cgiron            #+#    #+#              #
-#    Updated: 2019/09/25 12:38:30 by cgiron           ###   ########.fr        #
+#    Updated: 2019/09/25 18:01:24 by cgiron           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,7 +62,8 @@ SRC_ARENA_VISU := \
 			draw_pixel_image.c\
 			draw_cursors.c\
 			refresh_sidebar.c\
-			player_color.c
+			player_color.c\
+			draw_square_image.c
 
 SRC_MAIN_ARENA	:= \
 			option_get.c\
