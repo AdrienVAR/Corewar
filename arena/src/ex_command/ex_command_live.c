@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 18:47:19 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/25 12:15:00 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/25 14:13:12 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,29 @@ static void	player_live_verbose(t_master *mstr)
 		mstr->players[mstr->last_player_live - 1]->name);
 }
 
+static void	player_sort_living(t_master *mstr, t_process *process)
+{
+	int i;
+	t_player *player;
+	int		live;
+	t_player *stock[2];
+
+	live = process->vm.alive - 1;
+	player = mstr->players[live];
+	i = 0;
+	stock[1] = mstr->sorted_player[0];
+	while (i < mstr->nb_of_players - 1)
+	{
+		stock[0] = mstr->sorted_player[i + 1];
+		if (stock[1]->nb == live + 1)
+			break ;
+		mstr->sorted_player[i + 1] = stock[1];
+		stock[1] = stock[0];
+		i++;
+	}
+	mstr->sorted_player[0] = player;
+}
+
 void		ex_command_live(t_master *mstr, t_process *process, t_arena *arena)
 {
 	t_command	command;
@@ -46,6 +69,7 @@ void		ex_command_live(t_master *mstr, t_process *process, t_arena *arena)
 		mstr->last_player_live = process->vm.alive;
 		mstr->players[process->vm.alive - 1]->life_signals++;
 		mstr->someone_lived = 1;
+		player_sort_living(mstr, process);
 		player_live_verbose(mstr);
 	}
 	process->vm.alive = 0;
