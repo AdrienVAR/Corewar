@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/03 09:21:52 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/25 12:09:04 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/25 13:38:54 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void			player_give_process(t_master *mstr)
 	while (++i < mstr->nb_of_players)
 	{
 		player = mstr->players[i];
+		mstr->sorted_player[i] = player;
 		if (!(process = (t_process *)ft_memalloc(sizeof(t_process))))
 			exit_program(mstr);
 		player_num.nb = -player->nb;
