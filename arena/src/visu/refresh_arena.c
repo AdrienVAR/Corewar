@@ -6,14 +6,14 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/23 16:40:36 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/25 12:36:15 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/25 18:06:58 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "arena.h"
 #include "utils.h"
 #include "visu_arena.h"
-#include <mlx.h>
+#include "mlx/mlx.h"
 
 void			refresh_arena(t_master *mstr, t_visu *visu)
 {
