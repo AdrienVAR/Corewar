@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/31 09:59:55 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/24 15:22:29 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/25 12:22:38 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,7 @@ typedef struct			s_player
 	char				name[PROG_NAME_LENGTH + 1];
 	char				comment[COMMENT_LENGTH + 1];
 	char				exec[CHAMP_MAX_SIZE + 1];
+	int					life_signals;
 }						t_player;
 
 # define VERBOSE_LIFE 1
@@ -176,6 +177,7 @@ typedef struct			s_master
 	int					nb_of_players;
 	int					last_player_live;
 	int					live_signal;
+	int					something_happened;
 	int					check;
 	int					active_processes;
 	int					total_processes;
@@ -187,6 +189,7 @@ typedef struct			s_master
 	int					ctd;
 	int					cur_cycle;
 	t_visu				*visu;
+	int					someone_lived;
 }						t_master;
 
 /*
@@ -221,7 +224,7 @@ int						process_killing(t_master *mstr, t_process **process);
 t_op					operation_get_info(char op_code);
 void					exit_program(t_master *mstr);
 void					free_everything(t_master *mstr);
-void					print_winner(t_player *player);
+void					print_winner(t_player *player, int someone_lived);
 int						option_get(t_opt *opt, int argc, char **argv);
 
 void					command_get_info(t_process *cur_process,
@@ -278,5 +281,7 @@ void					visu_play_multi_turn(t_master *mstr, t_visu *visu);
 void					refresh(t_master *mstr, t_visu *visu);
 void					draw_cursors(t_master *mstr, t_visu *visu);
 void					clean_image_background(t_visu *visu);
+void					visu_play_till_action(t_master *mstr, t_visu *visu);
+void					refresh_sidebar(t_master *mstr, t_visu *visu);
 
 #endif
