@@ -6,7 +6,7 @@
 #    By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/31 09:59:29 by cgiron            #+#    #+#              #
-#    Updated: 2019/09/24 17:37:23 by cgiron           ###   ########.fr        #
+#    Updated: 2019/09/25 12:38:30 by cgiron           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,8 @@ SRC_ARENA_UTILS := \
 			is_integer.c\
 			memrevcpy.c\
 			rgb.c\
-			multi_turn_selector.c
+			multi_turn_selector.c\
+			color_dimmer.c
 
 SRC_EX_COMMAND :=	\
 			ex_command_st.c\
@@ -59,7 +60,9 @@ SRC_ARENA_VISU := \
 			visu_play.c\
 			flush_image.c\
 			draw_pixel_image.c\
-			draw_cursors.c
+			draw_cursors.c\
+			refresh_sidebar.c\
+			player_color.c
 
 SRC_MAIN_ARENA	:= \
 			option_get.c\
