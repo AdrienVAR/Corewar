@@ -1,13 +1,13 @@
 /* ************************************************************************** */
-/*																			*/
-/*														:::	  ::::::::   */
-/*   visu_corewar.c									 :+:	  :+:	:+:   */
-/*													+:+ +:+		 +:+	 */
-/*   By: cgiron <cgiron@student.42.fr>			  +#+  +:+	   +#+		*/
-/*												+#+#+#+#+#+   +#+		   */
-/*   Created: 2019/09/23 12:23:37 by cgiron			#+#	#+#			 */
-/*   Updated: 2019/09/23 18:38:30 by cgiron		   ###   ########.fr	   */
-/*																			*/
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   visu_corewar.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/09/25 17:35:46 by cgiron            #+#    #+#             */
+/*   Updated: 2019/09/25 17:57:32 by cgiron           ###   ########.fr       */
+/*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx/mlx.h"
@@ -17,9 +17,10 @@
 
 static int		loop_hook(t_master *mstr)
 {
-	if (mstr->visu->update == U_STOP
-		|| mstr->visu->update == U_END)
+	if (mstr->visu->update == U_STOP)
 		exit_visu(mstr);
+	if (mstr->visu->ended)
+		return (1);
 	if (mstr->visu->update == U_ONE_TURN)
 		visu_play_one_turn(mstr, mstr->visu);
 	if (mstr->visu->update == U_TILL_THE_END
