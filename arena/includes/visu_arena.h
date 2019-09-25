@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/23 11:50:53 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/24 17:36:52 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/25 12:07:12 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # define TOP_Y 150
 # define STD_BUF 25
 # define STD_NEW_LINE 22
+# define MAX_VISU_NAME_LEN 16
 # define BOTTOM_Y STD_BUF
 # define LEFT_X STD_BUF
 # define RIGHT_X STD_BUF
@@ -38,6 +39,7 @@
 # define TOUCH_UP 126
 # define TOUCH_DOWN 125
 # define TOUCH_M 46
+# define TOUCH_A 0
 
 # define NO_CURSOR 1
 # define CURSOR_PRESENT 2
@@ -50,7 +52,8 @@
 
 
 # define COLOR_BACKGROUND 0x1F1F1F
-# define COLOR_BASIC 0xFFFFFF
+# define COLOR_BASIC 0xEFEFFF
+# define COLOR_LESS_BASIC 0xFF6F6F
 # define COLOR_CURSOR 0x8F8F8F
 # define COLOR_CURSOR_ACT 0xAFAFAF
 # define VISU_DIM 80
@@ -68,6 +71,7 @@ typedef enum		e_update
 	U_TILL_THE_END,
 	U_REFRESH,
 	U_MULTI_TURN,
+	U_TILL_SOMETHING_HAPPEN,
 }					t_update;
 
 typedef struct	s_visu
@@ -84,5 +88,6 @@ int				key_simple_press(int key, t_visu *visu);
 int				key_loop(int key, t_visu *visu);
 void			flush_image(t_visu *visu);
 void			draw_pixel(t_visu *visu, int x, int y, int color);
+int				player_color(int player);
 
 #endif
