@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 18:47:19 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/23 09:32:45 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/25 12:15:00 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ void		ex_command_live(t_master *mstr, t_process *process, t_arena *arena)
 		&& process->vm.alive <= mstr->nb_of_players)
 	{
 		mstr->last_player_live = process->vm.alive;
+		mstr->players[process->vm.alive - 1]->life_signals++;
+		mstr->someone_lived = 1;
 		player_live_verbose(mstr);
 	}
 	process->vm.alive = 0;
