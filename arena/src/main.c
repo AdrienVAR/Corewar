@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/31 09:59:05 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/23 14:05:45 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/25 12:27:17 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ int				main(int argc, char **argv)
 	player_give_process(mstr);
 	mstr->options.visu == YES ? visu_corewar(mstr) : war(mstr);
 	if (mstr->options.end_dump != N_DUMP)
-		print_winner(mstr->players[mstr->last_player_live - 1]);
+		print_winner(mstr->players[mstr->last_player_live - 1],
+			mstr->someone_lived);
 	if (mstr->options.end_dump)
 		memory_dump(mstr);
 	free_everything(mstr);
