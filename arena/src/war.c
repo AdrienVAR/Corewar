@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/03 14:07:46 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/24 09:28:40 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/25 10:11:36 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ void			run_cycle(t_master *mstr)
 
 	arena = mstr->arena;
 	cur_process = mstr->process;
+	mstr->something_happened = 0;
 	while (cur_process)
 	{
 		if (cur_process->vm.wait == 1)
@@ -55,6 +56,7 @@ void			run_cycle(t_master *mstr)
 			command_get_types(cur_process, cur_process->pc, arena);
 			command_get_param(cur_process, arena);
 			run_command(mstr, cur_process, arena);
+			mstr->something_happened = 1;
 		}
 		else if (!cur_process->vm.wait)
 			command_get_info(cur_process, cur_process->pc, arena);
