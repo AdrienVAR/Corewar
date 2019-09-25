@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/23 11:50:53 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/25 12:07:12 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/25 18:21:33 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@
 # define BOTTOM_Y STD_BUF
 # define LEFT_X STD_BUF
 # define RIGHT_X STD_BUF
+
+# define WINNER_Y 200
 
 
 # define RIGHT_BAR_SIZE 500
@@ -81,6 +83,7 @@ typedef struct	s_visu
 	int			header_size[2];
 	t_update	update;
 	int			multi;
+	int			ended;
 }				t_visu;
 
 void			clear_window(t_visu *visu);
@@ -89,5 +92,7 @@ int				key_loop(int key, t_visu *visu);
 void			flush_image(t_visu *visu);
 void			draw_pixel(t_visu *visu, int x, int y, int color);
 int				player_color(int player);
+void			draw_square_image(t_visu *visu, int pos[2],
+					int dim[2], int color);
 
 #endif
