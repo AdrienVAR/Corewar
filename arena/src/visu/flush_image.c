@@ -10,7 +10,7 @@
 /*																			*/
 /* ************************************************************************** */
 
-#include <mlx.h>
+#include "mlx/mlx.h"
 #include "visu_arena.h"
 #include "libft/libft.h"
 
