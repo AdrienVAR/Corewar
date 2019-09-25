@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/23 18:18:28 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/25 10:22:26 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/25 17:50:51 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	visu_play_one_turn(t_master *mstr, t_visu *visu)
 	visu->update = visu->update == U_ONE_TURN ? U_REFRESH : visu->update;
 	if ((!mstr->process || (mstr->cur_cycle >= mstr->options.dump
 		&& mstr->options.end_dump == N_DUMP))
-		&& (visu->update = U_REFRESH))
+		&& (visu->update = U_END))
 		return ;
 	++mstr->cur_cycle;
 	if (mstr->options.verbose & VERBOSE_CYCL)
