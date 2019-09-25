@@ -25,6 +25,8 @@ static int		loop_hook(t_master *mstr)
 	if (mstr->visu->update == U_TILL_THE_END
 	|| mstr->visu->update == U_MULTI_TURN)
 		visu_play_multi_turn(mstr, mstr->visu);
+	if (mstr->visu->update == U_TILL_SOMETHING_HAPPEN)
+		visu_play_till_action(mstr, mstr->visu);
 	if (mstr->visu->update != U_IDLE)
 		refresh(mstr, mstr->visu);
 	return (1);
