@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cizeur <cizeur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/31 09:59:05 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/25 12:27:17 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/26 21:28:33 by cizeur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,31 @@
 #include "arena.h"
 #include "libft/ft_printf.h"
 
+static void		load_champions(t_master *mstr, char **argv)
+{
+	int			i;
+	int			player_nb;
+	t_player	*player;
+
+	i = -1;
+	while (++i < mstr->nb_of_players)
+	{
+
+		player_nb =
+		mstr->options.player[mstr->options.player[i][0] - 1][1];
+		player = mstr->players[i];
+		file_loading(mstr, player, argv[player_nb]);
+		player->nb = i + 1;
+		deassembler(mstr, player);
+		file_closing(player);
+	}
+}
+
 int				main(int argc, char **argv)
 {
 	t_master	*mstr;
 	t_opt		options;
+
 
 	if (option_get(&options, --argc, ++argv) == NO)
 	{
@@ -25,9 +46,7 @@ int				main(int argc, char **argv)
 		return (0);
 	}
 	init(&mstr, &options);
-	file_loading(mstr, argv);
-	deassembler(mstr);
-	file_closing(mstr);
+	load_champions(mstr, argv);
 	arena_populate(mstr);
 	player_give_process(mstr);
 	mstr->options.visu == YES ? visu_corewar(mstr) : war(mstr);

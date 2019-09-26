@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   refresh.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cizeur <cizeur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/24 10:53:50 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/25 18:28:54 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/26 20:36:52 by cizeur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,7 @@ void		refresh(t_master *mstr, t_visu *visu)
 	refresh_arena(mstr, mstr->visu);
 	visu->update = visu->update == U_REFRESH ? U_IDLE : visu->update;
 	visu->ended = visu->update == U_END ? 1 : visu->ended;
+	if (visu->ended)
+		print_winner(mstr->players[mstr->last_player_live - 1],
+			mstr->someone_lived);
 }
