@@ -6,15 +6,13 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/23 11:23:25 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/25 10:20:40 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/26 10:58:45 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "arena.h"
 #include "visu_arena.h"
 #include "utils.h"
-
-# include <stdio.h>
 
 int		key_loop(int key, t_visu *visu)
 {
@@ -27,6 +25,5 @@ int		key_loop(int key, t_visu *visu)
 		multi_turn_selector(visu->multi, 0) : visu->multi;
 	if (key == TOUCH_UP || key == TOUCH_DOWN)
 		visu->update = visu->update == U_IDLE ? U_REFRESH : visu->update;
-	printf("touch pressee %d et update %d\n", key, visu->update);
 	return (key);
 }
