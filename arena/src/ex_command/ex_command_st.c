@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 18:47:19 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/24 09:30:02 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/26 18:58:12 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@ static void		st_verbose(t_process *process, int jump)
 
 	command = process->vm.command;
 	if (command.types[1].type == T_REG)
-		ft_printf("P - %5d | op : %s r%d[val = %d] => r%d\n",
+		ft_printf("P - %5d | op : %s r%d[val = %#x] => r%d\n",
 		process->vm.process_nb,
 		command.op.name,
 		command.param_conv[0].nb + 1,
 		command.param_ext_conv[0].nb,
 		command.param_conv[1].nb + 1);
 	else
-		ft_printf("P - %5d | op : %s r%d[val = %d] =>  [ARENA] pc : %d\n",
+		ft_printf("P - %5d | op : %s r%d[val = %#x] =>  [ARENA] pc : %d\n",
 		process->vm.process_nb,
 		command.op.name,
 		command.param_conv[0].nb + 1,
