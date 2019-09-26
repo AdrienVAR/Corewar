@@ -1,4 +1,4 @@
-.name "I don't fancy seeing other people"
+.name "Erase All"
 .comment "It's true that i might be a champion but i am at least a sophisticated eraser"
 
 
@@ -94,7 +94,7 @@ buffer_copy:
 	
 			live	%42
 			sti     r10,   r12,		r11
-replaced:	zjmp    %45
+replaced:	zjmp    %46
 			l1:	live	%42
 			l2: live	%42
 			l3:	live	%42
