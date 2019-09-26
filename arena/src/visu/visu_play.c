@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/23 18:18:28 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/26 09:04:09 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/26 10:36:51 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ void	visu_play_one_turn(t_master *mstr, t_visu *visu)
 	run_cycle(mstr);
 	if (mstr->ctd <= 0)
 		mstr->ctd = process_killing(mstr, &mstr->process);
+	if (mstr->ctd == 1)
+		mstr->something_happened = 1;
 }
 
 void	visu_play_multi_turn(t_master *mstr, t_visu *visu)
