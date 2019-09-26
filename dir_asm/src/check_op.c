@@ -6,7 +6,7 @@
 /*   By: gdrai <gdrai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 16:12:40 by gdrai             #+#    #+#             */
-/*   Updated: 2019/09/11 11:14:05 by gdrai            ###   ########.fr       */
+/*   Updated: 2019/09/26 11:53:37 by gdrai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	label_case(t_env *env, t_asm_line *op, int param, int k)
 		op->params_type[param] = g_type[1];
 		op->line_len_bytes += op->operation.dir_size;
 		op->param_label[param] = ft_strndup(env->line_splitted[k] + 2,
-			ft_strlen(env->line_splitted[k]) + 2);
+			ft_strlen(env->line_splitted[k]) - 2);
 	}
 	else
 	{
@@ -28,7 +28,7 @@ void	label_case(t_env *env, t_asm_line *op, int param, int k)
 		op->params_type[param] = g_type[2];
 		op->line_len_bytes += IND_SIZE;
 		op->param_label[param] = ft_strndup(env->line_splitted[k] + 1,
-			ft_strlen(env->line_splitted[k]) + 1);
+			ft_strlen(env->line_splitted[k]) - 1);
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: gdrai <gdrai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/10 13:18:27 by gdrai             #+#    #+#             */
-/*   Updated: 2019/09/12 12:43:17 by gdrai            ###   ########.fr       */
+/*   Updated: 2019/09/26 11:31:22 by gdrai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int		fill_op(t_env *env, size_t i, int k)
 			break ;
 		}
 	}
-	if (!(env->line_splitted[k] = ft_memalloc(j - i + 1)))
+	if (!(env->line_splitted[k] = ft_strnew(j - i + 1)))
 		clean_exit(env, "Memory allocation failed\n");
 	env->line_splitted[k] = ft_memcpy(env->line_splitted[k],
 		env->line + i, j - i);

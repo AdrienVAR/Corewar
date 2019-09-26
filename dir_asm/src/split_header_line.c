@@ -6,7 +6,7 @@
 /*   By: gdrai <gdrai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/10 13:16:13 by gdrai             #+#    #+#             */
-/*   Updated: 2019/09/12 11:48:36 by gdrai            ###   ########.fr       */
+/*   Updated: 2019/09/26 11:31:00 by gdrai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@ int		fill_name(t_env *env, size_t i, int k)
 	while (env->line[j] != ' ' && env->line[j] != '\t'
 		&& env->line[j] != '"')
 		j++;
-	if (!(env->line_splitted[k] = ft_memalloc(j - i + 1)))
+	if (!(env->line_splitted[k] = ft_strnew(j - i + 1)))
 		clean_exit(env, "Error: Memory allocation failed\n");
 	env->line_splitted[k] = ft_memcpy(env->line_splitted[k],
 		env->line + i, j - i);
 	return (j);
-}
+} 
 
 int		fill_in_quote(t_env *env, size_t i, int k)
 {
@@ -35,7 +35,7 @@ int		fill_in_quote(t_env *env, size_t i, int k)
 	while (env->line[j] != '"')
 		j++;
 	j++;
-	if (!(env->line_splitted[k] = ft_memalloc(j - i)))
+	if (!(env->line_splitted[k] = ft_strnew(j - i)))
 		clean_exit(env, "Error: Memory allocation failed\n");
 	env->line_splitted[k] = ft_memcpy(env->line_splitted[k],
 		env->line + i, j - i);

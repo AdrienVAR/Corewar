@@ -6,7 +6,7 @@
 /*   By: gdrai <gdrai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 13:33:24 by gdrai             #+#    #+#             */
-/*   Updated: 2019/09/11 11:10:29 by gdrai            ###   ########.fr       */
+/*   Updated: 2019/09/26 11:54:06 by gdrai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ int		check_label(t_env *env, t_asm_line *op)
 	if (env->line_splitted[1] == NULL)
 	{
 		op->line_len_bytes = 0;
+		op->line_pos_bytes = env->position_binary;
 		return (0);
 	}
 	else

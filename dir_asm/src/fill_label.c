@@ -6,7 +6,7 @@
 /*   By: gdrai <gdrai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/10 13:15:22 by gdrai             #+#    #+#             */
-/*   Updated: 2019/09/11 11:16:04 by gdrai            ###   ########.fr       */
+/*   Updated: 2019/09/26 12:46:35 by gdrai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,7 @@ t_asm_line		*find_label(t_env *env, char *label)
 		if (current->label)
 		{
 			if (ft_strcmp(current->label, label) == 0)
-			{
-				while (current && current->line_len_bytes == 0)
-					current = current->next;
-				if (!current)
-					clean_exit(env, "Error: label doesn't match\n");
 				return (current);
-			}
 		}
 		current = current->next;
 	}
