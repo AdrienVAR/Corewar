@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   arena.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cizeur <cizeur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/31 09:59:55 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/26 10:38:38 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/26 21:25:40 by cizeur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -202,9 +202,9 @@ typedef struct			s_master
 */
 
 void					init(t_master **mstr, t_opt *options);
-void					file_loading(t_master *mstr, char **argv);
-void					deassembler(t_master *mstr);
-void					file_closing(t_master *mstr);
+void					deassembler(t_master *mstr, t_player *player);
+void					file_closing(t_player *player);
+void					file_loading(t_master *mstr, t_player *player, char *filename);
 t_uchar					arena_val_get(t_arena *arena, int ind);
 void					arena_val_set(t_arena *arena, char c, int ind,
 							int player);

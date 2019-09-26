@@ -3,27 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   file_closing.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cizeur <cizeur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 16:08:23 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/02 16:21:24 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/26 21:26:59 by cizeur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "arena.h"
 #include <unistd.h>
 
-void		file_closing(t_master *mstr)
+void		file_closing(t_player *player)
 {
-	t_player	*player;
-	int			i;
-
-	i = -1;
-	while (++i < mstr->nb_of_players)
-	{
-		player = mstr->players[i];
-		if (player->fd)
-			close(player->fd);
-		player->fd = 0;
-	}
+	if (player->fd)
+		close(player->fd);
+	player->fd = 0;
 }
