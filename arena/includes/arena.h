@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/31 09:59:55 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/25 18:01:00 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/26 10:38:38 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,6 +141,7 @@ typedef struct			s_player
 # define VERBOSE_CYCL 32
 
 # define OPT_N "-n"
+# define OPT_A "-a"
 # define OPT_DUMP "-dump"
 # define OPT_VISU "-visu"
 # define OPT_VERB "-v"
@@ -152,6 +153,7 @@ typedef struct			s_opt
 {
 	int					verbose;
 	char				visu;
+	char				aff;
 	int					dump;
 	int					end_dump;
 	int					player[MAX_PLAYERS][2];
