@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/10 12:46:42 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/24 09:30:31 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/26 15:00:48 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void		sti_verbose(t_process *process, int jump)
 	ft_printf("P - %5d | op : %s ",
 		process->vm.process_nb,
 		command.op.name);
-	ft_printf(" src: r%d (val = %d)",
+	ft_printf(" src: r%d (val = %#x)",
 		command.param_conv[0].nb + 1, command.param_ext_conv[0].nb);
 	cor = command.types[1].type == T_REG ? 1 : 0;
 	ft_printf(" => dest : pc (val = %d) + ", process->pc);

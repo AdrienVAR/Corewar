@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 18:47:19 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/23 09:31:18 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/26 15:50:00 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void		ldi_verbose(t_process *process, int jump, int dest_val)
 		ft_printf("(val = %d) r", command.param_ext_conv[1].nb);
 	ft_printf("%d = > r%d", command.param_conv[1].nb + cor,
 		command.param_conv[2].nb + 1);
-	ft_printf(" from pc : %d (val = %d)\n", jump, dest_val);
+	ft_printf(" from pc : %d (val = %#x)\n", jump, dest_val);
 }
 
 void			ex_command_ldi(t_master *mstr, t_process *process, t_arena *arena)
