@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 11:36:10 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/23 10:21:22 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/26 10:39:56 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,8 @@ int				option_get(t_opt *opt, int argc, char **argv)
 	{
 		if (!ft_strcmp(argv[i], OPT_VISU))
 			opt->visu = YES;
+		else if (!ft_strcmp(argv[i], OPT_A))
+			opt->aff = YES;
 		else if (option_dump_verbose(argc, argv, &i, opt) == YES)
 			continue;
 		else if (option_check_n(argc, argv, &i, opt) == NO)
@@ -132,8 +134,7 @@ int				option_get(t_opt *opt, int argc, char **argv)
 	}
 	if (opt->nb_players && (option_set_player(opt)))
 		return (YES);
-	!opt->nb_players ?
-	ft_putstr("	\e[31mNO PLAYERS GIVEN !\e[0m\n") :
+	!opt->nb_players ? ft_putstr("	\e[31mNO PLAYERS GIVEN !\e[0m\n") :
 	ft_putstr("	\e[31mNumber assignation to high\e[0m\n");
 	return (NO);
 }
