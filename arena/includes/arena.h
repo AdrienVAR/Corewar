@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/31 09:59:55 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/27 12:15:08 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/27 15:09:01 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,11 @@
 # include "op.h"
 # include "visu_arena.h"
 
-#    include <stdio.h>
+/*
+**		*******************************
+** **	INCLUDE OP-TABLE AND TYPE-TABLE	** **
+**		*******************************
+*/
 
 extern t_op				g_op_tab[AVAILABLE_OPERATIONS];
 extern t_type			g_type[4];
@@ -39,7 +43,7 @@ extern t_type			g_type[4];
 */
 
 # define USAGE_STR "./corewar [-dump nbr_cycles] [[-n number] champion1.cor]\n"
-# define DUMP_SIZE 64 //change back to 32
+# define DUMP_SIZE 32
 
 /*
 ** **	OPTION
@@ -170,7 +174,6 @@ typedef struct			s_opt
 	int					nb_players;
 }						t_opt;
 
-
 /*
 **		**********************************************
 ** **	Master struct containing arena and shared vals ** **
@@ -223,7 +226,8 @@ typedef struct			s_master
 void					init(t_master **mstr, t_opt *options);
 void					deassembler(t_master *mstr, t_player *player);
 void					file_closing(t_player *player);
-void					file_loading(t_master *mstr, t_player *player, char *filename);
+void					file_loading(t_master *mstr, t_player *player,
+							char *filename);
 t_uchar					arena_val_get(t_arena *arena, int ind);
 void					arena_val_set(t_arena *arena, char c, int ind,
 							int player);

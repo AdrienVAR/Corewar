@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/23 11:50:53 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/27 12:20:36 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/27 15:06:06 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@
 # define RIGHT_X STD_BUF
 
 # define WINNER_Y 200
-
 
 # define RIGHT_BAR_SIZE 500
 # define RIGHT_BAR_X (XRES - RIGHT_X - RIGHT_BAR_SIZE)
@@ -51,7 +50,6 @@
 # define I_ADR 1
 # define MLX_PTR 2
 # define WIN_PTR 3
-
 
 # define COLOR_BACKGROUND 0x1F1F1F
 # define COLOR_BASIC 0xEFEFFF
