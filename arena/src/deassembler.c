@@ -3,26 +3,59 @@
 /*                                                        :::      ::::::::   */
 /*   deassembler.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cizeur <cizeur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 09:02:21 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/26 21:26:46 by cizeur           ###   ########.fr       */
+/*   Updated: 2019/09/27 18:40:12 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "arena.h"
+#include "libft/ft_printf.h"
+
+void			check_trailing_code(t_master *mstr, t_player *player)
+{
+	char c;
+
+	if (read(player->fd, &c, 1) > 0)
+	{
+		ft_printf("%*.0~Player %d => %s%~  Over announced size : %d B\n",
+			player->nb + 1, player->nb, player->binary_name, player->code_size);
+		exit_program(mstr);
+	}
+}
+
+static void		check_magic(t_master *mstr, t_player *player)
+{
+	if (player->magic != COREWAR_EXEC_MAGIC)
+	{
+		ft_printf("%*.0~Player %d => %s%~  Wrong Magic : Check file \n",
+			player->nb + 1, player->nb, player->binary_name, player->code_size);
+		exit_program(mstr);
+	}
+}
 
 void			deassembler(t_master *mstr, t_player *player)
 {
-	player->magic = binary_read_integer(player->fd, mstr);
+	player->magic = binary_read_integer(player, mstr);
+	check_magic(mstr, player);
 	binary_read_string(
-		player->fd, &(player->name[0]), PROG_NAME_LENGTH, mstr);
-	binary_read_null(player->fd, mstr);
-	player->code_size = binary_read_integer(player->fd, mstr);
+			player, &(player->name[0]), PROG_NAME_LENGTH, mstr);
+	binary_read_null(player, mstr);
+	player->code_size = binary_read_integer(player, mstr);
 	binary_read_string(
-		player->fd, &(player->comment[0]), COMMENT_LENGTH, mstr);
-	binary_read_null(player->fd, mstr);
-	if (player->code_size < CHAMP_MAX_SIZE && player->code_size > 0)
+			player, &(player->comment[0]), COMMENT_LENGTH, mstr);
+	binary_read_null(player, mstr);
+	if (player->code_size <= CHAMP_MAX_SIZE && player->code_size > 0)
 		binary_read_string(
-		player->fd, &(player->exec[0]), player->code_size, mstr);
+				player, &(player->exec[0]), player->code_size, mstr);
+	else
+	{
+		ft_printf("%*.0~Player %d => %s%~ too big or \
+size neg[%d/%2.0~%d%~ B MAX]\n",
+			player->nb + 1, player->nb, player->binary_name,
+			player->code_size, CHAMP_MAX_SIZE);
+		exit_program(mstr);
+	}
+	check_trailing_code(mstr, player);
 }
