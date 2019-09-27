@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   asm.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gdrai <gdrai@student.42.fr>                +#+  +:+       +#+        */
+/*   By: advardon <advardon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/30 13:04:14 by gdrai             #+#    #+#             */
-/*   Updated: 2019/09/19 11:39:36 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/27 18:35:08 by advardon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef struct			s_env
 	int					quote;
 	int					white_space;
 	int					first_word;
+	int					sep;
 	t_asm_line			*head;
 }						t_env;
 
