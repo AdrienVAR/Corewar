@@ -6,7 +6,7 @@
 /*   By: gdrai <gdrai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/10 13:18:27 by gdrai             #+#    #+#             */
-/*   Updated: 2019/09/27 14:19:09 by gdrai            ###   ########.fr       */
+/*   Updated: 2019/09/27 18:12:15 by gdrai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,13 +79,19 @@ void	check_count_op(t_env *env)
 			env->white_space = 1;
 		else if (env->first_word && env->line[i] == SEPARATOR_CHAR)
 			clean_exit(env, "Error: unexpected SEPARATOR_CHAR\n");
-		else if (env->first_word && env->white_space && env->line[i] != ' ' && env->line[i] != '\t')
-			clean_exit(env, "Error: expected SEPARATOR_CHAR\n");
 		else if (env->line[i] == SEPARATOR_CHAR)
 		{
-			env->white_space = 1;
+			env->sep = 1;
 			env->count++;
 		}
+		else if (!env->first_word && env->white_space && env->line[i] != ' ' && env->line[i] != '\t' && !env->sep)
+			clean_exit(env, "Error: expected SEPARATOR_CHAR\n");
+		else if (!env->first_word && env->line[i] != ' ' && env->line[i] != '\t')
+		{
+			env->sep = 0;
+			env->white_space = 0;
+		}
+		//printf("i: %d ws: %d fw: %d sep: %d c: %d\n", i, env->white_space, env->first_word, env->sep, env->count);
 		i++;
 	}
 }
@@ -96,6 +102,7 @@ void	split_op_line(t_env *env)
 		return ;
 	env->count = 0;
 	env->white_space = 1;
+	env->sep = 0;
 	env->first_word = 2;
 	check_count_op(env);
 	if (env->count == 0)
