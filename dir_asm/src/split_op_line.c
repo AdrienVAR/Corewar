@@ -6,7 +6,7 @@
 /*   By: gdrai <gdrai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/10 13:18:27 by gdrai             #+#    #+#             */
-/*   Updated: 2019/09/26 11:31:22 by gdrai            ###   ########.fr       */
+/*   Updated: 2019/09/27 12:17:30 by gdrai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,23 +63,21 @@ void	check_count_op(t_env *env)
 	i = 0;
 	while (env->line[i] != '\0' && env->line[i] != COMMENT_CHAR)
 	{
-		if (env->line[i] == ' ' || env->line[i] == '\t'
-			|| env->line[i] == SEPARATOR_CHAR)
-		{
-			env->white_space = 1;
-			if (env->count > 0)
-				env->first_word = 0;
-		}
-		else if (env->line[i] == LABEL_CHAR && env->first_word &&
-			env->line[i + 1] != ' ' && env->line[i + 1] != '\t' &&
-				env->line[i + 1] != '\0' && env->line[i + 1] != COMMENT_CHAR)
-			env->count++;
+		if (env->line[i] == LABEL_CHAR && env->first_word == 1)
+			env->first_word++;
+		else if (env->first_word && env->line[i] == SEPARATOR_CHAR)
+			clean_exit(env, "Error: unexpected SEPARATOR_CHAR");
 		else if (env->line[i] != ' ' && env->line[i] != '\t'
-			&& env->white_space)
+			&& env->white_space && env->first_word)
 		{
 			env->count++;
 			env->white_space = 0;
+			env->first_word--;
 		}
+		else if (env->line[i] == ' ' || env->line[i] == '\t')
+			env->white_space = 1;
+		else if (env->line[i] == SEPARATOR_CHAR && !env->first_word)
+			env->count++;
 		i++;
 	}
 }
@@ -90,7 +88,7 @@ void	split_op_line(t_env *env)
 		return ;
 	env->count = 0;
 	env->white_space = 1;
-	env->first_word = 1;
+	env->first_word = 2;
 	check_count_op(env);
 	if (env->count == 0)
 		return ;
