@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cizeur <cizeur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gdrai <gdrai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/20 17:40:14 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/21 21:34:39 by cizeur           ###   ########.fr       */
+/*   Updated: 2019/09/27 14:58:56 by gdrai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,13 @@ static int		ft_complete_line(char **gnl, int fd, char *buf, int *r)
 
 	while (!ft_strchr(gnl[fd], '\n') && (*r = read(fd, buf, BUFF_SIZE)) > 0)
 	{
+		if ((int)ft_strlen(buf) != *r)
+			return (ft_free_return(&gnl[fd], -1));
 		temp = gnl[fd];
 		gnl[fd] = ft_strjoin(gnl[fd], buf);
 		free(temp);
 		if (!gnl[fd])
 			return (0);
-		if ((int)ft_strlen(gnl[fd]) != *r)
-			return (ft_free_return(&gnl[fd], 0));
 		ft_bzero(buf, BUFF_SIZE + 1);
 	}
 	return (1);
