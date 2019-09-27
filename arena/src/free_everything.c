@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_everything.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cizeur <cizeur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/21 17:38:03 by cizeur            #+#    #+#             */
-/*   Updated: 2019/09/21 17:41:04 by cizeur           ###   ########.fr       */
+/*   Updated: 2019/09/27 10:13:17 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,10 @@ static void		free_player(t_player **player)
 	int i;
 
 	i = -1;
+
 	while (++i < MAX_PLAYERS)
 	{
+		file_closing(player[i]);
 		ft_bzero(player[i], sizeof(t_player));
 		ft_memdel((void **)&player[i]);
 	}
