@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 18:47:19 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/25 14:13:12 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/27 13:46:41 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,10 @@ static void	player_live_verbose(t_master *mstr)
 
 static void	player_sort_living(t_master *mstr, t_process *process)
 {
-	int i;
-	t_player *player;
-	int		live;
-	t_player *stock[2];
+	int			i;
+	t_player	*player;
+	int			live;
+	t_player	*stock[2];
 
 	live = process->vm.alive - 1;
 	player = mstr->players[live];

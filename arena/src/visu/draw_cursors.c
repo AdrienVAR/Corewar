@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/24 14:54:33 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/25 18:01:21 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/27 14:19:04 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void		draw_cursors_image(t_master *mstr, t_visu *visu)
 		if (mstr->arena[i].cursor == NO_CURSOR)
 			continue;
 		pos[0] = LEFT_X + i % 64 * BYTE_X;
-		pos[1] = TOP_Y + i / 64 * BYTE_Y  + (BYTE_Y - 1) / 2;
+		pos[1] = TOP_Y + i / 64 * BYTE_Y + (BYTE_Y - 1) / 2;
 		dim[0] = BYTE_X;
 		dim[1] = ((BYTE_Y - 1) / 2) * 2;
 		draw_square_image(visu, pos, dim,

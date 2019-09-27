@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 18:47:19 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/23 09:30:52 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/27 13:44:58 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "libft/ft_printf.h"
 #include "utils.h"
 
-static void		add_verbose(t_process *process)
+static void	add_verbose(t_process *process)
 {
 	t_command command;
 
@@ -30,7 +30,7 @@ static void		add_verbose(t_process *process)
 		command.param_ext_conv[0].nb + command.param_ext_conv[1].nb);
 }
 
-void			ex_command_add(t_master *mstr, t_process *process, t_arena *arena)
+void		ex_command_add(t_master *mstr, t_process *process, t_arena *arena)
 {
 	t_dir_cast	result;
 	t_command	command;

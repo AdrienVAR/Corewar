@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 18:47:19 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/23 09:32:59 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/27 13:46:49 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "libft/ft_printf.h"
 #include "utils.h"
 
-static void		lld_verbose(t_process *process, int load_val)
+static void	lld_verbose(t_process *process, int load_val)
 {
 	t_command command;
 
@@ -34,7 +34,7 @@ static void		lld_verbose(t_process *process, int load_val)
 		command.param_conv[1].nb + 1);
 }
 
-void			ex_command_lld(t_master *mstr, t_process *process, t_arena *arena)
+void		ex_command_lld(t_master *mstr, t_process *process, t_arena *arena)
 {
 	t_command	command;
 	t_dir_cast	load_val;

@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 18:47:19 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/26 15:50:00 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/27 13:46:02 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "libft/ft_printf.h"
 #include "utils.h"
 
-static void		ldi_verbose(t_process *process, int jump, int dest_val)
+static void	ldi_verbose(t_process *process, int jump, int dest_val)
 {
 	t_command	command;
 	int			cor;
@@ -35,7 +35,7 @@ static void		ldi_verbose(t_process *process, int jump, int dest_val)
 	ft_printf(" from pc : %d (val = %#x)\n", jump, dest_val);
 }
 
-void			ex_command_ldi(t_master *mstr, t_process *process, t_arena *arena)
+void		ex_command_ldi(t_master *mstr, t_process *process, t_arena *arena)
 {
 	t_command	command;
 	t_dir_cast	elem[3];

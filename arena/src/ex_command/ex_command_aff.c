@@ -6,14 +6,14 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 18:47:19 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/27 11:45:57 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/27 13:45:26 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "arena.h"
 #include "libft/ft_printf.h"
 
-static void		aff_verbose(t_process *process)
+static void	aff_verbose(t_process *process)
 {
 	ft_printf("P - %5d | op : %5s %c\n",
 		process->vm.process_nb,
@@ -21,7 +21,7 @@ static void		aff_verbose(t_process *process)
 		process->vm.command.param_ext_conv[0].nb);
 }
 
-static void		update_aff_buffer(t_master *mstr, t_process *process)
+static void	update_aff_buffer(t_master *mstr, t_process *process)
 {
 	t_player	*player;
 	int			ind;
@@ -47,7 +47,7 @@ static void		update_aff_buffer(t_master *mstr, t_process *process)
 	}
 }
 
-void			ex_command_aff(t_master *mstr, t_process *process, t_arena *arena)
+void		ex_command_aff(t_master *mstr, t_process *process, t_arena *arena)
 {
 	t_player	*player;
 

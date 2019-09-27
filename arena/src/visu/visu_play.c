@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/23 18:18:28 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/26 10:36:51 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/27 14:20:09 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,5 @@ void	visu_play_till_action(t_master *mstr, t_visu *visu)
 	while (visu->update != U_END && !mstr->something_happened)
 		visu_play_one_turn(mstr, visu);
 	mstr->something_happened = 0;
-	visu->update  = visu->update != U_END ? U_REFRESH : U_END;
+	visu->update = visu->update != U_END ? U_REFRESH : U_END;
 }

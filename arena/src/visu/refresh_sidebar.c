@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/25 10:31:57 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/27 12:21:32 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/27 13:41:39 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "utils.h"
 #include "arena.h"
 
-static void		cycle_foamy_info(t_master *mstr, t_visu *visu, int start)
+static void			cycle_foamy_info(t_master *mstr, t_visu *visu, int start)
 {
 	char *string;
 
@@ -42,15 +42,11 @@ static void		cycle_foamy_info(t_master *mstr, t_visu *visu, int start)
 	sidebar_text(visu, string, COLOR_BASIC, -8 - start);
 }
 
-static void		visualiser_info(t_visu *visu, int start)
+static void			vm_state(t_visu *visu, int start)
 {
 	char *string;
 
 	string = 0;
-	ft_asprintf(&string, "VISUALISER INFO :");
-	sidebar_text(visu, string, COLOR_BASIC, start);
-	ft_asprintf(&string, "Multi turn refresh rate : %d", visu->multi);
-	sidebar_text(visu, string, COLOR_LESS_BASIC, -1 - start);
 	if (visu->update == U_END)
 		ft_asprintf(&string, "OVER");
 	else if (visu->update != U_REFRESH)
@@ -59,6 +55,18 @@ static void		visualiser_info(t_visu *visu, int start)
 		ft_asprintf(&string, "IDLE");
 	sidebar_text(visu, string,
 		visu->update != U_REFRESH ? 0x00FF00 : COLOR_BASIC, -2 - start);
+}
+
+static void			visualiser_info(t_visu *visu, int start)
+{
+	char *string;
+
+	string = 0;
+	ft_asprintf(&string, "VISUALISER INFO :");
+	sidebar_text(visu, string, COLOR_BASIC, start);
+	ft_asprintf(&string, "Multi turn refresh rate : %d", visu->multi);
+	sidebar_text(visu, string, COLOR_LESS_BASIC, -1 - start);
+	vm_state(visu, start);
 	ft_asprintf(&string, "CONTROLS :");
 	sidebar_text(visu, string, COLOR_BASIC, 4 + start);
 	ft_asprintf(&string, "[ESC]  : QUIT");
@@ -77,7 +85,7 @@ static void		visualiser_info(t_visu *visu, int start)
 	sidebar_text(visu, string, COLOR_BASIC, -11 - start);
 }
 
-static void		winner_text(t_master *mstr, t_visu *visu, int start)
+static void			winner_text(t_master *mstr, t_visu *visu, int start)
 {
 	char		*string;
 	t_player	*player;
@@ -105,7 +113,7 @@ static void		winner_text(t_master *mstr, t_visu *visu, int start)
 	}
 }
 
-void		refresh_sidebar(t_master *mstr, t_visu *visu)
+void				refresh_sidebar(t_master *mstr, t_visu *visu)
 {
 	cycle_foamy_info(mstr, visu, 0);
 	visualiser_info(visu, 10);

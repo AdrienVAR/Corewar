@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/25 10:31:57 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/27 12:22:33 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/27 14:19:56 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,10 @@ static void		player_aff(t_master *mstr, t_visu *visu, int start)
 		color = player_color(player->nb);
 		ft_strlen(player->name) > MAX_VISU_NAME_LEN ?
 		ft_asprintf(&string, "Player %d : %*.*s...",
-			player->nb, MAX_VISU_NAME_LEN, MAX_VISU_NAME_LEN,
+			player->nb, MAX_VISU_NAME_LEN + 4, MAX_VISU_NAME_LEN,
 			player->name) :
 		ft_asprintf(&string, "Player %d : %*s",
-			player->nb, MAX_VISU_NAME_LEN + 3,
+			player->nb, MAX_VISU_NAME_LEN + 7,
 			player->name);
 		sidebar_text(visu, string, color, -(2 * i + start));
 		ft_asprintf(&string, "[%s]", player->buffer_aff);
@@ -71,7 +71,7 @@ static void		player_aff(t_master *mstr, t_visu *visu, int start)
 	}
 }
 
-void		refresh_sidebar_player(t_master *mstr, t_visu *visu)
+void			refresh_sidebar_player(t_master *mstr, t_visu *visu)
 {
 	player_info(mstr, visu, 23);
 	if (visu->update != U_END)

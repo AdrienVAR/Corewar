@@ -6,14 +6,14 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 09:52:51 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/19 17:04:12 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/27 14:11:39 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "arena.h"
 #include "utils.h"
 
-int			command_extract_register(t_command *command, int p_ind)
+int		command_extract_register(t_command *command, int p_ind)
 {
 	int				reg;
 	t_reg_cast		reg_cast;
@@ -30,7 +30,7 @@ int			command_extract_register(t_command *command, int p_ind)
 	return (YES);
 }
 
-void		command_extract_indirect(t_process *process, int p_ind, t_arena *arena)
+void	command_extract_indirect(t_process *process, int p_ind, t_arena *arena)
 {
 	t_ind_cast		ind_cast;
 	t_dir_cast		ind_val;
@@ -53,7 +53,7 @@ void		command_extract_indirect(t_process *process, int p_ind, t_arena *arena)
 	process->vm.command.param_ext_conv[p_ind].nb = ind_val.nb;
 }
 
-void		command_extract_direct(t_command *command, int p_ind)
+void	command_extract_direct(t_command *command, int p_ind)
 {
 	t_ind_cast		ind_cast;
 	t_dir_cast		dir_cast;
@@ -76,7 +76,7 @@ void		command_extract_direct(t_command *command, int p_ind)
 	}
 }
 
-void		command_extract_register_value(t_process *process, int p_ind)
+void	command_extract_register_value(t_process *process, int p_ind)
 {
 	t_dir_cast		reg;
 	int				reg_n;
@@ -89,7 +89,7 @@ void		command_extract_register_value(t_process *process, int p_ind)
 	process->vm.command.param_ext_conv[p_ind].nb = reg.nb;
 }
 
-int			command_convert_param(t_process *process, t_arena *arena)
+int		command_convert_param(t_process *process, t_arena *arena)
 {
 	int			i;
 	int			type;

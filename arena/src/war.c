@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/03 14:07:46 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/25 10:11:36 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/27 14:21:02 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 **		**************************************************
 */
 
-void			run_command(t_master *mstr, t_process *cur_process, t_arena *arena)
+void		run_command(t_master *mstr, t_process *cur_process, t_arena *arena)
 {
 	int				op_id;
 	static void		(*ex_command[AVAILABLE_OPERATIONS])() = {0,
@@ -41,7 +41,7 @@ void			run_command(t_master *mstr, t_process *cur_process, t_arena *arena)
 	ft_bzero(&(cur_process->vm.command), sizeof(t_command));
 }
 
-void			run_cycle(t_master *mstr)
+void		run_cycle(t_master *mstr)
 {
 	t_process	*cur_process;
 	t_arena		*arena;
@@ -66,7 +66,7 @@ void			run_cycle(t_master *mstr)
 	}
 }
 
-void			war(t_master *mstr)
+void		war(t_master *mstr)
 {
 	mstr->ctd = mstr->foamy_bat_cycle;
 	while (mstr->process)

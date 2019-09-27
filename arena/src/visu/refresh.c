@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   refresh.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cizeur <cizeur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/24 10:53:50 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/26 21:33:52 by cizeur           ###   ########.fr       */
+/*   Updated: 2019/09/27 14:19:44 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ void		winner_background(t_master *mstr, t_visu *visu)
 }
 
 void		refresh(t_master *mstr, t_visu *visu)
-
 {
 	clean_image_background(visu);
 	draw_cursors_image(mstr, visu);

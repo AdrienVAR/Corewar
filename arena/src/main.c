@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cizeur <cizeur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/31 09:59:05 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/26 21:28:33 by cizeur           ###   ########.fr       */
+/*   Updated: 2019/09/27 14:16:55 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ static void		load_champions(t_master *mstr, char **argv)
 	i = -1;
 	while (++i < mstr->nb_of_players)
 	{
-
 		player_nb =
 		mstr->options.player[mstr->options.player[i][0] - 1][1];
 		player = mstr->players[i];
@@ -38,7 +37,6 @@ int				main(int argc, char **argv)
 {
 	t_master	*mstr;
 	t_opt		options;
-
 
 	if (option_get(&options, --argc, ++argv) == NO)
 	{

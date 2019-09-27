@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/25 17:35:46 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/25 17:57:32 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/27 14:20:41 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ static void		init_window(t_master *mstr, t_visu *visu)
 
 static void		hook_loops(t_master *mstr, t_visu *visu)
 {
-
 	mlx_key_hook((visu->mem_ptr)[WIN_PTR], key_simple_press, visu);
 	mlx_hook((visu->mem_ptr)[WIN_PTR], 2, 0, key_loop, visu);
 	mlx_hook((visu->mem_ptr)[WIN_PTR], 17, 0, close_click, mstr);

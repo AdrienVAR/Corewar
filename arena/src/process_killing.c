@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/20 20:04:34 by cizeur            #+#    #+#             */
-/*   Updated: 2019/09/25 14:19:02 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/27 14:17:53 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ static void	update_life_check(t_master *mstr)
 {
 	int i;
 
+	mstr->something_happened = 1;
 	if (++mstr->check == MAX_CHECKS || mstr->live_signal >= NBR_LIVE)
 	{
 		mstr->check = 0;
@@ -53,7 +54,6 @@ int			process_killing(t_master *mstr, t_process **process)
 	prev = 0;
 	cur = *process;
 	next = cur->next;
-	mstr->something_happened = 1;
 	while (cur)
 	{
 		if (cur->vm.last_live >= mstr->foamy_bat_cycle)
