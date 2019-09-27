@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 18:47:19 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/26 10:50:49 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/27 11:45:57 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,43 @@ static void		aff_verbose(t_process *process)
 		process->vm.command.param_ext_conv[0].nb);
 }
 
+static void		update_aff_buffer(t_master *mstr, t_process *process)
+{
+	t_player	*player;
+	int			ind;
+	int			i;
+	char		c;
+
+	c = process->vm.command.param_ext_conv[0].nb % 256;
+	if (!c)
+		return ;
+	player = mstr->players[process->vm.player - 1];
+	ind = player->buffer_aff_pos;
+	if (ind < BUFFER_AFF_SIZE)
+	{
+		player->buffer_aff[ind] = c;
+		player->buffer_aff_pos++;
+	}
+	else
+	{
+		i = 0;
+		while (++i < BUFFER_AFF_SIZE)
+			player->buffer_aff[i - 1] = player->buffer_aff[i];
+		player->buffer_aff[ind - 1] = c;
+	}
+}
+
 void			ex_command_aff(t_master *mstr, t_process *process, t_arena *arena)
 {
-	(void)mstr;
+	t_player	*player;
+
 	(void)arena;
+	update_aff_buffer(mstr, process);
+	player = mstr->players[process->vm.player - 1];
 	if (mstr->options.aff == YES)
-		ft_printf("%c\n", process->vm.command.param_ext_conv[0].nb % 256);
+		ft_printf("%*.~%s[%d]%~ said :\n[%s]\n",
+		player->nb + 1, player->name, player->nb,
+		player->buffer_aff);
 	if (mstr->options.verbose & VERBOSE_OPER)
 		aff_verbose(process);
 }

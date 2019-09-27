@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   arena.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cizeur <cizeur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/31 09:59:55 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/26 21:25:40 by cizeur           ###   ########.fr       */
+/*   Updated: 2019/09/27 12:15:08 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,8 @@ typedef struct			s_process
 **		************
 */
 
+# define BUFFER_AFF_SIZE 36
+
 typedef struct			s_player
 {
 	int					magic;
@@ -131,7 +133,15 @@ typedef struct			s_player
 	char				comment[COMMENT_LENGTH + 1];
 	char				exec[CHAMP_MAX_SIZE + 1];
 	int					life_signals;
+	char				buffer_aff[BUFFER_AFF_SIZE + 1];
+	char				buffer_aff_pos;
 }						t_player;
+
+/*
+**		******************
+** **	Options management ** **
+**		******************
+*/
 
 # define VERBOSE_LIFE 1
 # define VERBOSE_DEATH 2
@@ -160,6 +170,17 @@ typedef struct			s_opt
 	int					nb_players;
 }						t_opt;
 
+
+/*
+**		**********************************************
+** **	Master struct containing arena and shared vals ** **
+**		**********************************************
+*/
+
+/*
+** **	ARENA STRUCT
+*/
+
 typedef struct			s_arena
 {
 	t_uchar		value;
@@ -168,9 +189,7 @@ typedef struct			s_arena
 }						t_arena;
 
 /*
-**		**********************************************
-** **	Master struct containing arena and shared vals ** **
-**		**********************************************
+** **	MASTER STRUCT
 */
 
 typedef struct			s_master
@@ -286,5 +305,6 @@ void					draw_cursors_image(t_master *mstr, t_visu *visu);
 void					clean_image_background(t_visu *visu);
 void					visu_play_till_action(t_master *mstr, t_visu *visu);
 void					refresh_sidebar(t_master *mstr, t_visu *visu);
+void					refresh_sidebar_player(t_master *mstr, t_visu *visu);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/23 11:50:53 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/25 18:21:33 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/27 12:20:36 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,5 +94,7 @@ void			draw_pixel(t_visu *visu, int x, int y, int color);
 int				player_color(int player);
 void			draw_square_image(t_visu *visu, int pos[2],
 					int dim[2], int color);
+void			sidebar_text(t_visu *visu, char *line,
+					int color, int line_nb);
 
 #endif
