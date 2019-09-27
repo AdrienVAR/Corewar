@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/25 17:35:46 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/27 14:20:41 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/27 17:30:54 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,17 @@
 #include "visu_arena.h"
 #include "libft/libft.h"
 
+static int		close_click(t_master *mstr)
+{
+	mstr->no_error = 1;
+	exit_visu(mstr);
+	return (1);
+}
+
 static int		loop_hook(t_master *mstr)
 {
 	if (mstr->visu->update == U_STOP)
-		exit_visu(mstr);
+		close_click(mstr);
 	if (mstr->visu->ended)
 		return (1);
 	if (mstr->visu->update == U_ONE_TURN)
@@ -33,12 +40,6 @@ static int		loop_hook(t_master *mstr)
 	return (1);
 }
 
-static int		close_click(t_master *mstr)
-{
-	exit_visu(mstr);
-	return (1);
-}
-
 static void		init_window(t_master *mstr, t_visu *visu)
 {
 	int data_prm[3];
@@ -47,10 +48,10 @@ static void		init_window(t_master *mstr, t_visu *visu)
 	if (!(visu->mem_ptr[WIN_PTR] =
 		mlx_new_window(visu->mem_ptr[MLX_PTR],
 	XRES, YRES, "Corewar Arena")))
-		exit_program(mstr);
+		exit_visu(mstr);
 	visu->mem_ptr[I_PTR] = mlx_new_image(visu->mem_ptr[MLX_PTR], XRES, YRES);
 	if (!visu->mem_ptr[I_PTR])
-		exit_program(mstr);
+		exit_visu(mstr);
 	visu->mem_ptr[I_ADR] = mlx_get_data_addr(visu->mem_ptr[I_PTR],
 		&(data_prm[0]), &(data_prm[1]), &(data_prm[2]));
 	visu->header = mlx_xpm_file_to_image(visu->mem_ptr[MLX_PTR],
