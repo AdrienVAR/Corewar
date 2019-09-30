@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 13:33:24 by gdrai             #+#    #+#             */
-/*   Updated: 2019/09/30 11:29:20 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/30 11:30:39 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static void	check_same_labels(t_env *env, char *label)
 	}
 }
 
-static void	check_syntax_label(t_env *env, char *label)
+void		check_syntax_label(t_env *env, char *label)
 {
 	int i;
 	int j;
