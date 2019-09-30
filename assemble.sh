@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    test_script_lem_in.sh                              :+:      :+:    :+:    #
+#    assemble.sh                                        :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+         #
+#    By: advardon <advardon@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/19 17:57:30 by cgiron            #+#    #+#              #
-#    Updated: 2019/09/30 11:58:15 by cgiron           ###   ########.fr        #
+#    Updated: 2019/09/30 13:06:41 by advardon         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,9 +15,9 @@
 ################################ Functions #####################################
 
 function usage() {
-printf "\nusage: sh ./test_script_lem_in.sh [-n number of maps] [-m map_folder] [-e with_generator]\n\
+printf "\nusage: sh ./assemble.sh [-n number of maps] [-m map_folder] [-e with_generator]\n\
 	[-g generator][-o generator_opitons][-v with_verif][-t showtime][-p program][-po program options]\n\n"
-printf "Lemin map folder generator-tester\n\
+printf "Corewar map folder generator-tester\n\
 	- till n maps\n\
 	- in a folder of map (-m)\n\
 	- with generator (-g)\n\
