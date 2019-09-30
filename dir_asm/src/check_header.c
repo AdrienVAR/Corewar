@@ -6,7 +6,7 @@
 /*   By: gdrai <gdrai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 15:14:17 by gdrai             #+#    #+#             */
-/*   Updated: 2019/09/30 10:44:41 by gdrai            ###   ########.fr       */
+/*   Updated: 2019/09/30 13:52:09 by gdrai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	check_double_quotes(t_env *env)
 
 int		checker_name(t_env *env)
 {
-	if (ft_strncmp(env->line_splitted[0], ".name", 5) != 0)
+	if (ft_strcmp(env->line_splitted[0], NAME_CMD_STRING) != 0)
 		return (0);
 	check_double_quotes(env);
 	if (ft_strlen(env->line_splitted[1]) - 2 > PROG_NAME_LENGTH)
@@ -52,7 +52,7 @@ int		checker_name(t_env *env)
 
 int		checker_comment(t_env *env)
 {
-	if (ft_strncmp(env->line_splitted[0], ".comment", 8) != 0)
+	if (ft_strcmp(env->line_splitted[0], COMMENT_CMD_STRING) != 0)
 		return (0);
 	check_double_quotes(env);
 	if (ft_strlen(env->line_splitted[1]) - 2 > COMMENT_LENGTH)
