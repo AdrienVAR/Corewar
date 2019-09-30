@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/27 14:19:15 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/27 14:19:20 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/30 15:18:30 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ void	flush_image(t_visu *visu)
 {
 	mlx_put_image_to_window(visu->mem_ptr[MLX_PTR],
 		visu->mem_ptr[WIN_PTR], visu->mem_ptr[I_PTR], 0, 0);
-	mlx_put_image_to_window(visu->mem_ptr[MLX_PTR],
+	if (visu->header)
+		mlx_put_image_to_window(visu->mem_ptr[MLX_PTR],
 		visu->mem_ptr[WIN_PTR], visu->header,
 			(XRES - visu->header_size[0]) / 2, 15);
 }
