@@ -6,7 +6,7 @@
 /*   By: gdrai <gdrai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/10 13:16:13 by gdrai             #+#    #+#             */
-/*   Updated: 2019/09/30 11:13:35 by gdrai            ###   ########.fr       */
+/*   Updated: 2019/09/30 13:01:02 by gdrai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,8 @@ void	split_header_line(t_env *env)
 	env->quote = 0;
 	env->white_space = 1;
 	check_count_header(env);
+	if (env->count == 0)
+		return ;
 	if (env->quote != 2)
 		clean_exit(0, env, "Error: Wrong number of quotes in header\n");
 	if (env->count != 2)
