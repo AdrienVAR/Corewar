@@ -6,7 +6,7 @@
 #    By: advardon <advardon@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/19 17:57:30 by cgiron            #+#    #+#              #
-#    Updated: 2019/09/30 13:06:41 by advardon         ###   ########.fr        #
+#    Updated: 2019/09/30 14:45:18 by cgiron           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,21 +15,20 @@
 ################################ Functions #####################################
 
 function usage() {
-printf "\nusage: sh ./assemble.sh [-n number of maps] [-m map_folder] [-e with_generator]\n\
-	[-g generator][-o generator_opitons][-v with_verif][-t showtime][-p program][-po program options]\n\n"
-printf "Corewar map folder generator-tester\n\
-	- till n maps\n\
-	- in a folder of map (-m)\n\
-	- with generator (-g)\n\
-	- with generator options (-o)\n\
-	- !!!-e for generator careful -m [map_folder] erased\n"
-	}
+printf "\nusage: sh ./assemble.sh [-m map_folder] [-p program]\n"
+printf "Apply asm to .s file\n\
+	- in folder -m\n\
+	- wih program -p\n\
+	- with valgrind -v\n\
+	- with -c\n"
+}
 
 	########################## Variables initialization ############################
 
-	map_folder=./maps_tester
+	map_folder=.
 	program=./asm
 	valgrind=0
+	error=0
 
 	############################# Options parser ###################################
 
@@ -42,6 +41,10 @@ printf "Corewar map folder generator-tester\n\
 				;;
 			-v)
 				valgrind=1
+				;;
+	
+			-s)
+				error=1
 				;;
 			-p)
 				shift
@@ -75,10 +78,14 @@ printf "Corewar map folder generator-tester\n\
 			echo "\033[0;31m$program absent\033[0m"
 			exit 1
 		fi
-		for filename in $map_folder/*; do
+		for filename in $map_folder/*.s; do
 			map_str=$filename
 			echo "Now testing \033[0;32m$map_str\033[0m"
 			$program $map_str
+			success=$($program $map_str | grep "Success")
+			if [ -z "$success" ]; then
+				cat -n $map_str
+			fi
 			if [ "$valgrind" -eq 1 ]; then
 				echo "With valgrind"
 				valgrind $program $map_str  >&1 
