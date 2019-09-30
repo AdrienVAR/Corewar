@@ -6,7 +6,7 @@
 #    By: advardon <advardon@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/19 17:57:30 by cgiron            #+#    #+#              #
-#    Updated: 2019/09/30 17:45:00 by cgiron           ###   ########.fr        #
+#    Updated: 2019/09/30 19:34:31 by cgiron           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,8 @@ printf "Apply asm to .s file\n\
 	- with valgrind -v\n\
 	- with -vm for vm name\n\
 	- with -c for vm execution\n\
-	- with -clean to remove all *.cor\n"
+	- with -clean to remove all *.cor\n
+	- -with re to clean before processing\n"
 }
 
 ########################## Variables initialization ############################
@@ -49,6 +50,9 @@ while [ "$1" != "" ]; do
 			;;
 		-clean)
 			clean=1
+			;;
+		-re)
+			clean=2
 			;;
 		-s)
 			error=1
@@ -83,13 +87,16 @@ echo "\033[0mTEST FOLDER :\033[0;32m" $map_folder
 echo "\033[0m"
 
 
-echo "CLeaning *.cor"
-rm $map_folder/*.cor
 
 if [ "$clean" -eq 1 ]; then
+	echo "CLeaning *.cor"
+	rm $map_folder/*.cor
 	exit 1
 fi
-
+if [ "$clean" -eq 2 ]; then
+	echo "CLeaning *.cor"
+	rm $map_folder/*.cor
+fi
 if test -f "$program"; then
 	echo "\033[0;32m$program exist\033[0m"
 else
