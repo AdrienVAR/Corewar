@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   clean_exit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gdrai <gdrai@student.42.fr>                +#+  +:+       +#+        */
+/*   By: advardon <advardon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/30 14:05:00 by gdrai             #+#    #+#             */
-/*   Updated: 2019/09/30 12:00:06 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/30 12:51:44 by advardon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 #include "libft/ft_printf.h"
+#include "libft/get_next_line.h"
 
 void	clean_line_readed(t_env *env)
 {
@@ -55,6 +56,8 @@ void	clean_exit(int col, t_env *env, char *error_message)
 
 	if (env)
 	{
+		if(env->fd)
+			get_next_line(-2, &env->line);
 		clean_line_readed(env);
 		if (env->num_line > 0)
 			ft_printf("line %d - ", env->num_line);
