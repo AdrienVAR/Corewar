@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 18:47:19 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/27 13:46:14 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/27 17:34:19 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,10 @@ void		ex_command_lfork(t_master *mstr, t_process *process, t_arena *arena)
 
 	(void)arena;
 	if (!(new_process = (t_process *)ft_memalloc(sizeof(t_process))))
+	{
+		ft_putstr("Malloc FAILURE\n");
 		exit_program(mstr);
+	}
 	new_process->carry = process->carry;
 	new_process->pc = (process->pc +
 		process->vm.command.param_conv[0].nb) % MEM_SIZE;

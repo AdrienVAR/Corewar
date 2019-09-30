@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/31 09:59:55 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/27 15:09:01 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/27 17:11:02 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -197,7 +197,6 @@ typedef struct			s_arena
 
 typedef struct			s_master
 {
-	int					magic_number;
 	int					nb_of_players;
 	int					last_player_live;
 	int					live_signal;
@@ -215,6 +214,7 @@ typedef struct			s_master
 	int					cur_cycle;
 	t_visu				*visu;
 	int					someone_lived;
+	int					no_error;
 }						t_master;
 
 /*
@@ -237,10 +237,10 @@ t_type					type_val(int type_code);
 ** **	BINARY_READ
 */
 
-int						binary_read_integer(int fd, t_master *mstr);
-void					binary_read_string(int fd, char *str, int sz,
+int						binary_read_integer(t_player *player, t_master *mstr);
+void					binary_read_string(t_player *player, char *str, int sz,
 							t_master *mstr);
-void					binary_read_null(int fd, t_master *mstr);
+void					binary_read_null(t_player *player, t_master *mstr);
 void					arena_populate(t_master *mstr);
 void					memory_dump(t_master *mstr);
 void					player_give_process(t_master *mstr);
