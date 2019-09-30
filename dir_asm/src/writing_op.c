@@ -6,7 +6,7 @@
 /*   By: gdrai <gdrai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/10 16:47:20 by gdrai             #+#    #+#             */
-/*   Updated: 2019/09/11 11:28:48 by gdrai            ###   ########.fr       */
+/*   Updated: 2019/09/30 14:16:30 by gdrai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,42 +14,47 @@
 
 void	writing_direct_op(t_asm_line *current, int fd, int i)
 {
+	int			size;
 	t_dir_cast	dir;
 	t_ind_cast	ind;
 
-	if (current->operation.dir_size == 2)
+	if (current->operation.dir_size == IND_SIZE)
 	{
+		size = IND_SIZE - 1;
 		ind.nb = current->param_value[i];
-		ft_putchar_fd(ind.casted[1], fd);
-		ft_putchar_fd(ind.casted[0], fd);
+		while (size >= 0)
+			ft_putchar_fd(ind.casted[size--], fd);
 	}
 	else
 	{
+		size = DIR_SIZE - 1;
 		dir.nb = current->param_value[i];
-		ft_putchar_fd(dir.casted[3], fd);
-		ft_putchar_fd(dir.casted[2], fd);
-		ft_putchar_fd(dir.casted[1], fd);
-		ft_putchar_fd(dir.casted[0], fd);
+		while (size >= 0)
+			ft_putchar_fd(dir.casted[size--], fd);
 	}
 }
 
 void	writing_op_bis(t_asm_line *current, int fd, int i)
 {
+	int			size;
 	t_ind_cast	ind;
 	t_reg_cast	reg;
 
-	if (current->params_type[i].type == g_type[0].type)
+	if (current->params_type[i].type == REG_CODE)
 	{
+		size = REG_SIZE - 1;
 		reg.nb = current->param_value[i];
-		ft_putchar_fd(reg.casted[0], fd);
+		while (size >= 0)
+			ft_putchar_fd(reg.casted[size--], fd);
 	}
-	else if (current->params_type[i].type == g_type[1].type)
+	else if (current->params_type[i].type == DIR_CODE)
 		writing_direct_op(current, fd, i);
 	else
 	{
+		size = IND_SIZE - 1;
 		ind.nb = current->param_value[i];
-		ft_putchar_fd(ind.casted[1], fd);
-		ft_putchar_fd(ind.casted[0], fd);
+		while (size >= 0)
+			ft_putchar_fd(ind.casted[size--], fd);
 	}
 }
 
