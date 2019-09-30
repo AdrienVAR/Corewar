@@ -51,6 +51,12 @@ all: $(NAME)
 
 simulink:
 	rm -rf	$(INC_DIR)/$(L_LIBFT_DIR)
+	rm -rf	$(INC_DIR)/op.h
+	rm -rf	$(SRC_DIR)/op.c
+	rm -rf 	$(INC_DIR)/mlx/mlx.h
+	ln -s 	../../../mlx/mlx.h	$(INC_DIR)/mlx
+	ln -s 	../../shared_resource/op.h $(INC_DIR)
+	ln -s 	../../shared_resource/op.c $(SRC_DIR)
 	ln -s	../$(L_FT)/$(INC_DIR) $(INC_DIR)/$(L_LIBFT_DIR)
 
 $(OBJ_DIR):
@@ -61,6 +67,7 @@ $(OBJ_DIR):
 	$(CC) $(OPTI_FLAGS) $(CFLAGS) -c $< -o  $(addprefix $(OBJ_DIR)/,$@)
 
 $(NAME): $(OBJ) $(DEPENDANCIES_ARENA)
+	$(MAKE) -C $(L_MLX) --no-print-directory
 	$(MAKE) -C $(L_FT) "OPTI_FLAGS=$(OPTI_FLAGS)" --no-print-directory
 	$(CC) $(OPTI_FLAGS) $(CFLAGS) $(EXFLAGS)  $(addprefix $(OBJ_DIR)/,$(OBJ)) -o $(NAME)
 

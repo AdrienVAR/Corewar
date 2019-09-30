@@ -6,7 +6,7 @@
 #    By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/17 11:56:45 by cgiron            #+#    #+#              #
-#    Updated: 2019/09/19 14:49:15 by cgiron           ###   ########.fr        #
+#    Updated: 2019/09/30 16:50:02 by cgiron           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,6 +45,10 @@ all: $(NAME)
 
 simulink:
 	rm -rf	$(INC_DIR)/$(L_LIBFT_DIR)
+	rm -rf	$(INC_DIR)/op.h
+	rm -rf	$(SRC_DIR)/op.c
+	ln -s 	../../shared_resource/op.h $(INC_DIR)
+	ln -s 	../../shared_resource/op.c $(SRC_DIR)
 	ln -s	../$(L_FT)/$(INC_DIR) $(INC_DIR)/$(L_LIBFT_DIR)
 
 $(OBJ_DIR):
