@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_asm.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gdrai <gdrai@student.42.fr>                +#+  +:+       +#+        */
+/*   By: advardon <advardon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 15:59:32 by gdrai             #+#    #+#             */
-/*   Updated: 2019/09/27 15:00:09 by gdrai            ###   ########.fr       */
+/*   Updated: 2019/09/30 10:11:07 by advardon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ void		check_asm(t_env *env)
 {
 	while (get_next_line(env->fd, &env->line) > 0)
 	{
+		env->num_line++;
 		split_op_line(env);
 		if (env->line_splitted != NULL)
 			create_asm_line(env);

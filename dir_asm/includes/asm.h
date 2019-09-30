@@ -6,7 +6,7 @@
 /*   By: advardon <advardon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/30 13:04:14 by gdrai             #+#    #+#             */
-/*   Updated: 2019/09/27 18:35:08 by advardon         ###   ########.fr       */
+/*   Updated: 2019/09/30 10:29:24 by advardon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ typedef struct			s_env
 	int					white_space;
 	int					first_word;
 	int					sep;
+	int					num_line;
 	t_asm_line			*head;
 }						t_env;
 

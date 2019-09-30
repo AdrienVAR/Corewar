@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cizeur <cizeur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: advardon <advardon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 14:41:23 by advardon          #+#    #+#             */
-/*   Updated: 2019/09/18 22:00:29 by cizeur           ###   ########.fr       */
+/*   Updated: 2019/09/30 10:16:00 by advardon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int		main(int argc, char **argv)
 		clean_exit(env, "Usage: ./asm <sourcefile.s>\n");
 	parsing(argv[1], env);
 	writing(argv[1], env);
+	env->num_line = -1;
 	clean_exit(env, "Success: Writing output...\n");
 	return (0);
 }

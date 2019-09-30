@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   clean_exit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gdrai <gdrai@student.42.fr>                +#+  +:+       +#+        */
+/*   By: advardon <advardon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/30 14:05:00 by gdrai             #+#    #+#             */
-/*   Updated: 2019/09/11 11:15:31 by gdrai            ###   ########.fr       */
+/*   Updated: 2019/09/30 10:27:12 by advardon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
+#include "libft/ft_printf.h"
 
 void	clean_line_readed(t_env *env)
 {
@@ -52,18 +53,22 @@ void	clean_exit(t_env *env, char *error_message)
 {
 	t_asm_line *tmp;
 
-	while (env->head)
+	if (env)
 	{
-		tmp = env->head->next;
-		if (env->head->label)
-			ft_memdel((void**)&(env->head->label));
-		clean_param_label(env->head);
-		ft_bzero(env->head, sizeof(t_asm_line));
-		ft_memdel((void**)&env->head);
-		env->head = tmp;
+		ft_printf("line %d - ", env->num_line);
+		while (env->head)
+		{
+			tmp = env->head->next;
+			if (env->head->label)
+				ft_memdel((void**)&(env->head->label));
+			clean_param_label(env->head);
+			ft_bzero(env->head, sizeof(t_asm_line));
+			ft_memdel((void**)&env->head);
+			env->head = tmp;
+		}
+		clean_line_readed(env);
+		free_env(env);
 	}
-	clean_line_readed(env);
-	free_env(env);
 	ft_putstr(error_message);
 	exit(0);
 }

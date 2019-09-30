@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_header.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gdrai <gdrai@student.42.fr>                +#+  +:+       +#+        */
+/*   By: advardon <advardon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 15:14:17 by gdrai             #+#    #+#             */
-/*   Updated: 2019/09/19 11:37:27 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/30 10:08:24 by advardon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ void	check_header(t_env *env)
 	{
 		if (get_next_line(env->fd, &env->line) > 0)
 		{
+			env->num_line++;
 			split_header_line(env);
 			if (env->line_splitted != NULL)
 			{
