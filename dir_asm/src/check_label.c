@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 13:33:24 by gdrai             #+#    #+#             */
-/*   Updated: 2019/09/30 11:32:50 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/30 12:11:34 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ static void	check_same_labels(t_env *env, char *label)
 	while (line)
 	{
 		if (line->label
+		&& ft_strlen(line->label) == ft_strlen(label) - 1
 		&& !ft_strncmp(line->label, label, ft_strlen(label) - 1))
 			counter++;
 		line = line->next;
