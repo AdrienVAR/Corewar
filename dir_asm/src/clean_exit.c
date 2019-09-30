@@ -6,7 +6,7 @@
 /*   By: gdrai <gdrai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/30 14:05:00 by gdrai             #+#    #+#             */
-/*   Updated: 2019/09/30 11:07:21 by gdrai            ###   ########.fr       */
+/*   Updated: 2019/09/30 12:00:06 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	clean_exit(int col, t_env *env, char *error_message)
 	if (env)
 	{
 		clean_line_readed(env);
-		if (env->num_line != -1)
+		if (env->num_line > 0)
 			ft_printf("line %d - ", env->num_line);
 		if (col != -1)
 			ft_printf("col %d : ", col);
