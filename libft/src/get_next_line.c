@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: advardon <advardon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gdrai <gdrai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/20 17:40:14 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/30 12:47:01 by advardon         ###   ########.fr       */
+/*   Updated: 2019/09/30 13:05:57 by gdrai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "libft.h"
 #include <stdlib.h>
 
-int			free_static(int fd, char **str)
+int				free_static(int fd, char **str)
 {
 	int i;
 
