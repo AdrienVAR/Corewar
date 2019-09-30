@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clean_exit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: advardon <advardon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gdrai <gdrai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/30 14:05:00 by gdrai             #+#    #+#             */
-/*   Updated: 2019/09/30 12:51:44 by advardon         ###   ########.fr       */
+/*   Updated: 2019/09/30 13:06:56 by gdrai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	clean_exit(int col, t_env *env, char *error_message)
 
 	if (env)
 	{
-		if(env->fd)
+		if (env->fd)
 			get_next_line(-2, &env->line);
 		clean_line_readed(env);
 		if (env->num_line > 0)
