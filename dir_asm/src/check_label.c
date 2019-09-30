@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 13:33:24 by gdrai             #+#    #+#             */
-/*   Updated: 2019/09/30 11:27:53 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/30 11:29:20 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ static void	check_syntax_label(t_env *env, char *label)
 			j++;
 		}
 		if (k == 0)
-			clean_exit(env, "Wrong syntax for Label\n");
+			clean_exit(-1, env, "Wrong syntax for Label\n");
 		i++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: gdrai <gdrai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/10 13:15:22 by gdrai             #+#    #+#             */
-/*   Updated: 2019/09/27 11:44:24 by gdrai            ###   ########.fr       */
+/*   Updated: 2019/09/30 10:44:41 by gdrai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_asm_line		*find_label(t_env *env, char *label)
 		}
 		current = current->next;
 	}
-	clean_exit(env, "Error: label not existing\n");
+	clean_exit(-1, env, "Error: label not existing\n");
 	return (NULL);
 }
 

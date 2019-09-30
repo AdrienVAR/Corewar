@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clean_exit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: advardon <advardon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gdrai <gdrai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/30 14:05:00 by gdrai             #+#    #+#             */
-/*   Updated: 2019/09/30 10:34:32 by advardon         ###   ########.fr       */
+/*   Updated: 2019/09/30 11:07:21 by gdrai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,14 +49,17 @@ void	clean_param_label(t_asm_line *instruction)
 	}
 }
 
-void	clean_exit(t_env *env, char *error_message)
+void	clean_exit(int col, t_env *env, char *error_message)
 {
 	t_asm_line *tmp;
 
 	if (env)
 	{
+		clean_line_readed(env);
 		if (env->num_line != -1)
 			ft_printf("line %d - ", env->num_line);
+		if (col != -1)
+			ft_printf("col %d : ", col);
 		while (env->head)
 		{
 			tmp = env->head->next;
@@ -67,7 +70,6 @@ void	clean_exit(t_env *env, char *error_message)
 			ft_memdel((void**)&env->head);
 			env->head = tmp;
 		}
-		clean_line_readed(env);
 		free_env(env);
 	}
 	ft_putstr(error_message);

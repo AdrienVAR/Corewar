@@ -6,7 +6,7 @@
 /*   By: gdrai <gdrai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 16:12:40 by gdrai             #+#    #+#             */
-/*   Updated: 2019/09/11 11:15:16 by gdrai            ###   ########.fr       */
+/*   Updated: 2019/09/30 10:44:41 by gdrai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,5 @@
 void	check_valid_type(t_asm_line *op, int param, t_env *env)
 {
 	if (!(op->operation.params_type[param] & op->params_type[param].type))
-		clean_exit(env, "Error: Invalid argument type for this action\n");
+		clean_exit(-1, env, "Error: Invalid argument type for this action\n");
 }

@@ -6,7 +6,7 @@
 /*   By: gdrai <gdrai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 16:12:40 by gdrai             #+#    #+#             */
-/*   Updated: 2019/09/26 11:53:37 by gdrai            ###   ########.fr       */
+/*   Updated: 2019/09/30 10:44:41 by gdrai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	check_arguments(t_env *env, t_asm_line *op)
 	while (env->line_splitted[i])
 		i++;
 	if (i - k != op->operation.nb_params)
-		clean_exit(env, "Error: wrong nb of arguments\n");
+		clean_exit(-1, env, "Error: wrong nb of arguments\n");
 	param = 0;
 	while (k < i)
 	{
@@ -104,5 +104,5 @@ void	check_op(t_env *env, t_asm_line *op)
 			return ;
 		}
 	}
-	clean_exit(env, "Error: Unknown action\n");
+	clean_exit(-1, env, "Error: Unknown action\n");
 }

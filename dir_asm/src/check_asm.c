@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_asm.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: advardon <advardon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gdrai <gdrai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 15:59:32 by gdrai             #+#    #+#             */
-/*   Updated: 2019/09/30 10:11:07 by advardon         ###   ########.fr       */
+/*   Updated: 2019/09/30 10:44:41 by gdrai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_asm_line	*ft_lstadd_end(t_asm_line **lst, t_env *env)
 
 	lstart = *lst;
 	if (!(lstnew = (t_asm_line *)ft_memalloc(sizeof(t_asm_line))))
-		clean_exit(env, "Error: memory allocation failed\n");
+		clean_exit(-1, env, "Error: memory allocation failed\n");
 	if (!lstart)
 	{
 		lstart = lstnew;
@@ -64,5 +64,5 @@ void		check_asm(t_env *env)
 		clean_line_readed(env);
 	}
 	if (env->head == NULL)
-		clean_exit(env, "Error: no operations in your code\n");
+		clean_exit(-1, env, "Error: no operations in your code\n");
 }
