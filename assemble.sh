@@ -6,7 +6,7 @@
 #    By: advardon <advardon@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/19 17:57:30 by cgiron            #+#    #+#              #
-#    Updated: 2019/09/30 16:34:56 by cgiron           ###   ########.fr        #
+#    Updated: 2019/09/30 17:38:57 by cgiron           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ printf "Apply asm to .s file\n\
 	- with valgrind -v\n\
 	- with -vm for vm name\n\
 	- with -c for vm execution\n\
-	- with -clean to remove all *.cor"
+	- with -clean to remove all *.cor\n"
 }
 
 ########################## Variables initialization ############################
