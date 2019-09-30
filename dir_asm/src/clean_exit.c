@@ -6,7 +6,7 @@
 /*   By: advardon <advardon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/30 14:05:00 by gdrai             #+#    #+#             */
-/*   Updated: 2019/09/30 10:27:12 by advardon         ###   ########.fr       */
+/*   Updated: 2019/09/30 10:34:32 by advardon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,8 @@ void	clean_exit(t_env *env, char *error_message)
 
 	if (env)
 	{
-		ft_printf("line %d - ", env->num_line);
+		if (env->num_line != -1)
+			ft_printf("line %d - ", env->num_line);
 		while (env->head)
 		{
 			tmp = env->head->next;
