@@ -6,7 +6,7 @@
 /*   By: gdrai <gdrai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 13:33:24 by gdrai             #+#    #+#             */
-/*   Updated: 2019/09/26 11:54:06 by gdrai            ###   ########.fr       */
+/*   Updated: 2019/09/30 10:44:41 by gdrai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	check_syntax_label(t_env *env, char *label)
 			j++;
 		}
 		if (k == 0)
-			clean_exit(env, "Wrong syntax for Label\n");
+			clean_exit(-1, env, "Wrong syntax for Label\n");
 		i++;
 	}
 }

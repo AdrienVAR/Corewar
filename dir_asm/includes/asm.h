@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   asm.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: advardon <advardon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gdrai <gdrai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/30 13:04:14 by gdrai             #+#    #+#             */
-/*   Updated: 2019/09/30 10:29:24 by advardon         ###   ########.fr       */
+/*   Updated: 2019/09/30 10:50:47 by gdrai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ typedef struct			s_env
 	int					count;
 	int					quote;
 	int					white_space;
-	int					first_word;
+	int					first_w;
 	int					sep;
 	int					num_line;
 	t_asm_line			*head;
@@ -111,7 +111,7 @@ void					check_syntax_label(t_env *env, char *label);
 /*
 ** clean_exit.c
 */
-void					clean_exit(t_env *env, char *error_message);
+void					clean_exit(int col, t_env *env, char *error_message);
 void					clean_line_readed(t_env *env);
 
 /*

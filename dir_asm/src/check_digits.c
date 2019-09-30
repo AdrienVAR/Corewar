@@ -6,7 +6,7 @@
 /*   By: gdrai <gdrai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 16:12:40 by gdrai             #+#    #+#             */
-/*   Updated: 2019/09/12 10:53:35 by gdrai            ###   ########.fr       */
+/*   Updated: 2019/09/30 10:44:41 by gdrai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,15 +42,15 @@ void		check_digits(t_env *env, t_asm_line *op, int param, char *str)
 		|| (op->params_type[param].type == g_type[1].type))
 		str++;
 	if (!str[i])
-		clean_exit(env, "Error: Missing value on parameter\n");
+		clean_exit(-1, env, "Error: Missing value on parameter\n");
 	while (str[i])
 	{
 		if (!ft_isdigit(str[i]) && str[i] != '-' && str[i] != '+')
-			clean_exit(env, "Error: parameter is not a number\n");
+			clean_exit(-1, env, "Error: parameter is not a number\n");
 		i++;
 	}
 	op->param_value[param] = ft_atol(str);
 	if (op->params_type[param].type == g_type[0].type)
 		if (op->param_value[param] < 1 || op->param_value[param] > REG_NUMBER)
-			clean_exit(env, "Error: invalid register number\n");
+			clean_exit(-1, env, "Error: invalid register number\n");
 }

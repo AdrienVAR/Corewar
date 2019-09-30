@@ -6,7 +6,7 @@
 /*   By: gdrai <gdrai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/10 13:16:13 by gdrai             #+#    #+#             */
-/*   Updated: 2019/09/27 12:06:48 by gdrai            ###   ########.fr       */
+/*   Updated: 2019/09/30 10:47:37 by gdrai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int		fill_name(t_env *env, size_t i, int k)
 		&& env->line[j] != '"')
 		j++;
 	if (!(env->line_splitted[k] = ft_strnew(j - i + 1)))
-		clean_exit(env, "Error: Memory allocation failed\n");
+		clean_exit(-1, env, "Error: Memory allocation failed\n");
 	env->line_splitted[k] = ft_memcpy(env->line_splitted[k],
 		env->line + i, j - i);
 	return (j);
@@ -36,7 +36,7 @@ int		fill_in_quote(t_env *env, size_t i, int k)
 		j++;
 	j++;
 	if (!(env->line_splitted[k] = ft_strnew(j - i)))
-		clean_exit(env, "Error: Memory allocation failed\n");
+		clean_exit(-1, env, "Error: Memory allocation failed\n");
 	env->line_splitted[k] = ft_memcpy(env->line_splitted[k],
 		env->line + i, j - i);
 	return (j);
@@ -103,14 +103,14 @@ void	split_header_line(t_env *env)
 	env->white_space = 1;
 	check_count_header(env);
 	if (env->quote != 0 && env->quote != 2)
-		clean_exit(env, "Error: Wrong number of quotes in header\n");
+		clean_exit(0, env, "Error: Wrong number of quotes in header\n");
 	if (env->count == 0)
 		return ;
 	if (env->count != 2)
-		clean_exit(env, "Error: Incorrect name or comment\n");
+		clean_exit(0, env, "Error: Incorrect name or comment\n");
 	if (!(env->line_splitted = (char **)ft_memalloc(sizeof(char *)
 		* (env->count + 1))))
-		clean_exit(env, "Error: Memory allocation failed\n");
+		clean_exit(-1, env, "Error: Memory allocation failed\n");
 	env->line_splitted[env->count] = NULL;
 	header_case(env);
 }
