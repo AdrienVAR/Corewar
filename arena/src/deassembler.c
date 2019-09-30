@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 09:02:21 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/27 18:40:12 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/30 16:05:43 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ void			deassembler(t_master *mstr, t_player *player)
 				player, &(player->exec[0]), player->code_size, mstr);
 	else
 	{
-		ft_printf("%*.0~Player %d => %s%~ too big or \
-size neg[%d/%2.0~%d%~ B MAX]\n",
+		ft_printf("%*.0~Player %d => %s%~ size \
+too big/null/neg [%d/%2.0~%d%~ B MAX]\n",
 			player->nb + 1, player->nb, player->binary_name,
 			player->code_size, CHAMP_MAX_SIZE);
 		exit_program(mstr);
