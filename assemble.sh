@@ -6,7 +6,7 @@
 #    By: advardon <advardon@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/19 17:57:30 by cgiron            #+#    #+#              #
-#    Updated: 2019/09/30 17:38:57 by cgiron           ###   ########.fr        #
+#    Updated: 2019/09/30 17:45:00 by cgiron           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -82,6 +82,8 @@ done
 echo "\033[0mTEST FOLDER :\033[0;32m" $map_folder
 echo "\033[0m"
 
+
+echo "CLeaning *.cor"
 rm $map_folder/*.cor
 
 if [ "$clean" -eq 1 ]; then
