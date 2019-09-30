@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   check_label.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gdrai <gdrai@student.42.fr>                +#+  +:+       +#+        */
+/*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 13:33:24 by gdrai             #+#    #+#             */
-/*   Updated: 2019/09/26 11:54:06 by gdrai            ###   ########.fr       */
+/*   Updated: 2019/09/30 11:27:53 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
+#include "libft/ft_printf.h"
 
 /*
 ** Check if the first section of the line is a label
@@ -21,7 +22,32 @@
 ** if false -> exit
 */
 
-void	check_syntax_label(t_env *env, char *label)
+static void	check_same_labels(t_env *env, char *label)
+{
+	int			counter;
+	t_asm_line	*line;
+
+	line = env->head;
+	if (!line || !label)
+		return ;
+	counter = 0;
+	while (line)
+	{
+		if (line->label
+		&& !ft_strncmp(line->label, label, ft_strlen(label) - 1))
+			counter++;
+		line = line->next;
+	}
+	if (counter)
+	{
+		ft_printf("Line %2.0~%d%~ => label [%2.0~%s%~]",
+				env->num_line, label);
+		ft_printf("appearing for the %d time will be ignored\n",
+				counter + 1);
+	}
+}
+
+static void	check_syntax_label(t_env *env, char *label)
 {
 	int i;
 	int j;
@@ -44,7 +70,7 @@ void	check_syntax_label(t_env *env, char *label)
 	}
 }
 
-int		check_label(t_env *env, t_asm_line *op)
+int			check_label(t_env *env, t_asm_line *op)
 {
 	int i;
 
