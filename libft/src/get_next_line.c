@@ -3,16 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
+/*   By: advardon <advardon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/20 17:40:14 by cgiron            #+#    #+#             */
-/*   Updated: 2019/09/27 15:53:22 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/30 12:47:01 by advardon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 #include "libft.h"
 #include <stdlib.h>
+
+int			free_static(int fd, char **str)
+{
+	int i;
+
+	i = 0;
+	if (fd == -2)
+	{
+		while (i < MAX_FD)
+		{
+			ft_memdel((void **)&str[i]);
+			i++;
+		}
+		return (1);
+	}
+	return (0);
+}
 
 static int		ft_free_return(char **gnl, int val)
 {
@@ -47,7 +64,8 @@ int				get_next_line(const int fd, char **line)
 	char		*temp;
 
 	r = 0;
-	if (fd < 0 || fd >= MAX_FD || !line || BUFF_SIZE <= 0)
+	if (free_static(fd, gnl) || fd < 0 || fd >= MAX_FD
+	|| !line || BUFF_SIZE <= 0)
 		return (-1);
 	if (!(gnl[fd] = !gnl[fd] ? ft_strnew(0) : gnl[fd]))
 		return (-1);
