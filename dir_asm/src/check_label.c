@@ -6,7 +6,7 @@
 /*   By: cgiron <cgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 13:33:24 by gdrai             #+#    #+#             */
-/*   Updated: 2019/09/30 11:30:39 by cgiron           ###   ########.fr       */
+/*   Updated: 2019/09/30 11:32:50 by cgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ static void	check_same_labels(t_env *env, char *label)
 	}
 	if (counter)
 	{
-		ft_printf("Line %2.0~%d%~ => label [%2.0~%s%~]",
-				env->num_line, label);
-		ft_printf("appearing for the %d time will be ignored\n",
+		ft_printf("Line %2.0~%d%~ => label [%2.0~%.*s%~]",
+				env->num_line, ft_strlen(label) - 1, label);
+		ft_printf(" appearing for the %d time will be ignored\n",
 				counter + 1);
 	}
 }
@@ -80,6 +80,7 @@ int			check_label(t_env *env, t_asm_line *op)
 	if (env->line_splitted[0][i - 1] != LABEL_CHAR)
 		return (1);
 	check_syntax_label(env, env->line_splitted[0]);
+	check_same_labels(env, env->line_splitted[0]);
 	op->label = ft_strndup(env->line_splitted[0],
 		ft_strlen(env->line_splitted[0]) - 1);
 	if (env->line_splitted[1] == NULL)
